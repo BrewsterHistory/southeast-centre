@@ -207,159 +207,173 @@ footer{background:var(--ink);color:rgba(245,240,232,0.45);text-align:center;padd
   <div class="map-wrap">
     <div>
       <div class="map-canvas">
-        <svg viewBox="0 0 760 580" xmlns="http://www.w3.org/2000/svg" style="font-family:'DM Mono',monospace">
+        <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="font-family:'DM Mono',monospace">
           <defs>
-            <pattern id="rh" patternUnits="userSpaceOnUse" width="9" height="9" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="9" stroke="#A8C8E0" stroke-width="1.8"/>
+            <pattern id="rh" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="8" stroke="#A0C0D8" stroke-width="1.5"/>
             </pattern>
           </defs>
 
-          <!-- Background -->
-          <rect width="760" height="580" fill="#F0EDE4"/>
+          <!-- ── BACKGROUND ── -->
+          <rect width="800" height="600" fill="#EDEAE0"/>
 
-          <!-- Watershed / reservoir land (grey surround) -->
-          <!-- Top watershed area -->
-          <polygon points="0,0 760,0 760,120 430,60 280,90 200,130 160,160 0,160" fill="#D8D4C8"/>
-          <!-- Left reservoir area (Bog Brook) -->
-          <polygon points="0,0 160,0 160,160 130,220 80,300 0,360" fill="#D8D4C8"/>
-          <!-- Bottom reservoir area (East Branch) -->
-          <polygon points="0,360 80,300 130,340 170,420 200,500 160,580 0,580" fill="#D8D4C8"/>
+          <!-- ── WATERSHED / RESERVOIR AREAS (everything outside private lots) ── -->
+          <!-- Left side — Bog Brook Reservoir area -->
+          <rect x="0" y="0" width="130" height="600" fill="#D4D0C4"/>
+          <rect x="0" y="0" width="130" height="600" fill="url(#rh)" opacity="0.45"/>
+          <text x="65" y="200" text-anchor="middle" font-size="8" fill="#5A7A8A" letter-spacing="0.04em">BOG BROOK</text>
+          <text x="65" y="212" text-anchor="middle" font-size="8" fill="#5A7A8A" letter-spacing="0.04em">RESERVOIR</text>
+          <text x="65" y="390" text-anchor="middle" font-size="8" fill="#5A7A8A" letter-spacing="0.04em">EAST BRANCH</text>
+          <text x="65" y="402" text-anchor="middle" font-size="8" fill="#5A7A8A" letter-spacing="0.04em">RESERVOIR</text>
 
-          <!-- Water texture on reservoir areas -->
-          <polygon points="0,0 160,0 160,160 130,220 80,300 0,360" fill="url(#rh)" opacity="0.5"/>
-          <polygon points="0,360 80,300 130,340 170,420 200,500 160,580 0,580" fill="url(#rh)" opacity="0.5"/>
+          <!-- Top watershed strip (north of Lots 1, 2 and Lot 11) -->
+          <rect x="130" y="0" width="670" height="48" fill="#D4D0C4"/>
+          <text x="460" y="20" text-anchor="middle" font-size="8" fill="#7A9AAA" letter-spacing="0.1em">← CITY OF NEW YORK WATERSHED BOUNDARY →</text>
+          <line x1="148" y1="30" x2="790" y2="30" stroke="#8AACCC" stroke-width="0.8" stroke-dasharray="5,3"/>
 
-          <!-- Reservoir labels -->
-          <text x="65" y="140" text-anchor="middle" font-size="8" fill="#4A7A9A" letter-spacing="0.05em">BOG BROOK</text>
-          <text x="65" y="151" text-anchor="middle" font-size="8" fill="#4A7A9A" letter-spacing="0.05em">RESERVOIR</text>
-          <text x="65" y="430" text-anchor="middle" font-size="8" fill="#4A7A9A" letter-spacing="0.05em">EAST BRANCH</text>
-          <text x="65" y="441" text-anchor="middle" font-size="8" fill="#4A7A9A" letter-spacing="0.05em">RESERVOIR</text>
+          <!-- ── BREWSTER HILL ROAD ── vertical, left side -->
+          <!-- Runs top to bottom, width ~20px, centered around x=175 -->
+          <rect x="162" y="0" width="22" height="600" fill="#DDD8C8" stroke="#C0B898" stroke-width="0.5"/>
+          <text x="173" y="310" text-anchor="middle" font-size="8" fill="#8C8070"
+                transform="rotate(-90,173,310)" letter-spacing="0.07em">BREWSTER HILL ROAD</text>
 
-          <!-- Watershed boundary label at top -->
-          <text x="460" y="18" text-anchor="middle" font-size="8" fill="#7A9AAA" letter-spacing="0.1em">← CITY OF NEW YORK WATERSHED BOUNDARY →</text>
-          <line x1="210" y1="24" x2="750" y2="24" stroke="#8AACCC" stroke-width="0.8" stroke-dasharray="5,3"/>
+          <!-- ── SODOM ROAD ── horizontal, divides Brewster Hill lots (above) from Sodom lots (below) -->
+          <!-- Sits at y=340 area, runs east from intersection -->
+          <rect x="130" y="338" width="670" height="22" fill="#DDD8C8" stroke="#C0B898" stroke-width="0.5"/>
+          <text x="490" y="353" text-anchor="middle" font-size="8" fill="#8C8070" letter-spacing="0.07em">SODOM ROAD  (Church Street)  →</text>
 
-          <!-- BREWSTER HILL ROAD — angled slightly left matching tax map -->
-          <!-- Road runs from ~top-center down to intersection, slight angle -->
-          <polygon points="188,30 218,30 235,370 205,370" fill="#E2DDD0" stroke="#C0B898" stroke-width="0.8"/>
-          <text x="211" y="220" text-anchor="middle" font-size="8" fill="#8C8070" transform="rotate(-87,211,220)" letter-spacing="0.06em">BREWSTER HILL ROAD</text>
+          <!-- Intersection marker -->
+          <circle cx="173" cy="349" r="5" fill="#2A2820" opacity="0.6"/>
+          <text x="148" y="332" text-anchor="middle" font-size="7.5" fill="#5A5040">Sodom</text>
+          <text x="148" y="342" text-anchor="middle" font-size="7.5" fill="#5A5040">Corners</text>
 
-          <!-- SODOM ROAD — angled, running from intersection east/southeast matching tax map -->
-          <polygon points="170,368 760,395 760,418 170,393" fill="#E2DDD0" stroke="#C0B898" stroke-width="0.8"/>
-          <text x="480" y="412" text-anchor="middle" font-size="8" fill="#8C8070" letter-spacing="0.06em">SODOM ROAD  (Church Street)  →</text>
+          <!-- ══════════════════════════════════════════ -->
+          <!-- LOTS ON BREWSTER HILL ROAD (west side, above intersection) -->
+          <!-- Both sit to the RIGHT of Brewster Hill Road, stacked north-south -->
+          <!-- Tax map: Lot 1 = upper (1.96 ac), Lot 2 = lower/larger (1.5 ac) -->
 
-          <!-- Intersection dot -->
-          <circle cx="210" cy="380" r="6" fill="#3A3528" opacity="0.7"/>
-          <text x="175" y="365" font-size="8" fill="#5A5040" text-anchor="middle">Sodom</text>
-          <text x="175" y="375" font-size="8" fill="#5A5040" text-anchor="middle">Corners</text>
-
-          <!-- ══════════════════════════════════════════════ -->
-          <!-- LOT 1 — upper parcel, trapezoid shape, north of Lot 2 on Brewster Hill -->
-          <!-- Tax map: Lot 1 is the upper parcel, wider at top, narrowing toward road -->
+          <!-- LOT 1 — upper parcel, north end of Brewster Hill Road frontage -->
+          <!-- Trapezoid: wider at top (watershed boundary), narrower at bottom (shared with Lot 2) -->
           <g class="lot-shape" id="ls-lot1" onclick="selectLot('lot1')">
-            <polygon points="220,35 400,35 390,175 228,195" fill="#C8DCE8" stroke="#7AACCC" stroke-width="1.5"/>
-            <text x="308" y="95" text-anchor="middle" font-size="9" fill="#1C3A50" font-weight="500">LOT 1</text>
-            <text x="308" y="109" text-anchor="middle" font-size="8" fill="#2A5070">22 Brewster Hill</text>
-            <text x="308" y="121" text-anchor="middle" font-size="8" fill="#2A5070">1838 → Stevens</text>
+            <polygon points="186,48  390,48  380,190  186,195" fill="#C8DCE8" stroke="#7AACCC" stroke-width="1.5"/>
+            <text x="288" y="108" text-anchor="middle" font-size="10" fill="#1C3A50" font-weight="500">LOT 1</text>
+            <text x="288" y="124" text-anchor="middle" font-size="8.5" fill="#1C3A50" font-style="italic" font-family="'Playfair Display',serif">Upper Parcel</text>
+            <text x="288" y="140" text-anchor="middle" font-size="8" fill="#2A5070">22 Brewster Hill</text>
+            <text x="288" y="153" text-anchor="middle" font-size="8" fill="#2A5070">1838 → Stevens</text>
           </g>
 
-          <!-- LOT 2 — Stonehedge, larger, below Lot 1, irregular quadrilateral -->
-          <!-- Tax map shows Lot 2 is wider and sits below Lot 1, both on west side of Brewster Hill -->
+          <!-- LOT 2 — Stonehedge, south of Lot 1 along Brewster Hill, larger -->
+          <!-- Bottom edge meets Sodom Road at intersection -->
           <g class="lot-shape" id="ls-lot2" onclick="selectLot('lot2')">
-            <polygon points="228,195 390,175 382,355 235,368" fill="#D4E5F0" stroke="#7AACCC" stroke-width="1.5"/>
-            <text x="308" y="268" text-anchor="middle" font-size="9" fill="#1C3A50" font-weight="500">LOT 2</text>
-            <text x="308" y="283" text-anchor="middle" font-size="10" fill="#1C3A50" font-style="italic" font-family="'Playfair Display',serif">Stonehedge</text>
-            <text x="308" y="298" text-anchor="middle" font-size="8" fill="#2A5070">10 Brewster Hill</text>
-            <text x="308" y="310" text-anchor="middle" font-size="8" fill="#2A5070">1826 → Howes</text>
+            <polygon points="186,195  380,190  376,336  186,338" fill="#D4E5F0" stroke="#7AACCC" stroke-width="1.5"/>
+            <text x="283" y="258" text-anchor="middle" font-size="10" fill="#1C3A50" font-weight="500">LOT 2</text>
+            <text x="283" y="274" text-anchor="middle" font-size="10" fill="#1C3A50" font-style="italic" font-family="'Playfair Display',serif">Stonehedge</text>
+            <text x="283" y="291" text-anchor="middle" font-size="8" fill="#2A5070">10 Brewster Hill Road</text>
+            <text x="283" y="305" text-anchor="middle" font-size="8" fill="#2A5070">1826 → Howes</text>
           </g>
 
-          <!-- The Sodom Road lots — all south of road, fanning slightly per tax map -->
-          <!-- Tax map shows they are angled/tapered, wider at back (north), narrowing at road -->
+          <!-- ══════════════════════════════════════════ -->
+          <!-- SODOM ROAD LOTS — south of Sodom Road, running east from intersection -->
+          <!-- Tax map shows these as roughly rectangular strips with significant depth -->
+          <!-- They run SOUTH from the road. Back (south) edge is at y~570 -->
+          <!-- Widths from tax map (approximate proportional): 
+               Lot 3: ~100px, Lot 4: ~68px, Lot 6: ~69px, 
+               Lot 7: ~115px (largest), Lot 8: ~65px, Lot 9: ~65px, Lot 10: ~55px -->
 
-          <!-- LOT 3 — westernmost Sodom Road lot, at corner of Brewster Hill -->
+          <!-- LOT 3 — westernmost, corner of Brewster Hill & Sodom -->
           <g class="lot-shape" id="ls-lot3" onclick="selectLot('lot3')">
-            <polygon points="237,370 340,358 348,420 330,500 220,500 215,415" fill="#EAE0CC" stroke="#B09060" stroke-width="1.5"/>
-            <text x="282" y="430" text-anchor="middle" font-size="9" fill="#4A3010" font-weight="500">LOT 3</text>
-            <text x="282" y="445" text-anchor="middle" font-size="9" fill="#4A3010" font-style="italic" font-family="'Playfair Display',serif">Yale House</text>
-            <text x="282" y="459" text-anchor="middle" font-size="8" fill="#6A5030">2–4 Brewster</text>
-            <text x="282" y="471" text-anchor="middle" font-size="8" fill="#6A5030">Foster→Hine</text>
+            <polygon points="186,360  290,360  290,570  186,570" fill="#EAE0CC" stroke="#B09060" stroke-width="1.5"/>
+            <text x="238" y="440" text-anchor="middle" font-size="10" fill="#4A3010" font-weight="500">LOT 3</text>
+            <text x="238" y="456" text-anchor="middle" font-size="9.5" fill="#4A3010" font-style="italic" font-family="'Playfair Display',serif">Yale House</text>
+            <text x="238" y="473" text-anchor="middle" font-size="8" fill="#6A5030">2–4 Brewster Hill</text>
+            <text x="238" y="487" text-anchor="middle" font-size="8" fill="#6A5030">Foster → Hine</text>
+            <text x="238" y="501" text-anchor="middle" font-size="8" fill="#6A5030">c.1826 →</text>
           </g>
 
-          <!-- LOT 4 — next east along Sodom Road -->
+          <!-- LOT 4 -->
           <g class="lot-shape" id="ls-lot4" onclick="selectLot('lot4')">
-            <polygon points="340,358 408,350 418,415 410,500 330,500 348,420" fill="#E8D8C0" stroke="#B09060" stroke-width="1.5"/>
-            <text x="375" y="425" text-anchor="middle" font-size="9" fill="#4A3010" font-weight="500">LOT 4</text>
-            <text x="375" y="439" text-anchor="middle" font-size="8" fill="#6A5030">88 Sodom</text>
-            <text x="375" y="451" text-anchor="middle" font-size="8" fill="#6A5030">1866 → Marsh</text>
+            <polygon points="290,360  360,360  360,570  290,570" fill="#E8D8C0" stroke="#B09060" stroke-width="1.5"/>
+            <text x="325" y="440" text-anchor="middle" font-size="10" fill="#4A3010" font-weight="500">LOT 4</text>
+            <text x="325" y="458" text-anchor="middle" font-size="8" fill="#6A5030">88 Sodom</text>
+            <text x="325" y="473" text-anchor="middle" font-size="8" fill="#6A5030">1866 →</text>
+            <text x="325" y="487" text-anchor="middle" font-size="8" fill="#6A5030">Marsh/Craw</text>
           </g>
 
-          <!-- LOT 6 — Reed Homestead, slightly wider back -->
+          <!-- LOT 6 — Reed Homestead -->
           <g class="lot-shape" id="ls-lot6" onclick="selectLot('lot6')">
-            <polygon points="408,350 470,344 482,410 474,498 410,500 418,415" fill="#F0D8B0" stroke="#C09030" stroke-width="1.5"/>
-            <text x="443" y="415" text-anchor="middle" font-size="9" fill="#4A2800" font-weight="500">LOT 6</text>
-            <text x="443" y="429" text-anchor="middle" font-size="9" fill="#4A2800" font-style="italic" font-family="'Playfair Display',serif">Reed Home</text>
-            <text x="443" y="443" text-anchor="middle" font-size="8" fill="#6A4010">96–98 Sodom</text>
-            <text x="443" y="455" text-anchor="middle" font-size="8" fill="#6A4010">1840 → Reed</text>
+            <polygon points="360,360  432,360  432,570  360,570" fill="#F0D8B0" stroke="#C09030" stroke-width="1.5"/>
+            <text x="396" y="432" text-anchor="middle" font-size="10" fill="#4A2800" font-weight="500">LOT 6</text>
+            <text x="396" y="448" text-anchor="middle" font-size="9.5" fill="#4A2800" font-style="italic" font-family="'Playfair Display',serif">Reed Home</text>
+            <text x="396" y="465" text-anchor="middle" font-size="8" fill="#6A4010">96–98 Sodom</text>
+            <text x="396" y="480" text-anchor="middle" font-size="8" fill="#6A4010">1840 → Reed</text>
+            <text x="396" y="495" text-anchor="middle" font-size="8" fill="#6A4010">B.S.SH corner</text>
           </g>
 
-          <!-- LOT 7 — Parsonage — larger lot per tax map (2.66 ac) -->
+          <!-- LOT 7 — Parsonage (largest Sodom lot, 2.66 ac) -->
           <g class="lot-shape" id="ls-lot7" onclick="selectLot('lot7')">
-            <polygon points="470,344 590,332 608,398 596,502 474,498 482,410" fill="#F0D8D0" stroke="#C06040" stroke-width="1.5"/>
-            <text x="537" y="415" text-anchor="middle" font-size="9" fill="#4A1810" font-weight="500">LOT 7</text>
-            <text x="537" y="429" text-anchor="middle" font-size="9" fill="#4A1810" font-style="italic" font-family="'Playfair Display',serif">Parsonage</text>
-            <text x="537" y="443" text-anchor="middle" font-size="8" fill="#6A2820">100 Sodom</text>
-            <text x="537" y="455" text-anchor="middle" font-size="8" fill="#6A2820">1859 → Penny</text>
+            <polygon points="432,360  552,360  552,570  432,570" fill="#F0D8D0" stroke="#C06040" stroke-width="1.5"/>
+            <text x="492" y="432" text-anchor="middle" font-size="10" fill="#4A1810" font-weight="500">LOT 7</text>
+            <text x="492" y="448" text-anchor="middle" font-size="9.5" fill="#4A1810" font-style="italic" font-family="'Playfair Display',serif">Parsonage</text>
+            <text x="492" y="465" text-anchor="middle" font-size="8" fill="#6A2820">100 Sodom Road</text>
+            <text x="492" y="480" text-anchor="middle" font-size="8" fill="#6A2820">1859 → Church</text>
+            <text x="492" y="495" text-anchor="middle" font-size="8" fill="#6A2820">→ Penny family</text>
           </g>
 
-          <!-- LOT 8 — Paddock — smaller lot -->
+          <!-- LOT 8 — Paddock House -->
           <g class="lot-shape" id="ls-lot8" onclick="selectLot('lot8')">
-            <polygon points="590,332 630,328 648,394 638,502 596,502 608,398" fill="#E4E0D4" stroke="#807860" stroke-width="1.5"/>
-            <text x="617" y="415" text-anchor="middle" font-size="9" fill="#303020" font-weight="500">LOT 8</text>
-            <text x="617" y="429" text-anchor="middle" font-size="9" fill="#303020" font-style="italic" font-family="'Playfair Display',serif">Paddock</text>
-            <text x="617" y="443" text-anchor="middle" font-size="8" fill="#505040">104 Sodom</text>
-            <text x="617" y="455" text-anchor="middle" font-size="8" fill="#505040">c.1781 →</text>
+            <polygon points="552,360  618,360  618,570  552,570" fill="#E4E0D4" stroke="#807860" stroke-width="1.5"/>
+            <text x="585" y="440" text-anchor="middle" font-size="10" fill="#303020" font-weight="500">LOT 8</text>
+            <text x="585" y="456" text-anchor="middle" font-size="9.5" fill="#303020" font-style="italic" font-family="'Playfair Display',serif">Paddock</text>
+            <text x="585" y="473" text-anchor="middle" font-size="8" fill="#505040">104 Sodom</text>
+            <text x="585" y="488" text-anchor="middle" font-size="8" fill="#505040">c.1781 →</text>
           </g>
 
-          <!-- LOT 9 — Scribner -->
+          <!-- LOT 9 — Scribner House -->
           <g class="lot-shape" id="ls-lot9" onclick="selectLot('lot9')">
-            <polygon points="630,328 672,324 692,390 680,502 638,502 648,394" fill="#E0DDD4" stroke="#807860" stroke-width="1.5"/>
-            <text x="658" y="415" text-anchor="middle" font-size="9" fill="#303020" font-weight="500">LOT 9</text>
-            <text x="658" y="429" text-anchor="middle" font-size="9" fill="#303020" font-style="italic" font-family="'Playfair Display',serif">Scribner</text>
-            <text x="658" y="443" text-anchor="middle" font-size="8" fill="#505040">108 Sodom</text>
-            <text x="658" y="455" text-anchor="middle" font-size="8" fill="#505040">1823 →</text>
+            <polygon points="618,360  684,360  684,570  618,570" fill="#E0DDD4" stroke="#807860" stroke-width="1.5"/>
+            <text x="651" y="440" text-anchor="middle" font-size="10" fill="#303020" font-weight="500">LOT 9</text>
+            <text x="651" y="456" text-anchor="middle" font-size="9.5" fill="#303020" font-style="italic" font-family="'Playfair Display',serif">Scribner</text>
+            <text x="651" y="473" text-anchor="middle" font-size="8" fill="#505040">108 Sodom</text>
+            <text x="651" y="488" text-anchor="middle" font-size="8" fill="#505040">1823 →</text>
           </g>
 
-          <!-- LOT 10 — Church/School — smaller, easternmost Sodom lot -->
+          <!-- LOT 10 — Church / School -->
           <g class="lot-shape" id="ls-lot10" onclick="selectLot('lot10')">
-            <polygon points="672,324 714,320 736,386 722,500 680,502 692,390" fill="#D8EAD4" stroke="#508040" stroke-width="1.5"/>
-            <text x="700" y="408" text-anchor="middle" font-size="9" fill="#183010" font-weight="500">LOT 10</text>
-            <text x="700" y="422" text-anchor="middle" font-size="9" fill="#183010" font-style="italic" font-family="'Playfair Display',serif">Church</text>
-            <text x="700" y="435" text-anchor="middle" font-size="9" fill="#183010" font-style="italic" font-family="'Playfair Display',serif">→ School</text>
-            <text x="700" y="449" text-anchor="middle" font-size="8" fill="#305020">112 Sodom</text>
-            <text x="700" y="461" text-anchor="middle" font-size="8" fill="#305020">1854 →</text>
+            <polygon points="684,360  750,360  750,570  684,570" fill="#D8EAD4" stroke="#508040" stroke-width="1.5"/>
+            <text x="717" y="432" text-anchor="middle" font-size="10" fill="#183010" font-weight="500">LOT 10</text>
+            <text x="717" y="448" text-anchor="middle" font-size="9" fill="#183010" font-style="italic" font-family="'Playfair Display',serif">Church</text>
+            <text x="717" y="462" text-anchor="middle" font-size="9" fill="#183010" font-style="italic" font-family="'Playfair Display',serif">→ School</text>
+            <text x="717" y="479" text-anchor="middle" font-size="8" fill="#305020">112 Sodom</text>
+            <text x="717" y="494" text-anchor="middle" font-size="8" fill="#305020">1854 →</text>
           </g>
 
-          <!-- LOT 11 — Yale Tract — large parcel northeast of intersection, above Sodom Road -->
-          <!-- Tax map shows it's east of the Sodom Road lots, larger, north of road -->
+          <!-- ══════════════════════════════════════════ -->
+          <!-- LOT 11 — Yale Tract -->
+          <!-- Tax map: sits ABOVE Sodom Road, EAST of Brewster Hill Road, -->
+          <!-- occupying the NE quadrant. Bounded by watershed on top, -->
+          <!-- Brewster Hill Rd on left, Sodom Road lots on bottom, right edge free -->
+          <!-- Proportional to 1.43 ac tax parcel + surrounds = moderate size, not overwhelming -->
           <g class="lot-shape" id="ls-lot11" onclick="selectLot('lot11')">
-            <polygon points="400,28 750,28 752,320 714,320 672,324 590,332 470,344 408,350 390,175 400,28" fill="#E8E0F0" stroke="#7060A0" stroke-width="1.5"/>
-            <text x="590" y="155" text-anchor="middle" font-size="9" fill="#2A1C50" font-weight="500">LOT 11</text>
-            <text x="590" y="170" text-anchor="middle" font-size="11" fill="#2A1C50" font-style="italic" font-family="'Playfair Display',serif">Yale Tract</text>
-            <text x="590" y="186" text-anchor="middle" font-size="8" fill="#4A3A70">116 Sodom Road</text>
-            <text x="590" y="200" text-anchor="middle" font-size="8" fill="#4A3A70">1858 → Yale → City of NY</text>
-            <text x="590" y="214" text-anchor="middle" font-size="8" fill="#4A3A70">120 acres · roots 1781–82</text>
+            <polygon points="380,48  750,48  750,336  376,336" fill="#E8E0F0" stroke="#7060A0" stroke-width="1.5"/>
+            <text x="565" y="165" text-anchor="middle" font-size="10" fill="#2A1C50" font-weight="500">LOT 11</text>
+            <text x="565" y="183" text-anchor="middle" font-size="11" fill="#2A1C50" font-style="italic" font-family="'Playfair Display',serif">Yale Tract</text>
+            <text x="565" y="202" text-anchor="middle" font-size="8.5" fill="#4A3A70">116 Sodom Road</text>
+            <text x="565" y="218" text-anchor="middle" font-size="8.5" fill="#4A3A70">1858 → Yale → City of NY</text>
+            <text x="565" y="234" text-anchor="middle" font-size="8.5" fill="#4A3A70">120 acres · roots 1781–82</text>
+            <text x="565" y="252" text-anchor="middle" font-size="8" fill="#6A5A90">W. Warren shoemaker house site</text>
+            <text x="565" y="266" text-anchor="middle" font-size="8" fill="#6A5A90">within this tract</text>
           </g>
 
-          <!-- Compass rose -->
-          <g transform="translate(718,530)">
-            <circle cx="0" cy="0" r="18" fill="#F0EDE4" stroke="#C0B898" stroke-width="1"/>
-            <polygon points="0,-14 3,-4 0,-7 -3,-4" fill="#3A3528"/>
-            <polygon points="0,14 3,4 0,7 -3,4" fill="#8C8070"/>
-            <text x="0" y="-16" text-anchor="middle" font-size="7" fill="#3A3528" font-weight="500">N</text>
+          <!-- Compass rose — bottom left clear area -->
+          <g transform="translate(148,530)">
+            <circle cx="0" cy="0" r="16" fill="#EDEAE0" stroke="#C0B898" stroke-width="1"/>
+            <polygon points="0,-12 2.5,-4 0,-6 -2.5,-4" fill="#2A2820"/>
+            <polygon points="0,12 2.5,4 0,6 -2.5,4" fill="#8C8070"/>
+            <text x="0" y="-14" text-anchor="middle" font-size="7" fill="#2A2820" font-weight="500">N</text>
           </g>
 
           <!-- Scale note -->
-          <text x="12" y="572" font-size="7.5" fill="#8C8070" letter-spacing="0.05em">Lot shapes approximated from Tax Map Section 57.18, Block 1</text>
+          <text x="170" y="590" font-size="7" fill="#8C8070" letter-spacing="0.04em">Approximated from Tax Map Section 57.18, Block 1 · Town of Southeast, Putnam County NY</text>
 
         </svg>
         <div class="map-hint">↑ Click any lot for its deed history</div>
