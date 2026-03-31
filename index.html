@@ -83,148 +83,63 @@ nav{background:var(--warm-white);border-bottom:1px solid var(--border);position:
 .leg-swatch{width:9px;height:9px;border-radius:2px;flex-shrink:0}
 /* drawer styles injected */
 
-/* ── DRAWER OVERLAY ── */
-.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);pointer-events:none;z-index:200;transition:background 0.3s}
-.drawer-overlay.open{background:rgba(0,0,0,0.35);pointer-events:auto}
-.drawer{position:fixed;bottom:0;left:0;right:0;background:var(--warm-white);border-top:2px solid var(--border-strong);border-radius:12px 12px 0 0;z-index:201;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
-.drawer.open{transform:translateY(0)}
-.drawer-handle{width:40px;height:4px;background:var(--border-strong);border-radius:2px;margin:10px auto 0;flex-shrink:0;cursor:grab}
-.drawer-header{padding:0.875rem 1.25rem 0;flex-shrink:0}
-.drawer-lot-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
-.drawer-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--ink);line-height:1.2}
-.drawer-addr{font-size:12px;color:var(--ink-muted);margin-top:2px;font-weight:300}
-.drawer-tabs{display:flex;border-bottom:1px solid var(--border);margin:0.75rem 1.25rem 0;flex-shrink:0}
-.drawer-tab{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem 1rem 0.5rem 0;border:none;background:none;color:var(--ink-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s}
-.drawer-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
-.drawer-body{flex:1;overflow-y:auto;padding:1rem 1.25rem 2rem}
-.drawer-close{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:11px;color:var(--ink-muted);background:none;border:none;cursor:pointer;padding:4px 8px}
-.drawer-close:hover{color:var(--ink)}
-/* Facts panel */
-.fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:500px){.fact-grid{grid-template-columns:1fr}}
-.fact-item{padding:0.625rem 0;border-bottom:1px solid var(--border)}
-.fact-item:last-child{border-bottom:none}
+/* ── MAP OVERLAY PANEL ── */
+.map-overlay{position:absolute;inset:0;background:var(--warm-white);z-index:50;display:none;flex-direction:column;overflow:hidden;border-radius:6px}
+.map-overlay.open{display:flex}
+.map-ov-header{padding:1rem 1.25rem 0;flex-shrink:0;border-bottom:1px solid var(--border);padding-bottom:0.75rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.map-ov-titles{flex:1;min-width:0}
+.map-ov-lot{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.map-ov-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--ink);line-height:1.2}
+.map-ov-addr{font-family:var(--body);font-size:12px;color:var(--ink-muted);margin-top:2px}
+.map-ov-close{font-family:var(--mono);font-size:10px;color:var(--ink-muted);background:none;border:1px solid var(--border);cursor:pointer;padding:4px 10px;border-radius:3px;white-space:nowrap;flex-shrink:0;letter-spacing:0.06em}
+.map-ov-close:hover{color:var(--ink);border-color:var(--border-strong)}
+.map-ov-tabs{display:flex;border-bottom:1px solid var(--border);padding:0 1.25rem;flex-shrink:0}
+.map-ov-tab{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem 1rem 0.5rem 0;border:none;background:none;color:var(--ink-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s}
+.map-ov-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.map-ov-body{flex:1;overflow-y:auto;padding:1rem 1.25rem 1.5rem}
+/* Facts */
+.fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:440px){.fact-grid{grid-template-columns:1fr}}
+.fact-item{padding:0.5rem 0;border-bottom:1px solid var(--border)}
 .fact-label{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:2px}
-.fact-val{font-size:13px;font-weight:300;color:var(--ink);line-height:1.5}
+.fact-val{font-family:var(--body);font-size:13px;color:var(--ink);line-height:1.5}
 .fact-open{color:var(--gold)}
-/* History panel */
-.history-body p{font-size:14px;font-weight:300;color:var(--ink-light);line-height:1.75;margin-bottom:1rem}
+/* History */
+.history-body p{font-family:var(--body);font-size:13.5px;color:var(--ink-light);line-height:1.8;margin-bottom:0.875rem}
 .history-body p:last-child{margin-bottom:0}
-.lot-photo{margin:1.25rem 0}
+.lot-photo{margin:1rem 0}
 .lot-photo img{width:100%;border-radius:4px;display:block;border:0.5px solid var(--border)}
-.lot-photo figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:6px;letter-spacing:0.04em;line-height:1.5}
-/* Map hint update */
-.map-hint-bar{background:var(--ink);color:var(--cream);text-align:center;padding:0.6rem;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;cursor:default}
-
-.map-hint{font-family:var(--mono);font-size:9px;color:var(--ink-muted);letter-spacing:0.08em;text-align:center;padding:0.6rem;border-top:1px solid var(--border)}
-.lot-shape{cursor:pointer;transition:opacity 0.12s}
-.lot-shape:hover{opacity:0.78}
-.lot-shape.selected rect{stroke-width:2.5;stroke:#1C1A14!important}
-
-/* TIMELINE */
-.tl-wrap{max-width:800px;margin:0 auto;padding:1.75rem 1.5rem 4rem}
-.tl-filters{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
-.tl-filter{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border-strong);border-radius:20px;background:none;color:var(--ink-muted);cursor:pointer;transition:all 0.12s}
-.tl-filter:hover{color:var(--ink);border-color:var(--ink)}
-.tl-filter.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
-.tl-era{margin-bottom:2.5rem}
-.tl-era-label{font-family:var(--mono);font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
-.tl-era-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.tl-events{position:relative}
-.tl-line{position:absolute;left:11px;top:0;bottom:0;width:1px;background:var(--border-strong)}
-.tl-event{display:flex;gap:14px;margin-bottom:0.875rem;position:relative}
-.tl-event.hidden{display:none}
-.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;position:relative;z-index:1;border:2px solid var(--cream)}
-.tl-body{flex:1;background:var(--warm-white);border:1px solid var(--border);border-radius:4px;padding:0.75rem 0.875rem;cursor:pointer;transition:border-color 0.12s,background 0.12s}
-.tl-body:hover{border-color:var(--border-strong);background:#FAF6EE}
-.tl-body.open{background:#FAF6EE;border-color:var(--border-strong)}
-.tl-top{display:flex;align-items:flex-start;gap:8px;justify-content:space-between}
-.tl-meta{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;flex:1}
-.tl-year{font-family:var(--mono);font-size:10px;color:var(--ink-muted);white-space:nowrap;flex-shrink:0}
-.tl-title{font-family:var(--serif);font-size:0.925rem;font-weight:400;color:var(--ink);line-height:1.3}
-.tl-tag{font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;padding:2px 6px;border-radius:10px;white-space:nowrap;flex-shrink:0}
-.tl-detail{display:none;font-size:12px;font-weight:300;color:var(--ink-light);line-height:1.6;margin-top:0.5rem;padding-top:0.5rem;border-top:1px solid var(--border)}
-.tl-body.open .tl-detail{display:block}
-.tag-founding{background:#EFF3E8;color:#3A5220}
-.tag-deed{background:#E8ECF5;color:#2A3A5C}
-.tag-watershed{background:#F5EAE6;color:#6B2410}
-.tag-civic{background:#E8F0EC;color:#1E4A2E}
-.tag-newspaper{background:#F5F0E0;color:#5C4010}
-.dot-founding{background:#4E7A22}
-.dot-deed{background:var(--slate)}
-.dot-watershed{background:var(--rust)}
-.dot-civic{background:var(--green)}
-.dot-newspaper{background:var(--gold)}
-
-/* CHAT */
-.chat-wrap{max-width:760px;margin:0 auto;padding:1.75rem 1.5rem 4rem}
-.chat-intro{margin-bottom:1.5rem;padding:1.25rem;background:var(--warm-white);border:1px solid var(--border);border-radius:6px}
-.chat-intro-title{font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:0.4rem}
-.chat-intro-text{font-size:0.875rem;font-weight:300;color:var(--ink-light);line-height:1.6}
-.api-setup{margin-bottom:1.25rem;padding:1rem 1.1rem;background:#FBF7ED;border:1px solid rgba(139,105,20,0.2);border-radius:6px}
-.api-setup-title{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
-.api-setup-text{font-size:12px;font-weight:300;color:var(--ink-light);margin-bottom:0.75rem;line-height:1.55}
-.api-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.api-input{flex:1;min-width:200px;font-family:var(--mono);font-size:12px;padding:0.5rem 0.75rem;border:1px solid var(--border-strong);border-radius:3px;background:var(--warm-white);color:var(--ink)}
-.api-btn{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 1rem;background:var(--ink);color:var(--cream);border:none;border-radius:3px;cursor:pointer;white-space:nowrap}
-.api-btn:hover{background:var(--gold)}
-.api-status{font-family:var(--mono);font-size:10px;color:var(--green);margin-top:6px}
-.api-status.error{color:var(--rust)}
-.chat-messages{min-height:300px;max-height:520px;overflow-y:auto;margin-bottom:1rem;display:flex;flex-direction:column;gap:0.875rem;padding:4px}
-.msg{display:flex;gap:10px;align-items:flex-start}
-.msg-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:500;margin-top:2px}
-.msg-avatar.user-av{background:var(--ink);color:var(--cream)}
-.msg-avatar.ai-av{background:var(--gold);color:var(--cream)}
-.msg-bubble{max-width:88%;padding:0.75rem 0.9rem;border-radius:6px;font-size:13.5px;font-weight:300;line-height:1.65}
-.msg.user .msg-bubble{background:var(--ink);color:var(--cream);border-radius:6px 6px 3px 6px}
-.msg.ai .msg-bubble{background:var(--warm-white);color:var(--ink);border:1px solid var(--border);border-radius:6px 6px 6px 3px}
-.msg.ai .msg-bubble strong{font-weight:500}
-.msg-bubble p{margin-bottom:0.4rem}
-.msg-bubble p:last-child{margin-bottom:0}
-.msg.thinking .msg-bubble{color:var(--ink-muted);font-style:italic}
-.chat-input-row{display:flex;gap:8px;align-items:flex-end}
-.chat-textarea{flex:1;font-family:var(--body);font-size:14px;font-weight:300;padding:0.75rem 0.875rem;border:1px solid var(--border-strong);border-radius:4px;background:var(--warm-white);color:var(--ink);resize:none;min-height:48px;max-height:140px;line-height:1.5;transition:border-color 0.15s}
-.chat-textarea:focus{outline:none;border-color:var(--gold)}
-.chat-send{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:0.75rem 1.1rem;background:var(--ink);color:var(--cream);border:none;border-radius:4px;cursor:pointer;flex-shrink:0;transition:background 0.15s;align-self:flex-end}
-.chat-send:hover{background:var(--gold)}
-.chat-send:disabled{background:var(--ink-muted);cursor:not-allowed}
-.chat-hints{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
-.hint-chip{font-family:var(--mono);font-size:10px;letter-spacing:0.05em;padding:4px 10px;border:1px solid var(--border-strong);border-radius:12px;background:none;color:var(--ink-muted);cursor:pointer;transition:all 0.12s;text-align:left}
-.hint-chip:hover{border-color:var(--gold);color:var(--gold)}
-
-/* FOOTER */
-footer{background:var(--ink);color:rgba(245,240,232,0.45);text-align:center;padding:1.75rem;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;line-height:1.9}
+.lot-photo figcaption{font-family:var(--mono);font-size:9px;color:var(--ink-muted);margin-top:5px;letter-spacing:0.04em;line-height:1.5}
+/* Map hint */
+.map-hint-bar{background:var(--ink);color:var(--cream);text-align:center;padding:0.6rem;font-family:var(--mono);font-size:10px;letter-spacing:0.08em}
 
 /* ── STORY TAB ── */
-.story-wrap{max-width:900px;margin:0 auto;padding:0 0 4rem}
-.story-hero{background:var(--ink);color:var(--cream);padding:3rem 2rem}
-.story-hero-inner{max-width:680px;margin:0 auto}
-.story-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.875rem}
-.story-headline{font-family:var(--serif);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:400;line-height:1.15;color:var(--warm-white);margin-bottom:1rem}
-.story-deck{font-size:1.05rem;font-weight:300;color:rgba(245,240,232,0.7);line-height:1.7;max-width:600px}
+.story-wrap{max-width:860px;margin:0 auto;padding:0 0 4rem}
+.story-hero{background:var(--ink);color:var(--cream);padding:3rem 1.5rem}
+.story-hero-inner{max-width:660px;margin:0 auto}
+.story-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.75rem}
+.story-headline{font-family:var(--serif);font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:400;line-height:1.15;color:var(--warm-white);margin-bottom:0.875rem}
+.story-deck{font-family:var(--body);font-size:1rem;font-weight:300;color:rgba(245,240,232,0.72);line-height:1.75;max-width:580px}
 .story-body{padding:0 1.5rem}
-.story-section{display:grid;grid-template-columns:1fr;gap:2rem;padding:2.5rem 0;border-bottom:1px solid var(--border)}
+.story-section{padding:2.25rem 0;border-bottom:1px solid var(--border)}
 .story-section:last-of-type{border-bottom:none}
-.story-section-full .story-text{max-width:100%}
-.story-h3{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--ink);margin-bottom:1rem;padding-top:0.25rem}
-.story-text p{font-size:0.975rem;font-weight:300;color:var(--ink-light);line-height:1.8;margin-bottom:1.1rem}
+.story-h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--ink);margin:0 0 0.875rem;letter-spacing:0.01em}
+.story-text p{font-family:var(--body);font-size:0.95rem;font-weight:400;color:var(--ink-light);line-height:1.8;margin-bottom:1rem}
 .story-text p:last-child{margin-bottom:0}
 .story-text em{font-style:italic;color:var(--ink)}
-.story-figure{margin:0}
+.story-figure{margin:1.25rem 0 0}
 .story-figure img{width:100%;border-radius:4px;border:0.5px solid var(--border);display:block}
-.story-figure figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:8px;line-height:1.6;letter-spacing:0.03em}
-.story-figure-right{}
-.story-gallery{padding:2rem 0;border-bottom:1px solid var(--border)}
+.story-figure figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:6px;line-height:1.6;letter-spacing:0.03em}
+.story-gallery{padding:1.75rem 0;border-bottom:1px solid var(--border)}
 .gallery-fig{margin:0}
 .gallery-fig img{width:100%;border-radius:4px;border:0.5px solid var(--border);display:block}
-.gallery-fig figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:10px;line-height:1.6;letter-spacing:0.03em;max-width:700px}
-.story-footer{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+.gallery-fig figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:8px;line-height:1.6;letter-spacing:0.03em}
+.story-footer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
 .story-footer p{font-family:var(--mono);font-size:10px;color:var(--ink-muted);line-height:1.8;letter-spacing:0.04em}
 @media(min-width:700px){
-  .story-section{grid-template-columns:1fr 340px;align-items:start}
-  .story-section-full{grid-template-columns:1fr}
+  .story-section{display:grid;grid-template-columns:1fr 320px;gap:2.5rem;align-items:start}
+  .story-section-full{display:block}
 }
-
 </style>
 </head>
 <body>
@@ -242,9 +157,9 @@ footer{background:var(--ink);color:rgba(245,240,232,0.45);text-align:center;padd
 
 <nav>
   <button class="nav-btn active" onclick="show('intro',this)">Overview</button>
+  <button class="nav-btn" onclick="show('story',this)">Story</button>
   <button class="nav-btn" onclick="show('map',this)">Map</button>
   <button class="nav-btn" onclick="show('timeline',this)">Timeline</button>
-  <button class="nav-btn" onclick="show('story',this)">Story</button>
   <button class="nav-btn" onclick="show('chat',this)">Ask a Question</button>
 </nav>
 
@@ -725,7 +640,7 @@ function selectLot(id) {
   document.querySelectorAll('.lot-shape').forEach(l => l.classList.remove('selected'));
   const el = document.getElementById('ls-'+id);
   if (el) el.classList.add('selected');
-  openDrawer(id);
+  openOverlay(id);
 }
 
 // ── TIMELINE ────────────────────────────────────────────────────────────────
@@ -874,20 +789,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ── DRAWER ──────────────────────────────────────────────────────────────────
-let currentTab = 'facts';
-let drawerOpen = false;
+// ── MAP OVERLAY PANEL ────────────────────────────────────────────────────────
+let currentOvTab = 'history';
+let overlayOpen = false;
 
-function openDrawer(lotId) {
+function moveOverlayIntoMap() {
+  // Move the overlay panel inside the map-canvas div so it overlays the map
+  const canvas = document.querySelector('.map-canvas');
+  const overlay = document.getElementById('map-overlay');
+  if (canvas && overlay && overlay.parentNode !== canvas) {
+    canvas.style.position = 'relative';
+    canvas.appendChild(overlay);
+  }
+}
+
+function openOverlay(lotId) {
+  moveOverlayIntoMap();
   const d = lotData[lotId];
   if (!d) return;
 
-  document.getElementById('dr-lot').textContent = d.lot;
-  document.getElementById('dr-title').textContent = d.title;
-  document.getElementById('dr-addr').textContent = d.addr;
+  document.getElementById('ov-lot').textContent = d.lot;
+  document.getElementById('ov-title').textContent = d.title;
+  document.getElementById('ov-addr').textContent = d.addr;
+
+  // History tab — photos first, then narrative
+  document.getElementById('ov-history').innerHTML = `
+    <div class="history-body">
+      ${d.photoHtml || ''}
+      ${d.narrative || ''}
+    </div>
+  `;
 
   // Facts tab
-  document.getElementById('tab-facts').innerHTML = `
+  document.getElementById('ov-facts').innerHTML = `
     <div class="fact-grid">
       <div class="fact-item"><div class="fact-label">Chain of title</div><div class="fact-val">${d.chain}</div></div>
       <div class="fact-item"><div class="fact-label">Earliest record</div><div class="fact-val">${d.earliest}</div></div>
@@ -897,48 +831,29 @@ function openDrawer(lotId) {
     ${d.open ? `<div class="fact-item" style="margin-top:10px;border-top:1px solid var(--border);padding-top:10px"><div class="fact-label fact-open">Open research</div><div class="fact-val fact-open">${d.open}</div></div>` : ''}
   `;
 
-  // History tab
-  document.getElementById('tab-history').innerHTML = `
-    <div class="history-body">${d.narrative}${d.photoHtml}</div>
-  `;
+  // Default to history tab
+  switchOvTab('history', document.getElementById('ov-tab-history'));
 
-  // Show active tab
-  document.getElementById('tab-facts').style.display = currentTab === 'facts' ? 'block' : 'none';
-  document.getElementById('tab-history').style.display = currentTab === 'history' ? 'block' : 'none';
-
-  document.getElementById('drawer').classList.add('open');
-  document.getElementById('drawer-overlay').classList.add('open');
-  drawerOpen = true;
+  document.getElementById('map-overlay').classList.add('open');
+  overlayOpen = true;
 }
 
-function closeDrawer() {
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('drawer-overlay').classList.remove('open');
-  drawerOpen = false;
+function closeOverlay() {
+  document.getElementById('map-overlay').classList.remove('open');
+  overlayOpen = false;
   document.querySelectorAll('.lot-shape').forEach(l => l.classList.remove('selected'));
 }
 
-function switchTab(tab, btn) {
-  currentTab = tab;
-  document.querySelectorAll('.drawer-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-facts').style.display = tab === 'facts' ? 'block' : 'none';
-  document.getElementById('tab-history').style.display = tab === 'history' ? 'block' : 'none';
+function switchOvTab(tab, btn) {
+  currentOvTab = tab;
+  document.querySelectorAll('.map-ov-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('ov-history').style.display = tab === 'history' ? 'block' : 'none';
+  document.getElementById('ov-facts').style.display = tab === 'facts' ? 'block' : 'none';
 }
 
-// Swipe down to close drawer
-let touchStartY = 0;
-document.getElementById('drawer') && document.getElementById('drawer').addEventListener('touchstart', e => {
-  touchStartY = e.touches[0].clientY;
-}, {passive: true});
-document.addEventListener('touchend', e => {
-  if (!drawerOpen) return;
-  const dy = e.changedTouches[0].clientY - touchStartY;
-  if (dy > 80) closeDrawer();
-}, {passive: true});
-
 // Escape key
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
 
 </script>
 
@@ -1027,23 +942,24 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(
 </div>
 </div>
 
-<!-- DRAWER -->
-<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-handle"></div>
-  <button class="drawer-close" onclick="closeDrawer()">✕ close</button>
-  <div class="drawer-header">
-    <div class="drawer-lot-label" id="dr-lot">—</div>
-    <div class="drawer-title" id="dr-title">Select a lot on the map</div>
-    <div class="drawer-addr" id="dr-addr"></div>
+
+<!-- MAP OVERLAY PANEL (sits inside .map-canvas via JS positioning) -->
+<div id="map-overlay" class="map-overlay">
+  <div class="map-ov-header">
+    <div class="map-ov-titles">
+      <div class="map-ov-lot" id="ov-lot"></div>
+      <div class="map-ov-title" id="ov-title"></div>
+      <div class="map-ov-addr" id="ov-addr"></div>
+    </div>
+    <button class="map-ov-close" onclick="closeOverlay()">✕ Close</button>
   </div>
-  <div class="drawer-tabs">
-    <button class="drawer-tab active" onclick="switchTab('facts',this)">Quick facts</button>
-    <button class="drawer-tab" onclick="switchTab('history',this)">History &amp; photos</button>
+  <div class="map-ov-tabs">
+    <button class="map-ov-tab active" id="ov-tab-history" onclick="switchOvTab('history',this)">History &amp; Photos</button>
+    <button class="map-ov-tab" id="ov-tab-facts" onclick="switchOvTab('facts',this)">Quick Facts</button>
   </div>
-  <div class="drawer-body">
-    <div id="tab-facts"></div>
-    <div id="tab-history" style="display:none"></div>
+  <div class="map-ov-body">
+    <div id="ov-history"></div>
+    <div id="ov-facts" style="display:none"></div>
   </div>
 </div>
 
