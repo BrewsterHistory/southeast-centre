@@ -292,6 +292,49 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .lot-loading-bar.short{width:60%}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
+
+/* Ensure overlay content areas fill and scroll properly */
+#ov-history, #ov-facts { display: block; width: 100%; }
+.history-body { 
+  max-width: 700px; 
+  font-family: var(--body);
+  font-size: 16px;
+  color: var(--ink-light);
+  line-height: 1.9;
+}
+.history-body p { margin-bottom: 1.25rem; }
+.history-body h2 { 
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 2rem 0 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.history-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.history-body h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.5rem 0 0.5rem;
+}
+.history-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem 0 0.4rem;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+/* lot-narrative styles (for pandoc-converted files) */
+.lot-narrative p { margin: 0 0 1em 0; font-family: Georgia, serif; font-size: 15px; line-height: 1.85; color: #1c1a14; }
+.lot-narrative p > strong:only-child { font-size: 1.05rem; display: block; padding-bottom: 0.3rem; border-bottom: 1px solid #d8d0c4; margin-top: 2rem; }
+.lot-narrative em { font-style: italic; color: #555; }
+.lot-narrative p:has(> em:only-child) { font-size: 13px; color: #666; line-height: 1.5; }
+.lot-narrative img { width: 100%; height: auto; display: block; margin: 1.5rem 0 0.4rem; border-radius: 3px; border: 1px solid rgba(0,0,0,0.1); }
+
 </style>
 </head>
 <body>
@@ -1059,7 +1102,6 @@ function openOverlay(lotId) {
 }
 
 function renderLotContent(lotId, fetchedHtml, d) {
-  // Parse the fetched HTML
   var parser = new DOMParser();
   var doc = parser.parseFromString(fetchedHtml, 'text/html');
 
@@ -1068,13 +1110,13 @@ function renderLotContent(lotId, fetchedHtml, d) {
   var deed = doc.querySelector('.lot-deed');
 
   var narrativeHtml = narr ? narr.innerHTML : '';
-  var photosHtml = photos ? photos.innerHTML : '';
-  var deedHtml = deed ? deed.innerHTML : '';
+  var photosHtml = (photos && photos.innerHTML.trim()) ? photos.innerHTML : '';
+  var deedHtml = (deed && deed.innerHTML.trim()) ? deed.innerHTML : '';
 
-  // History tab: photos + narrative
+  // History tab: photos first, then narrative text
   document.getElementById('ov-history').innerHTML = '<div class="history-body">' + photosHtml + narrativeHtml + '</div>';
 
-  // Facts tab: metadata + deed table
+  // Facts tab: metadata grid + deed table
   var factsHtml = '<div class="fact-grid">'
     + '<div class="fact-item"><div class="fact-label">Chain of title</div><div class="fact-val">' + (d.chain||'') + '</div></div>'
     + '<div class="fact-item"><div class="fact-label">Earliest record</div><div class="fact-val">' + (d.earliest||'') + '</div></div>'
