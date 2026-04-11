@@ -1084,6 +1084,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
   <!-- Point markers (small polygons) for demolished features -->
   <polygon class="lot-shape lot-lost" id="ls-crane_mill" points="758,929 709,880 640,926 688,978 709,945 732,957" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('crane_mill')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-wright_factory" points="530,999 565,975 637,1120 600,1146" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('wright_factory')" style="cursor:pointer"/>
+  <polygon class="lot-shape lot-lost" id="ls-wh_crosby" points="723,758 704,824 728,835 780,774 828,754 807,744" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('wh_crosby')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-temperance" points="908,1026 903,1172 985,1180 992,1088" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('temperance')" style="cursor:pointer"/>
 </svg>
         </div>
@@ -1243,6 +1244,15 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
         <div class="map-list-text">
           <div class="map-list-title">S. Reed — Boot & Shoe</div>
           <div class="map-list-addr">Main Street</div>
+          <div class="map-list-lot">Taken c.1890s</div>
+        </div>
+        <div class="map-list-arrow">›</div>
+      </div>
+      <div class="map-list-item" onclick="openFromList('wh_crosby')">
+        <div class="map-list-dot" style="background:#C04040;border:2px solid #C04040"></div>
+        <div class="map-list-text">
+          <div class="map-list-title">W.H. Crosby</div>
+          <div class="map-list-addr">Howes Street</div>
           <div class="map-list-lot">Taken c.1890s</div>
         </div>
         <div class="map-list-arrow">›</div>
@@ -1790,6 +1800,17 @@ const lotData = {
     families: 'Warren, Birch',
     current: 'City of New York watershed land',
     open: 'William Warren = shoemaker; "Carpenters Shop now or formerly" in deed = Wright & Co. Chair Factory site; Abagail Warren advertised "For Sale or to Rent" in July 1887 Brewster Standard alongside the formal watershed notice',
+  },
+  'wh_crosby': {
+    lot: 'W.H. Crosby Parcel',
+    title: 'W.H. Crosby',
+    addr: 'Howes Street (Brewster Hill Road)',
+    chain: 'Lost — watershed era',
+    earliest: 'Visible on 1867 Beers map',
+    families: 'Crosby',
+    current: 'Gone',
+    color: '#C04040',
+    lost: true
   },
   'temperance': {
     lot: 'Lost Feature',
