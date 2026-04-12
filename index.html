@@ -96,36 +96,42 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .map-ov-tab{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem 1rem 0.5rem 0;border:none;background:none;color:var(--ink-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s}
 .map-ov-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
 .map-ov-tabs{position:relative}
-.print-btn{margin-left:auto;padding:0.5rem 0.9rem !important;border:1px solid var(--border) !important;border-radius:4px !important;background:transparent !important;cursor:pointer;font-size:10px !important;letter-spacing:0.1em;transition:all 0.15s;align-self:center}
-.print-btn:hover{background:var(--gold) !important;color:#fff !important;border-color:var(--gold) !important}
+.print-btn{margin-left:auto;padding:0.5rem 0.9rem !important;border:1px solid #b91c1c !important;border-radius:4px !important;background:transparent !important;color:#b91c1c !important;cursor:pointer;font-size:10px !important;font-weight:600 !important;letter-spacing:0.1em;transition:all 0.15s;align-self:center}
+.print-btn:hover{background:#b91c1c !important;color:#fff !important}
 
 @media print {
-  /* Hide everything except the History panel content */
-  body > *:not(#app-root), nav, header, footer,
-  .nav-btn, .map-ov-tabs, .slideshow-overlay,
-  #panel-story, #panel-map, #panel-maps, #panel-photos,
+  /* Hide chrome we don't want in print */
+  nav, header, footer,
+  .nav-btn, .slideshow-overlay, .slideshow-lot-title,
+  #panel-story, #panel-maps, #panel-photos,
   #panel-reckoning, #panel-chat,
-  #ov-facts, .print-btn, .story-map-btn,
-  .photos-view-toggle, .photos-map-hint { display: none !important; }
+  .map-ov-tabs, #ov-facts, .print-btn, .story-map-btn,
+  .photos-view-toggle, .photos-map-hint,
+  .lot-shape, .map-canvas, svg, #map-zoom-wrap,
+  .close-overlay, button { display: none !important; }
 
-  /* Reset layout for print */
+  /* Force the overlay and map panel visible even if normally hidden */
   html, body { background: #fff !important; color: #000 !important;
-    margin: 0 !important; padding: 0 !important; font-size: 11pt; }
-  #panel-map, .map-ov-body, #ov-history, .history-body {
-    display: block !important; width: 100% !important; max-width: 100% !important;
-    margin: 0 !important; padding: 0 !important; overflow: visible !important;
-    position: static !important; height: auto !important;
+    margin: 0 !important; padding: 0 !important; font-size: 11pt;
+    overflow: visible !important; height: auto !important; }
+  #panel-map, #map-overlay, .map-ov-body,
+  #ov-history, .history-body {
+    display: block !important; visibility: visible !important;
+    width: 100% !important; max-width: 100% !important;
+    margin: 0 !important; padding: 0 !important;
+    overflow: visible !important; position: static !important;
+    height: auto !important; transform: none !important;
+    opacity: 1 !important; background: #fff !important;
   }
-
-  /* Show lot header when printing */
-  .map-ov-header, .lot-header-print { display: block !important; }
+  .map-ov-header { display: block !important; padding: 0 0 1rem 0 !important;
+    border-bottom: 1px solid #ccc; margin-bottom: 1rem; }
 
   /* Page breaks between H2 sections */
   #ov-history h2 { page-break-before: always; break-before: page;
     margin-top: 0; padding-top: 0; }
   #ov-history h2:first-of-type { page-break-before: auto; break-before: auto; }
 
-  /* Avoid breaking inside figures and paragraphs */
+  /* Figures and images */
   figure, .lot-photo { page-break-inside: avoid; break-inside: avoid;
     margin: 0.5rem 0 1rem; }
   figure img, .lot-photo img { max-width: 100% !important; height: auto !important; }
