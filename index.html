@@ -562,10 +562,10 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 <nav>
   <button class="nav-btn active" onclick="show('story',this)">Story</button>
   <button class="nav-btn" onclick="show('map',this)">Explore</button>
-  <button class="nav-btn" onclick="show('maps',this)">Maps</button>
-  <button class="nav-btn" onclick="show('photos',this)">Photos</button>
   <button class="nav-btn" onclick="show('reservoir',this)">The Taking</button>
   <button class="nav-btn" onclick="show('reckoning',this)">The Reckoning</button>
+  <button class="nav-btn" onclick="show('maps',this)">Maps</button>
+  <button class="nav-btn" onclick="show('photos',this)">Photos</button>
   <button class="nav-btn" onclick="show('chat',this)">Ask a Question</button>
 </nav>
 
@@ -771,21 +771,21 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 
       <section class="story-gallery">
         <figure class="gallery-fig">
-          <img src="images/Reservoir/reservoir_09.png" alt="Aqueduct Commissioners Sheet 10: East Branch Reservoir Connecting Tunnel Gate House cross-section" loading="lazy">
+          <img src="images/Reservoir/reservoir_09.jpg" alt="Aqueduct Commissioners Sheet 10: East Branch Reservoir Connecting Tunnel Gate House cross-section" loading="lazy">
           <figcaption>Engineering cross-section of the gatehouse and connecting tunnel shaft — the interior structure that corresponds to the tunnel portal shown above. Chief Engineer Alphonse Fteley; drawn by C.S. Gustafson. Sheet 10.</figcaption>
         </figure>
       </section>
 
       <section class="story-gallery">
         <figure class="gallery-fig">
-          <img src="images/Reservoir/reservoir_23.png" alt="Sheet 6: Plan, Section and Elevation of East Branch Reservoir Dam and Gate House" loading="lazy">
+          <img src="images/Reservoir/reservoir_23.jpg" alt="Sheet 6: Plan, Section and Elevation of East Branch Reservoir Dam and Gate House" loading="lazy">
           <figcaption>Plan, Section and Elevation of the East Branch Reservoir Dam and Gate House — the Sodom Dam in architectural drawing, showing the full masonry face and the gatehouse tower from four views. Chief Engineer Alphonse Fteley; drawn by C.G. Gustafson. Sheet 6.</figcaption>
         </figure>
       </section>
 
       <section class="story-gallery">
         <figure class="gallery-fig">
-          <img src="images/Reservoir/reservoir_22.png" alt="Sheet 9: East Branch Reservoir Bog Brook Dam No. 1 — elevation and cross-sections" loading="lazy">
+          <img src="images/Reservoir/reservoir_22.jpg" alt="Sheet 9: East Branch Reservoir Bog Brook Dam No. 1 — elevation and cross-sections" loading="lazy">
           <figcaption>Bog Brook Dam No. 1: elevation and cross-sections showing the core wall, clay blanket, and slope specifications. Chief Engineer Alphonse Fteley; drawn by C.C. Manning. Sheet 9.</figcaption>
         </figure>
       </section>
@@ -816,7 +816,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
         <h2 class="story-h3">Primary Source Documentation</h2>
         <div class="story-text">
           <p>The individual awards from the July 1890 proceeding — 56 named claimants plus four pending awards, with acreages and award amounts — are documented in full from the primary source Brewster Standard transcription.</p>
-          <p><button class="story-map-btn" onclick="show('reckoning', document.querySelectorAll('.nav-btn')[5])">→ Read the full story: The Reckoning</button></p>
+          <p><button class="story-map-btn" onclick="show('reckoning', document.querySelectorAll('.nav-btn')[3])">→ Read the full story: The Reckoning</button></p>
         </div>
       </section>
 
@@ -838,28 +838,76 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 
 <!-- RECKONING -->
 <div class="panel" id="panel-reckoning">
-  <div class="reckoning-wrap">
+  <div class="story-wrap">
 
-    <div class="reckoning-header">
-      <h2 class="reckoning-title">The Reckoning</h2>
-      <p class="reckoning-sub">Sodom Dam Proceeding — Chapter 490, Laws of 1883 — Awards published July 11, 1890</p>
+    <div class="story-hero">
+      <div class="story-hero-inner">
+        <div class="story-eyebrow">Sodom Dam Proceeding · Chapter 490, Laws of 1883 · Awards Published July 11, 1890</div>
+        <h1 class="story-headline">The Reckoning</h1>
+        <p class="story-deck">The Taking began with a notice in the Brewster Standard on July 22, 1887. The Reckoning came three years later, in the same newspaper, on a Friday in July 1890. It was a column of numbers — claimants, acres, awards — and in those numbers the entire economic life of Southeast Centre was settled and sold. Fifty-six families and estates are named. Not one of them received what they believed their land was worth.</p>
+      </div>
     </div>
 
-    <div class="reckoning-intro">
-      <p>On July 11, 1890, the Brewster Standard published the commissioners' awards for the Sodom Dam watershed proceeding in full. The proceeding had displaced families, demolished buildings, and absorbed farmland across the entire East Branch of the Croton River watershed. The paper called the list "details of widespread interest." Fifty-six individual claimants and one railroad are named. Total awards: $257,801.27 — plus $80,000 to the New York &amp; New England Railroad, paid the prior year.</p>
-      <p>The gap between what people believed their land was worth and what the commissioners awarded runs through every entry. Water power — the mill dams and races and privileges that had driven the neighborhood's economy since the 1740s — was the most contested element throughout. "Water power has proved to be a very knotty question throughout the whole proceeding," the paper observed.</p>
+    <div class="story-body">
+
+      <section class="story-gallery">
+        <figure class="gallery-fig">
+          <img src="images/Reckoning/reck_03.png" alt="The Standard, July 11, 1890 — 'The Awards' column masthead" loading="lazy">
+          <figcaption>The Standard, Brewster, New York. Friday, July 11, 1890. "The Awards" — the article opens: "Hereabouts the week has been given up to the discussion of the awards to property owners for property taken and damages sustained by reason of the building of Sodom Dam. In view of the widespread interest in this proceeding some of the details may prove of interest." What followed was the complete commissioners' accounting for the first major watershed proceeding in the Town of Southeast.</figcaption>
+        </figure>
+      </section>
+
+      <section class="story-section story-section-full">
+        <h2 class="story-h3">What the Article Said</h2>
+        <div class="story-text">
+          <p>The July 11, 1890 Brewster Standard published the commissioners' awards in full. The proceeding had displaced families, demolished buildings, and absorbed farmland across the entire East Branch of the Croton River watershed — not just Southeast Centre, but Milltown, the Bog Brook valley, Little Sodom, DeForest Corners, and farms along the roads to Danbury and Peekskill. The paper presented the accounting family by family: the acreage claimed, the acreage taken, the owner's estimate of the loss, the City's counter-offer, and the commissioners' final award. Fifty-six individual claimants and one railroad are named. Total awards: $257,801.27 — plus $80,000 to the New York &amp; New England Railroad, paid the prior year.</p>
+          <p>The gap between what people believed their land was worth and what the commissioners awarded runs through every entry. Stephen C. Barnum claimed $182,000 for his three-generation farm; he received $61,179. James Boyce claimed $24,000 for his Milltown mill; the City had valued the buildings alone at $2,439, and the award came in at $9,620. John Martin claimed nearly $11,000 for his Milltown farm; the City's man said $6,472; the award was $6,000. The pattern was consistent — claims of twice, three times, sometimes four times what the commissioners would allow.</p>
+          <p>Water power was the knotty question. The mill dams and races and privileges that had driven the neighborhood's economy since the 1740s were the most contested element throughout. "Water power has proved to be a very knotty question throughout the whole proceeding," the paper observed dryly. Isaac Armstrong's grist mill and sash-and-blinds manufactory at Southeast Centre — together with half the water power shared with Violette Birch — was taken entirely for $6,378.23. George Cole, "driven out of his home and away from his business," lost his residence, barn, wagon shop, and all his water power for $8,306.83. The Armstrong operation and the Cole wagon shop had anchored commercial life at the Southeast Centre intersection for two generations. Both were gone by the end of the proceeding.</p>
+        </div>
+      </section>
+
+      <section class="story-section story-section-full">
+        <h2 class="story-h3">The Attorneys</h2>
+        <div class="story-text">
+          <p>Two attorneys dominated the representation. Frederic S. Barnum — the Brewster attorney whose name appears throughout the Southeast Centre deed record as notary, witness, and executor — represented eight claimants in this proceeding, and was allowed disbursements aggregating $208 and counsel fees of $109. Abram J. Miller, representing six clients, was allowed disbursements of $67.75 and counsel fees of $113.50. Between them they handled most of the Southeast Centre families. F.S. Barnum's representation is not incidental: the Barnum family was the legal infrastructure of Southeast Centre for nearly a century. His uncle Stephen C. Barnum was the proceeding's largest single claimant. His notarization appears on deeds from the 1870s through the 1920s. He represented the Reed family across multiple generations. When the Awards article records "F.S. Barnum, counsel fee, $200" next to John Martin's name or "$125" next to John Connor's, it is recording the work of the man who knew every parcel in this watershed by heart.</p>
+          <p>Some claims were submitted without testimony at all — Violette Birch's three-acre parcel along the spillway below the dam, Eli C. Barnum's forty-three acres east of the river above Milltown bridge, and a handful of others. These were settlements negotiated rather than contested. The award to John Connor for his residence and twelve acres was recorded as "highly satisfactory to the claimant." Most entries were not.</p>
+        </div>
+      </section>
+
+      <section class="story-gallery">
+        <figure class="gallery-fig">
+          <img src="images/Reckoning/reck_01.png" alt="Claimants schedule from the Aqueduct Commissioners report — parcel-by-parcel index" loading="lazy">
+          <figcaption>Claimants schedule from the Aqueduct Commissioners' report. Each parcel received a numbered designation (1¼, 1½, 61¼, 61¾, 62⅜, etc.) and was recorded with the owner at the time of taking and, where different, the owner under the original survey. This was the administrative apparatus that turned a living neighborhood into a column of numbers. Southeast Centre names visible here: Violetta Birch, Warren S. Paddock, Hiram Paddock, Lydia M. Yale, Warren S. Paddock, Kate E. Crane, Harman C. Barnum, Stephen C. Barnum, Mellissa Birck, Margaret Silk, Martha M. Crosby — the familiar names of the village rendered as parcel numbers on a City of New York schedule.</figcaption>
+        </figure>
+      </section>
+
+      <section class="story-gallery">
+        <figure class="gallery-fig">
+          <img src="images/Reckoning/reck_04.png" alt="Map 799 — Double Reservoir I survey, Southeast Centre area showing East Branch of the Croton River" loading="lazy">
+          <figcaption>Map 799 — the Double Reservoir I survey map filed at the Putnam County Clerk's Office on May 14, 1896. The East Branch of the Croton River runs diagonally across the left side of the image. The numbered circles (61¼, 61¾, 62¼, 62⅜) mark the Howes family parcels at Southeast Centre; the hatched shapes are standing structures at the moment of the survey. This is the same ground shown intact on the 1867 Beers atlas, now reduced to a cadastral accounting. The building footprints visible along the Southeast Centre intersection are the last surviving documentary trace of the village in its final form before the reservoir rose. Within four years every structure shown here would be gone.</figcaption>
+        </figure>
+      </section>
+
+      <section class="story-section story-section-full">
+        <h2 class="story-h3">The Southeast Centre Families</h2>
+        <div class="story-text">
+          <p>Of the 56 named claimants, thirteen had direct connections to the Southeast Centre neighborhood documented in this research: Stephen C. Barnum, Lydia M. Yale, Melissa Birch, Violette Birch, George Cole, Isaac Armstrong, Martha M. Crosby, and others. These were the families in the houses on Brewster Hill Road and Sodom Road — the Howes and Birch and Yale and Crosby and Reed names that had anchored the intersection since before the Revolution. Their combined awards exceeded $134,000 — more than half the total paid out in the proceeding — and every dollar represented ground the families had farmed or built on for generations.</p>
+          <p>Melissa Howes Birch had refused an offer of $25,000 the year before the taking. The commissioners awarded her $15,700. Maria Howes — Jacob O. Howes's widow, seventy-nine years old at the time of the proceeding — held a life estate on Melissa's farm and was entitled to a portion of the award. Jane Cole, another legatee of Jacob O. Howes, was entitled to $4,500 from Melissa's award. George Cole himself held a $3,500 mortgage on Melissa's farm, dated October 1, 1886. Abram J. Miller — one of the two attorneys dominating the proceeding — was also a mortgagee on the same property for $1,000. The financial entanglements inside a single award were the entanglements of the neighborhood itself.</p>
+          <p>The filter toggle below shows these thirteen Southeast Centre families on their own. Click "Southeast Centre only" to see the names that appear in this project's deed research — the families whose houses still stand on Sodom Road and Brewster Hill Road, and the families whose land is now the East Branch Reservoir.</p>
+        </div>
+      </section>
+
       <div class="reckoning-stats">
         <div class="reckoning-stat"><div class="rs-num">53</div><div class="rs-label">Named claimants</div></div>
         <div class="reckoning-stat"><div class="rs-num">13</div><div class="rs-label">Southeast Centre connections</div></div>
         <div class="reckoning-stat"><div class="rs-num">$258K</div><div class="rs-label">Total awarded</div></div>
         <div class="reckoning-stat"><div class="rs-num">1,471</div><div class="rs-label">Acres absorbed</div></div>
       </div>
-    </div>
 
-    <div class="reckoning-filter">
-      <button class="rf-btn active" id="rf-all" onclick="filterReckoning('all')">All 53 claimants</button>
-      <button class="rf-btn" id="rf-se" onclick="filterReckoning('se')">Southeast Centre only (13)</button>
-    </div>
+      <div class="reckoning-filter">
+        <button class="rf-btn active" id="rf-all" onclick="filterReckoning('all')">All 53 claimants</button>
+        <button class="rf-btn" id="rf-se" onclick="filterReckoning('se')">Southeast Centre only (13)</button>
+      </div>
 
     <div class="reckoning-table-wrap">
       <table class="reckoning-table" id="reckoning-table">
@@ -1214,6 +1262,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
       <p>Source: "The Awards," Brewster Standard, July 11, 1890. Sodom Dam proceeding (Chapter 490, Laws of 1883; 1887 map proceeding). This article covers the first major watershed proceeding affecting Southeast Centre — additional takings occurred in the Double Reservoir I proceeding (1896), the Brewster Sanitary proceeding (1893), and others through 1908.</p>
     </div>
 
+    </div>
   </div>
 </div>
 
@@ -2146,7 +2195,7 @@ function filterReckoning(mode) {
 
       <p>The gap between what people believed their land was worth and what the commissioners awarded runs through every entry. Water power — the mill dams and races and privileges that had driven the neighborhood's economy since the 1740s — was the most contested element throughout. "This had proved to be a very knotty question throughout the whole proceeding," the newspaper observed.</p>
 
-      <p style="margin-top:1.5rem"><button class="story-map-btn" onclick="show('reservoir', document.querySelectorAll('.nav-btn')[4])">→ The Taking — full construction story, photographs, and sources</button></p>
+      <p style="margin-top:1.5rem"><button class="story-map-btn" onclick="show('reservoir', document.querySelectorAll('.nav-btn')[2])">→ The Taking — full construction story, photographs, and sources</button></p>
 
       <h2>What Remains</h2>
 
@@ -2599,9 +2648,9 @@ var reservoirPhotos = [
   {src:'images/Reservoir/reservoir_03.jpg', cap:'East Branch Reservoir: Masonry Dam (Sodom Dam), completed. George P. Hall & Son, Plate No. 1.'},
   {src:'images/Reservoir/reservoir_07.jpg', cap:'Bog Brook Earth Dam No. 1: Paving — officials posed on the completed dam. Walter McCulloh, Plate No. 9.'},
   {src:'images/Reservoir/reservoir_08.jpg', cap:'East Branch Reservoir: Bog Brook Earth Dam No. 1 and Tunnel Portal. Walter McCulloh, Plate No. 9.'},
-  {src:'images/Reservoir/reservoir_09.png', cap:'Sheet 10 — East Branch Reservoir Connecting Tunnel Gate House cross-section. Chief Engineer Alphonse Fteley; drawn by C.S. Gustafson.'},
-  {src:'images/Reservoir/reservoir_23.png', cap:'Sheet 6 — Plan, Section and Elevation of East Branch Reservoir Dam and Gate House. Fteley / C.G. Gustafson.'},
-  {src:'images/Reservoir/reservoir_22.png', cap:'Sheet 9 — Bog Brook Dam No. 1 elevation and cross-sections. Fteley / C.C. Manning.'},
+  {src:'images/Reservoir/reservoir_09.jpg', cap:'Sheet 10 — East Branch Reservoir Connecting Tunnel Gate House cross-section. Chief Engineer Alphonse Fteley; drawn by C.S. Gustafson.'},
+  {src:'images/Reservoir/reservoir_23.jpg', cap:'Sheet 6 — Plan, Section and Elevation of East Branch Reservoir Dam and Gate House. Fteley / C.G. Gustafson.'},
+  {src:'images/Reservoir/reservoir_22.jpg', cap:'Sheet 9 — Bog Brook Dam No. 1 elevation and cross-sections. Fteley / C.C. Manning.'},
   {src:'images/Reservoir/reservoir_24.jpg', cap:'Sheet 65 — Lifting Machinery for Gates at East Branch Reservoir. Fteley / F.S. Cook.'},
   {src:'images/Reservoir/reservoir_21.jpg', cap:'The completed Bog Brook Reservoir — a solitary figure on the dam. George P. Hall & Son, Plate No. 8.'}
 ];
