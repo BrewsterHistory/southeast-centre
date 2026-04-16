@@ -248,6 +248,8 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .map-list-title{font-family:var(--serif);font-size:1rem;color:var(--ink);line-height:1.2}
 .map-list-addr{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:2px;letter-spacing:0.04em}
 .map-list-lot{font-family:var(--mono);font-size:9px;color:var(--ink-muted);letter-spacing:0.08em;text-transform:uppercase}
+.browse-group-header{font-family:var(--mono);font-size:10px;color:var(--ink-muted);letter-spacing:0.12em;text-transform:uppercase;padding:1.25rem 1rem 0.6rem;border-bottom:1px solid var(--border);margin-bottom:0.4rem}
+.browse-group-header:first-child{padding-top:0.6rem}
 .map-list-arrow{color:var(--border-strong);font-size:14px;flex-shrink:0}
 /* Reset zoom button */
 .map-reset-btn{font-family:var(--mono);font-size:9px;letter-spacing:0.08em;color:var(--ink-muted);background:none;border:1px solid var(--border);padding:3px 8px;border-radius:3px;cursor:pointer}
@@ -1453,96 +1455,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 
     <!-- Browse list view (hidden by default) -->
     <div class="map-list-view" id="map-list-view">
-      <div class="map-list-item" onclick="openFromList('lot1')">
-        <div class="map-list-dot" style="background:#5A9ABB;border:2px solid #5A9ABB"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Upper Parcel</div>
-          <div class="map-list-addr">22 Brewster Hill Road</div>
-          <div class="map-list-lot">Tax Map Lot 1</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot2')">
-        <div class="map-list-dot" style="background:#5A9ABB;border:2px solid #5A9ABB"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Stonehenge</div>
-          <div class="map-list-addr">10 Brewster Hill Road</div>
-          <div class="map-list-lot">Tax Map Lot 2</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot3')">
-        <div class="map-list-dot" style="background:#C9A030;border:2px solid #C9A030"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">2–4 Brewster Hill Road</div>
-          <div class="map-list-addr">Corner, Brewster Hill & Sodom Rd</div>
-          <div class="map-list-lot">Tax Map Lot 3</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot4')">
-        <div class="map-list-dot" style="background:#C9A030;border:2px solid #C9A030"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">88 Sodom Road</div>
-          <div class="map-list-addr">88 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 4</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot6')">
-        <div class="map-list-dot" style="background:#D4820A;border:2px solid #D4820A"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Reed Homestead</div>
-          <div class="map-list-addr">96–98 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 6</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot7')">
-        <div class="map-list-dot" style="background:#C04828;border:2px solid #C04828"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">The Parsonage</div>
-          <div class="map-list-addr">100 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 7</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot8')">
-        <div class="map-list-dot" style="background:#686050;border:2px solid #686050"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Paddock House</div>
-          <div class="map-list-addr">104 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 8</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot9')">
-        <div class="map-list-dot" style="background:#686050;border:2px solid #686050"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Scribner House</div>
-          <div class="map-list-addr">108 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 9</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot10')">
-        <div class="map-list-dot" style="background:#408030;border:2px solid #408030"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Church → School → Home</div>
-          <div class="map-list-addr">112 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 10</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
-      <div class="map-list-item" onclick="openFromList('lot11')">
-        <div class="map-list-dot" style="background:#7858C0;border:2px solid #7858C0"></div>
-        <div class="map-list-text">
-          <div class="map-list-title">Yale Tract</div>
-          <div class="map-list-addr">116 Sodom Road</div>
-          <div class="map-list-lot">Tax Map Lot 11</div>
-        </div>
-        <div class="map-list-arrow">›</div>
-      </div>
+      <!-- populated by buildBrowseList() from lotData + map polygons -->
     </div>
 
   </div>
@@ -2502,6 +2415,7 @@ function setMapView(view) {
     if (listView) listView.style.display = 'block';
     btnMap.classList.remove('active');
     btnList.classList.add('active');
+    try { buildBrowseList(); } catch(e) { console.error('buildBrowseList:', e); }
   }
 }
 
@@ -2512,6 +2426,57 @@ function openFromList(id) {
   selectedLotId = id;
   openOverlay(id);
   setMapView('map'); // switch back to map view
+}
+
+
+// ── BROWSE LIST — built from lotData + map polygon strokes ─────────────────
+function buildBrowseList() {
+  var list = document.getElementById('map-list-view');
+  if (!list || list.children.length > 1) return; // already built (>1 because comment counts as 0)
+  if (typeof lotData === 'undefined') return;
+
+  // Standard Tax Map lots (in display order)
+  var taxMapLots = ['lot1','lot2','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11'];
+  // Historical / lost lots — pull anything in lotData not in the standard list
+  var historicalLots = Object.keys(lotData).filter(function(k){ return taxMapLots.indexOf(k) === -1; });
+
+  function colorFor(id) {
+    var poly = document.getElementById('ls-' + id);
+    if (poly) {
+      var stroke = poly.getAttribute('stroke');
+      if (stroke) return stroke;
+    }
+    return '#888';
+  }
+
+  function itemHtml(id) {
+    var d = lotData[id];
+    if (!d) return '';
+    var color = colorFor(id);
+    return '<div class="map-list-item" onclick="openFromList(\'' + id + '\')">'
+         + '<div class="map-list-dot" style="background:' + color + ';border:2px solid ' + color + '"></div>'
+         + '<div class="map-list-text">'
+         + '<div class="map-list-title">' + (d.title || '') + '</div>'
+         + '<div class="map-list-addr">' + (d.addr || '') + '</div>'
+         + '<div class="map-list-lot">' + (d.lot || '') + '</div>'
+         + '</div>'
+         + '<div class="map-list-arrow">›</div>'
+         + '</div>';
+  }
+
+  var html = '';
+
+  if (taxMapLots.some(function(k){ return lotData[k]; })) {
+    html += '<div class="browse-group-header">Surviving properties</div>';
+    taxMapLots.forEach(function(id){ html += itemHtml(id); });
+  }
+
+  if (historicalLots.length) {
+    html += '<div class="browse-group-header">Lost parcels &amp; features (gone or flooded)</div>';
+    historicalLots.forEach(function(id){ html += itemHtml(id); });
+  }
+
+  list.innerHTML = html;
 }
 
 
@@ -2864,6 +2829,7 @@ window.addEventListener('popstate', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
   try { buildStoryGrid(); } catch(e) { console.error('buildStoryGrid:', e); }
   try { buildPhotosList(); } catch(e) { console.error('buildPhotosList:', e); }
+  try { buildBrowseList(); } catch(e) { console.error('buildBrowseList:', e); }
 });
 
 
