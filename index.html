@@ -1505,9 +1505,10 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
     </div>
 
     <div class="chat-input-row">
-      <textarea class="chat-textarea" id="chat-input" placeholder="Ask anything about Southeast Centre..." rows="2" onkeydown="handleKey(event)"></textarea>
+      <textarea class="chat-textarea" id="chat-input" placeholder="Ask anything about Southeast Centre..." rows="2" maxlength="500" onkeydown="handleKey(event)" oninput="enforceInputRules(this)"></textarea>
       <button class="chat-send" id="send-btn" onclick="sendMessage()" disabled>Send</button>
     </div>
+    <div id="chat-char-count" style="font-family:var(--mono);font-size:10px;color:var(--ink-muted);text-align:right;margin-top:4px;min-height:14px"></div>
   </div>
 </div>
 
@@ -1845,11 +1846,83 @@ function updateBubble(div, text) {
   msgs.scrollTop = msgs.scrollHeight;
 }
 
+// ── INPUT SECURITY & RATE LIMITING ──────────────────────────────────────────
+const INPUT_MAX_CHARS = 500;
+const MAX_MESSAGES_PER_SESSION = 30;   // 15 Q&A pairs
+const RATE_LIMIT_MS = 3000;            // min 3 seconds between sends
+const MAX_CONVERSATION_TURNS = 20;     // max messages in context to API
+let lastSendTime = 0;
+let sessionMessageCount = 0;
+
+function sanitizeInput(str) {
+  // Strip control characters, zero-width chars, and non-printable unicode
+  str = str.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
+  // Strip zero-width spaces, joiners, and other invisible unicode
+  str = str.replace(/[\u200B-\u200F\u2028-\u202F\uFEFF\uFFF9-\uFFFB]/g, '');
+  // Collapse excessive whitespace
+  str = str.replace(/\s{3,}/g, '  ');
+  // Trim and enforce length
+  return str.trim().substring(0, INPUT_MAX_CHARS);
+}
+
+function enforceInputRules(el) {
+  // Live enforcement on the textarea
+  if (el.value.length > INPUT_MAX_CHARS) {
+    el.value = el.value.substring(0, INPUT_MAX_CHARS);
+  }
+  // Update character counter
+  var counter = document.getElementById('chat-char-count');
+  if (counter) {
+    var remaining = INPUT_MAX_CHARS - el.value.length;
+    counter.textContent = remaining <= 80 ? remaining + ' characters remaining' : '';
+    counter.style.color = remaining <= 20 ? '#C04040' : 'var(--ink-muted)';
+  }
+}
+
+function logQuestion(question) {
+  // Log to console for monitoring; could be extended to an analytics endpoint
+  try {
+    var logEntry = {
+      timestamp: new Date().toISOString(),
+      question: question.substring(0, 200), // truncate in log
+      session: sessionId,
+      turn: sessionMessageCount
+    };
+    console.log('[SE Centre Q&A]', JSON.stringify(logEntry));
+    // Store in sessionStorage for review (capped at 50 entries)
+    var log = JSON.parse(sessionStorage.getItem('sc_qa_log') || '[]');
+    log.push(logEntry);
+    if (log.length > 50) log = log.slice(-50);
+    sessionStorage.setItem('sc_qa_log', JSON.stringify(log));
+  } catch(e) { /* silent fail on logging */ }
+}
+
+// Simple session ID for log grouping
+var sessionId = 's_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4);
+
 async function sendMessage() {
   const input = document.getElementById('chat-input');
-  const text = input.value.trim();
+  const rawText = input.value;
+  const text = sanitizeInput(rawText);
   if (!text) return;
   if (!apiKey) { alert('Please enter your Anthropic API key first.'); return; }
+
+  // Rate limiting
+  var now = Date.now();
+  if (now - lastSendTime < RATE_LIMIT_MS) {
+    return; // silently ignore rapid-fire sends
+  }
+  lastSendTime = now;
+
+  // Session message limit
+  sessionMessageCount++;
+  if (sessionMessageCount > MAX_MESSAGES_PER_SESSION) {
+    alert('You\'ve reached the question limit for this session. Please refresh the page to continue.');
+    return;
+  }
+
+  // Log the question
+  logQuestion(text);
 
   input.value = '';
   input.style.height = '48px';
@@ -1874,7 +1947,7 @@ async function sendMessage() {
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1024,
         system: SYSTEM,
-        messages: messages
+        messages: messages.slice(-MAX_CONVERSATION_TURNS)
       })
     });
 
