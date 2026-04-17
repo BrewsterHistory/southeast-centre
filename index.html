@@ -263,6 +263,7 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 /* Intro block */
 .chat-intro{border-left:3px solid var(--gold);padding-left:1.25rem}
 .chat-intro-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.5rem}
+details[open] .about-arrow{transform:rotate(90deg)}
 .chat-intro-text{font-family:var(--body);font-size:0.95rem;color:var(--ink-light);line-height:1.75}
 
 /* API key setup */
@@ -1470,6 +1471,38 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
       <div class="chat-intro-text">This assistant knows the deed research for all twenty properties in detail — ownership chains, key families, dates, prices, and confirmed historical findings. It will tell you when something falls outside what has been confirmed. Ask anything about the neighborhood, the families, or the watershed era that changed everything.</div>
     </div>
 
+    <!-- DISCLAIMER, CONTRIBUTE & CONTACT -->
+    <div style="border:1px solid var(--border);border-radius:6px;padding:1.4rem 1.6rem;margin-bottom:1.5rem;background:var(--warm-white)">
+      <details style="cursor:pointer">
+        <summary style="font-family:var(--display);font-size:1.1rem;color:var(--ink);font-weight:600;list-style:none;display:flex;align-items:center;gap:0.5rem">
+          <span style="font-size:0.7rem;color:var(--ink-muted);transition:transform 0.2s" class="about-arrow">▶</span>
+          About This Project — Accuracy, Contributing &amp; Contact
+        </summary>
+        <div style="margin-top:1.2rem">
+          <p style="font-family:var(--serif);font-size:0.95rem;line-height:1.7;color:var(--ink-light);margin:0 0 0.8rem 0">
+            <strong style="color:var(--ink)">A note on accuracy.</strong> &ensp;Deed research is not a perfect science. Old handwriting fades, pages are damaged, names are misspelled by clerks, and the language of nineteenth-century conveyancing can be genuinely ambiguous. Every effort has been made to ensure the information presented here is factual and traceable to primary sources — deeds recorded in the Putnam County Clerk's office, the 1867 Beers atlas, census records, newspaper accounts, and published local histories. Where a claim rests on inference rather than confirmed documentation, the text says so. But mistakes happen — if you spot an error and can point to a source that corrects it, please reach out.
+          </p>
+          <p style="font-family:var(--serif);font-size:0.95rem;line-height:1.7;color:var(--ink-light);margin:0 0 0.8rem 0">
+            <strong style="color:var(--ink)">Contributions welcome.</strong> &ensp;Several properties have been researched in depth — full deed chains, family histories, and confirmed connections to the broader story of Southeast Centre. Others have only been sketched in outline. Some haven't been covered at all. If you have knowledge of a family, a property, or an event connected to this neighborhood — old photographs, family papers, memories passed down, or research of your own — your contribution would be valued. Proper attribution will always be given.
+          </p>
+          <p style="font-family:var(--serif);font-size:0.95rem;line-height:1.7;color:var(--ink-light);margin:0 0 0.8rem 0">
+            <strong style="color:var(--ink)">Sources.</strong> &ensp;This project draws primarily on deed records in the Putnam County Clerk's office (liber/page system), the 1867 F.W. Beers atlas, and published histories including Roberts (1876), Haight (1912), and Bailey (1944). Newspaper references are principally from the <em>Brewster Standard</em>. Reservoir construction records come from the <em>Report to the Aqueduct Commissioners</em> (1895) and Harold Brown's article in <em>Scientific American</em> (August 17, 1889).
+          </p>
+          <div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:1rem;text-align:center">
+            <div id="contact-reveal">
+              <button onclick="revealContact()" style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.5rem;background:var(--gold);color:#fff;border:none;border-radius:4px;cursor:pointer">Show Contact Info</button>
+              <p style="font-family:var(--serif);font-size:0.8rem;color:var(--ink-muted);margin-top:0.5rem;font-style:italic">Hidden by default to reduce automated harvesting.</p>
+            </div>
+            <div id="contact-info" style="display:none">
+              <p style="font-family:var(--serif);font-size:0.95rem;color:var(--ink);margin:0 0 0.3rem 0"><strong>Rob</strong></p>
+              <p style="font-family:var(--mono);font-size:0.95rem;color:var(--gold);margin:0" id="contact-addr"></p>
+              <p style="font-family:var(--serif);font-size:0.8rem;color:var(--ink-muted);margin-top:0.6rem;font-style:italic">Please include "Southeast Centre" in the subject line.</p>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
     <div class="api-setup" id="api-setup">
       <div class="api-setup-title">Anthropic API Key Required</div>
       <div class="api-setup-text">This assistant uses the Anthropic API. Enter your API key once — it's saved only in your browser and sent directly to Anthropic, never anywhere else. Get a key at <strong>console.anthropic.com</strong>.</div>
@@ -1731,6 +1764,24 @@ function show(panel, btn) {
   document.getElementById('panel-'+panel).classList.add('active');
   if (btn) btn.classList.add('active');
   window.scrollTo(0,0);
+}
+
+// ── CONTACT REVEAL (obfuscated to deter scrapers) ─────────────────────────
+function revealContact() {
+  // Email assembled at click time — never present as a static string in HTML
+  var u = 'southeastcentre';
+  var d = 'gmail';
+  var t = 'com';
+  var addr = u + '@' + d + '.' + t;
+  var el = document.getElementById('contact-addr');
+  var link = document.createElement('a');
+  link.href = 'mai' + 'lto:' + addr + '?subject=Southeast%20Centre';
+  link.textContent = addr;
+  link.style.cssText = 'color:var(--gold);text-decoration:underline';
+  el.innerHTML = '';
+  el.appendChild(link);
+  document.getElementById('contact-reveal').style.display = 'none';
+  document.getElementById('contact-info').style.display = 'block';
 }
 
 // ── MAP ─────────────────────────────────────────────────────────────────────
