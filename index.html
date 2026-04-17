@@ -2,6 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://api.anthropic.com; img-src 'self' data:;">
 <title>Southeast Centre — A Neighborhood History</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -1880,20 +1881,18 @@ function enforceInputRules(el) {
 }
 
 function logQuestion(question) {
-  // Log to console for monitoring; could be extended to an analytics endpoint
+  // Private in-memory log only — not persisted to sessionStorage or console
+  // Accessible only via deliberate JS inspection of _scQaAudit (owner use only)
   try {
     var logEntry = {
-      timestamp: new Date().toISOString(),
-      question: question.substring(0, 200), // truncate in log
-      session: sessionId,
-      turn: sessionMessageCount
+      t: new Date().toISOString(),
+      q: question.substring(0, 200),
+      s: sessionId,
+      n: sessionMessageCount
     };
-    console.log('[SE Centre Q&A]', JSON.stringify(logEntry));
-    // Store in sessionStorage for review (capped at 50 entries)
-    var log = JSON.parse(sessionStorage.getItem('sc_qa_log') || '[]');
-    log.push(logEntry);
-    if (log.length > 50) log = log.slice(-50);
-    sessionStorage.setItem('sc_qa_log', JSON.stringify(log));
+    if (!window._scQaAudit) window._scQaAudit = [];
+    window._scQaAudit.push(logEntry);
+    if (window._scQaAudit.length > 50) window._scQaAudit = window._scQaAudit.slice(-50);
   } catch(e) { /* silent fail on logging */ }
 }
 
@@ -2159,7 +2158,7 @@ function filterReckoning(mode) {
 
       <p>Nathan Alva Howes, born at the homestead on April 22, 1796, entered the circus trade in 1811 at age fifteen. His 1878 obituary called him "the father of the Exhibition business in this country." In 1825 he manufactured the first circus tent ever known, sewn on South Street in New York. He served as Southeast Town Supervisor, Justice of the Peace, and twice as State Senator. He married Clarissa Crosby — which explains the Crosby family's pervasive presence throughout the neighborhood's deed record as boundary neighbors and witnesses across three generations.</p>
 
-      <p>Jacob Orson Howes, born March 8, 1807, worked as a carpenter for twenty years, spent four years in the circus alongside his brothers, then returned to farm near Southeast Centre. Around 1856 he opened a lumber yard in Brewster with Edward Howes; their firm built the brick block that still stands on Main Street. He served as Deputy Collector of Internal Revenue for eight years. By 1874 he controlled more of Southeast Centre's economic infrastructure than any other single figure: six distinct land parcels, a lumber yard, the old Crane's grist mill on the Croton River that he had sold in 1836 and repurchased in 1865. He died on Sunday, May 7, 1876, at age sixty-nine, suddenly, "almost before Dr. Smith could be summoned from the Centre Church, where he happened to be at the time."</p>
+      <p>Jacob Orson Howes, born March 8, 1807, worked as a carpenter for twenty years, spent four years in the circus alongside his brothers, then returned to farm near Southeast Centre. Around 1856 he opened a lumber yard in Brewster with Edward Howes; their firm built the brick block on Main Street. He served as Deputy Collector of Internal Revenue for eight years. By 1874 he controlled more of Southeast Centre's economic infrastructure than any other single figure: six distinct land parcels, a lumber yard, the old Crane's grist mill on the Croton River that he had sold in 1836 and repurchased in 1865. He died on Sunday, May 7, 1876, at age sixty-nine, suddenly, "almost before Dr. Smith could be summoned from the Centre Church, where he happened to be at the time."</p>
 
       <p>Seth Benedict Howes, born at the homestead on August 15, 1815, was the youngest and the most famous. He accompanied Nathan on the first elephant circus tour in 1826 at age eleven. He rose to become one of the great circus entrepreneurs of the nineteenth century. He made a fortune in Chicago real estate with partner Paul Cornell — buying land that would become Hyde Park alongside James Crane of Southeast, who had moved to Chicago as a merchant. He married Amy Mozley in London on January 25, 1867. They would not come to America together for another seventeen years. When they finally came, they came to Stonehenge — a Victorian mansion behind a dressed-stone wall at 10 Brewster Hill Road, the oldest continuous address in the neighborhood.</p>
 
