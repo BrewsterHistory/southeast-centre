@@ -424,15 +424,16 @@ figure.lot-photo figcaption{font-size:12px;color:#888;line-height:1.5;margin-top
 .map-viewer-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.1);flex-shrink:0}
 .map-viewer-title{font-family:var(--serif);font-size:1.1rem;color:#fff}
 .map-viewer-close{background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:0.4rem 0.9rem;border-radius:4px;cursor:pointer;font-size:13px}
-.map-viewer-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.5rem}
-.map-viewer-img-wrap{max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;overflow:auto;position:relative;cursor:grab}
-.map-viewer-img-wrap:active{cursor:grabbing}
-.map-viewer-zoom-hint{position:absolute;bottom:0.5rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);pointer-events:none;transition:opacity 0.5s}
-.map-viewer-zoom-controls{position:absolute;bottom:0.5rem;right:0.5rem;display:flex;gap:4px;z-index:2}
+.map-viewer-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.5rem;position:relative}
+.map-viewer-img-wrap{flex:1;width:100%;max-width:100%;max-height:100%;position:relative;overflow:hidden;cursor:grab;user-select:none;touch-action:none}
+.map-viewer-img-wrap.panning{cursor:grabbing}
+.map-viewer-img-wrap img{position:absolute;top:0;left:0;transform-origin:0 0;max-width:none;max-height:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.map-viewer-zoom-hint{position:absolute;bottom:0.5rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);pointer-events:none;transition:opacity 0.5s;z-index:3}
+.map-viewer-zoom-controls{position:absolute;bottom:0.5rem;right:0.5rem;display:flex;gap:4px;z-index:3}
 .map-viewer-zoom-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.5);color:#fff;font-size:18px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center}
 .map-viewer-zoom-btn:hover{background:rgba(0,0,0,0.8)}
-.map-viewer-placeholder{text-align:center;color:rgba(255,255,255,0.5);font-size:15px}
-.map-viewer-caption{color:rgba(255,255,255,0.5);font-size:12px;font-style:italic;margin-top:1rem;text-align:center;max-width:600px}
+.map-viewer-placeholder{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:rgba(255,255,255,0.5);font-size:15px;z-index:2}
+.map-viewer-caption{color:rgba(255,255,255,0.5);font-size:12px;font-style:italic;margin-top:1rem;text-align:center;max-width:600px;flex-shrink:0}
 
 
 /* ── PHOTOS PANEL ────────────────────────────────────────────────────────── */
@@ -1317,7 +1318,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
     <div class="maps-header">
       <h2 class="maps-title">Maps of Southeast Centre</h2>
       <p class="maps-sub">Historical and contemporary maps documenting the neighborhood before and after the watershed transformation.</p>
-      <p class="maps-sub" style="margin-top:0.5rem;font-size:0.9rem;color:var(--ink-muted)">Brewster Hill Road takes its name from the hill to the north of Southeast Centre, where Samuel Brewster &mdash; who came to Southeast soon after 1800 &mdash; purchased a farm from Judge Watts. His 1863 filed survey, drawn by J.G. Cole, labels the land &ldquo;Brewster Hill&rdquo; along the &ldquo;highway leading to Dykeman&rsquo;s Station.&rdquo; The road runs from the Southeast Centre intersection northward toward the Brewster farm. Samuel&rsquo;s sons James and Walter F. Brewster &mdash; descendants of Elder William Brewster of the Mayflower &mdash; purchased the 134-acre tract that became the nucleus of Brewster village in 1848.</p>
+      <p class="maps-sub" style="margin-top:0.5rem;font-size:0.9rem;color:var(--ink-muted)">Brewster Hill Road takes its name from Samuel Brewster, who came to Southeast soon after 1800 and purchased the farm of Judge Watts that became known as Brewster Hill farm. His 1863 filed survey is reproduced below. Samuel&rsquo;s sons James and Walter F. Brewster &mdash; descendants of Elder William Brewster of the Mayflower &mdash; purchased the 134-acre tract that became the nucleus of Brewster village in 1848.</p>
     </div>
     <div class="maps-grid" id="maps-grid">
 
@@ -1370,7 +1371,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
         <div class="map-card-thumb" style="background:#f5ede0;border:1px solid #d0c0a8;display:flex;align-items:center;justify-content:center;font-size:2rem">📐</div>
         <div class="map-card-info">
           <div class="map-card-title">Samuel Brewster Survey (1863)</div>
-          <div class="map-card-desc">Filed survey of land owned by Samuel Brewster, north of Southeast Centre on the hilltop that gave Brewster Hill Road its name. Surveyed by J.G. Cole, July 28, 1863. Old File Plan Case No. 25.</div>
+          <div class="map-card-desc">Filed survey of land owned by Samuel Brewster, the settler who gave Brewster Hill its name. Surveyed by J.G. Cole, July 28, 1863. Old File Plan Case No. 25.</div>
           <div class="map-card-date">Filed July 16, 1863</div>
         </div>
       </div>
@@ -1440,12 +1441,12 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
     </div>
     <div class="map-viewer-body">
       <div class="map-viewer-img-wrap" id="map-viewer-img-wrap">
-        <img id="map-viewer-img" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain;transform-origin:center center;transition:transform 0.1s ease-out">
+        <img id="map-viewer-img" src="" alt="" draggable="false">
         <div class="map-viewer-placeholder" id="map-viewer-placeholder" style="display:none">
           <p>Full map image coming soon.</p>
           <p style="font-size:13px;color:#888;margin-top:0.5rem">This map is being digitized and will be added in a future update.</p>
         </div>
-        <div class="map-viewer-zoom-hint" id="map-zoom-hint">Scroll or pinch to zoom · Drag to pan</div>
+        <div class="map-viewer-zoom-hint" id="map-zoom-hint">Scroll to zoom · Drag to pan</div>
         <div class="map-viewer-zoom-controls">
           <button class="map-viewer-zoom-btn" onclick="mapViewerZoom(1)">+</button>
           <button class="map-viewer-zoom-btn" onclick="mapViewerZoom(-1)">−</button>
@@ -2759,7 +2760,7 @@ var mapData = {
   },
   brewster_survey: {
     title: 'Samuel Brewster Survey — Filed July 16, 1863',
-    caption: 'Old File Plan Case No. 25. Survey of land owned by Samuel Brewster, Town of South East. Surveyed by J.G. Cole, July 28, 1863; August Hazen, Surveyor. Commencing "in the middle of highway leading to Dykeman\'s Station and opposite a dead poplar tree." Containing twenty acres and thirty-six rods. The filed survey that gave Brewster Hill its name.',
+    caption: 'Old File Plan Case No. 25. Survey of land owned by Samuel Brewster, Town of South East. Surveyed by J.G. Cole, July 28, 1863. The sheet also carries a separate 33¼-acre Brewster survey by Augustus Hazen dated June 16, 1863. J.G. Cole\'s survey commences "in the middle of highway leading to Dykeman\'s Station and opposite a dead poplar tree" and contains twenty acres and thirty-six rods. Samuel Brewster\'s land gave the hill its name.',
     src: 'images/maps/brewster_survey_1863.jpg'
   },
   croton_watershed: {
@@ -2836,77 +2837,198 @@ function closeMapViewer(fromPopState) {
   if (!fromPopState && history.state && history.state.mapViewer) history.back();
 }
 
-// ── MAP VIEWER ZOOM ──────────────────────────────────────────────────────────
-var mvZoomLevel = 1;
-var mvMinZoom = 1;
-var mvMaxZoom = 6;
+// ── MAP VIEWER ZOOM/PAN ──────────────────────────────────────────────────────
+var mvScale = 1;
+var mvBaseScale = 1;
+var mvTx = 0;
+var mvTy = 0;
+var mvMinScaleFactor = 1;   // multiplied against baseScale
+var mvMaxScaleFactor = 12;  // how far beyond fit-scale to allow zoom
 
-function mapViewerZoom(dir) {
-  var step = dir > 0 ? 1.3 : (1 / 1.3);
-  mvZoomLevel = Math.min(mvMaxZoom, Math.max(mvMinZoom, mvZoomLevel * step));
-  applyMapZoom();
+function mvApplyTransform() {
+  var img = document.getElementById('map-viewer-img');
+  if (!img) return;
+  img.style.transform = 'translate3d(' + mvTx + 'px,' + mvTy + 'px,0) scale(' + mvScale + ')';
+  var hint = document.getElementById('map-zoom-hint');
+  if (hint) hint.style.opacity = (mvScale > mvBaseScale * 1.01) ? '0' : '1';
+}
+
+function mvFitToContainer() {
+  var img = document.getElementById('map-viewer-img');
+  var wrap = document.getElementById('map-viewer-img-wrap');
+  if (!img || !wrap) return;
+  var iw = img.naturalWidth;
+  var ih = img.naturalHeight;
+  if (!iw || !ih) return;
+  var wW = wrap.clientWidth;
+  var wH = wrap.clientHeight;
+  if (!wW || !wH) return;
+  // Set intrinsic size via width/height attributes via style — the image is absolutely positioned at 0,0 and scaled via transform
+  img.style.width = iw + 'px';
+  img.style.height = ih + 'px';
+  var fit = Math.min(wW / iw, wH / ih);
+  mvBaseScale = fit;
+  mvScale = fit;
+  mvTx = (wW - iw * fit) / 2;
+  mvTy = (wH - ih * fit) / 2;
+  mvApplyTransform();
 }
 
 function mapViewerReset() {
-  mvZoomLevel = 1;
-  var img = document.getElementById('map-viewer-img');
-  if (img) {
-    img.style.transform = 'scale(1)';
-    img.style.maxWidth = '100%';
-    img.style.maxHeight = '100%';
-  }
-  var wrap = document.getElementById('map-viewer-img-wrap');
-  if (wrap) { wrap.scrollTop = 0; wrap.scrollLeft = 0; }
-  var hint = document.getElementById('map-zoom-hint');
-  if (hint) hint.style.opacity = '1';
+  mvFitToContainer();
 }
 
-function applyMapZoom() {
-  var img = document.getElementById('map-viewer-img');
-  if (!img) return;
-  if (mvZoomLevel > 1) {
-    img.style.maxWidth = 'none';
-    img.style.maxHeight = 'none';
-    img.style.transform = 'scale(' + mvZoomLevel + ')';
-  } else {
-    img.style.maxWidth = '100%';
-    img.style.maxHeight = '100%';
-    img.style.transform = 'scale(1)';
-  }
-  var hint = document.getElementById('map-zoom-hint');
-  if (hint && mvZoomLevel > 1) hint.style.opacity = '0';
-}
-
-// Wheel zoom
-(function() {
+function mapViewerZoom(dir) {
+  // Zoom toward center of viewport
   var wrap = document.getElementById('map-viewer-img-wrap');
   if (!wrap) return;
-  wrap.addEventListener('wheel', function(e) {
-    if (document.getElementById('map-viewer-overlay').style.display === 'none') return;
-    e.preventDefault();
-    mapViewerZoom(e.deltaY < 0 ? 1 : -1);
-  }, {passive: false});
+  var cx = wrap.clientWidth / 2;
+  var cy = wrap.clientHeight / 2;
+  var step = dir > 0 ? 1.3 : (1 / 1.3);
+  mvZoomAt(cx, cy, step);
+}
 
-  // Touch pinch zoom
-  var lastDist = 0;
-  wrap.addEventListener('touchstart', function(e) {
-    if (e.touches.length === 2) {
-      lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-    }
-  });
-  wrap.addEventListener('touchmove', function(e) {
-    if (e.touches.length === 2) {
-      e.preventDefault();
-      var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-      if (lastDist > 0) {
-        var ratio = dist / lastDist;
-        mvZoomLevel = Math.min(mvMaxZoom, Math.max(mvMinZoom, mvZoomLevel * ratio));
-        applyMapZoom();
+function mvZoomAt(cx, cy, factor) {
+  var minScale = mvBaseScale * mvMinScaleFactor;
+  var maxScale = mvBaseScale * mvMaxScaleFactor;
+  var newScale = Math.min(maxScale, Math.max(minScale, mvScale * factor));
+  if (newScale === mvScale) return;
+  // Keep the image point under (cx, cy) fixed
+  var ratio = newScale / mvScale;
+  mvTx = cx - (cx - mvTx) * ratio;
+  mvTy = cy - (cy - mvTy) * ratio;
+  mvScale = newScale;
+  mvApplyTransform();
+}
+
+// Wire up handlers once DOM is ready
+(function() {
+  function init() {
+    var wrap = document.getElementById('map-viewer-img-wrap');
+    var img = document.getElementById('map-viewer-img');
+    if (!wrap || !img) return;
+
+    // Recompute fit on image load
+    img.addEventListener('load', function() {
+      mvFitToContainer();
+    });
+
+    // Recompute fit on window resize if overlay visible
+    window.addEventListener('resize', function() {
+      var overlay = document.getElementById('map-viewer-overlay');
+      if (overlay && overlay.style.display !== 'none') {
+        // Preserve relative zoom by reapplying fit then scaling proportionally
+        var prevScale = mvScale;
+        var prevBase = mvBaseScale;
+        mvFitToContainer();
+        if (prevBase > 0) {
+          var ratio = prevScale / prevBase;
+          mvScale = mvBaseScale * ratio;
+          mvApplyTransform();
+        }
       }
-      lastDist = dist;
-    }
-  }, {passive: false});
-  wrap.addEventListener('touchend', function() { lastDist = 0; });
+    });
+
+    // Wheel zoom — zoom toward cursor position
+    wrap.addEventListener('wheel', function(e) {
+      var overlay = document.getElementById('map-viewer-overlay');
+      if (!overlay || overlay.style.display === 'none') return;
+      e.preventDefault();
+      var rect = wrap.getBoundingClientRect();
+      var cx = e.clientX - rect.left;
+      var cy = e.clientY - rect.top;
+      var factor = e.deltaY < 0 ? 1.15 : (1 / 1.15);
+      mvZoomAt(cx, cy, factor);
+    }, {passive: false});
+
+    // Mouse drag panning
+    var dragging = false;
+    var startX = 0, startY = 0, startTx = 0, startTy = 0;
+    wrap.addEventListener('mousedown', function(e) {
+      if (e.button !== 0) return; // left button only
+      dragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      startTx = mvTx;
+      startTy = mvTy;
+      wrap.classList.add('panning');
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      mvTx = startTx + (e.clientX - startX);
+      mvTy = startTy + (e.clientY - startY);
+      mvApplyTransform();
+    });
+    window.addEventListener('mouseup', function() {
+      if (!dragging) return;
+      dragging = false;
+      wrap.classList.remove('panning');
+    });
+
+    // Touch: single-finger pan + two-finger pinch zoom
+    var touchMode = null; // 'pan' | 'pinch'
+    var tStartX = 0, tStartY = 0, tStartTx = 0, tStartTy = 0;
+    var lastDist = 0, pinchCenterX = 0, pinchCenterY = 0;
+    wrap.addEventListener('touchstart', function(e) {
+      var rect = wrap.getBoundingClientRect();
+      if (e.touches.length === 1) {
+        touchMode = 'pan';
+        tStartX = e.touches[0].clientX;
+        tStartY = e.touches[0].clientY;
+        tStartTx = mvTx;
+        tStartTy = mvTy;
+      } else if (e.touches.length === 2) {
+        touchMode = 'pinch';
+        var t0 = e.touches[0], t1 = e.touches[1];
+        lastDist = Math.hypot(t0.clientX - t1.clientX, t0.clientY - t1.clientY);
+        pinchCenterX = ((t0.clientX + t1.clientX) / 2) - rect.left;
+        pinchCenterY = ((t0.clientY + t1.clientY) / 2) - rect.top;
+      }
+    }, {passive: false});
+    wrap.addEventListener('touchmove', function(e) {
+      if (touchMode === 'pan' && e.touches.length === 1) {
+        e.preventDefault();
+        mvTx = tStartTx + (e.touches[0].clientX - tStartX);
+        mvTy = tStartTy + (e.touches[0].clientY - tStartY);
+        mvApplyTransform();
+      } else if (touchMode === 'pinch' && e.touches.length === 2) {
+        e.preventDefault();
+        var t0 = e.touches[0], t1 = e.touches[1];
+        var dist = Math.hypot(t0.clientX - t1.clientX, t0.clientY - t1.clientY);
+        if (lastDist > 0) {
+          mvZoomAt(pinchCenterX, pinchCenterY, dist / lastDist);
+        }
+        lastDist = dist;
+      }
+    }, {passive: false});
+    wrap.addEventListener('touchend', function(e) {
+      if (e.touches.length === 0) {
+        touchMode = null;
+        lastDist = 0;
+      } else if (e.touches.length === 1) {
+        // Dropped to single-finger — switch to pan
+        touchMode = 'pan';
+        tStartX = e.touches[0].clientX;
+        tStartY = e.touches[0].clientY;
+        tStartTx = mvTx;
+        tStartTy = mvTy;
+        lastDist = 0;
+      }
+    });
+
+    // Double-click to reset
+    wrap.addEventListener('dblclick', function(e) {
+      e.preventDefault();
+      mapViewerReset();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 
 // ── PHOTOS PANEL ────────────────────────────────────────────────────────────
