@@ -425,7 +425,12 @@ figure.lot-photo figcaption{font-size:12px;color:#888;line-height:1.5;margin-top
 .map-viewer-title{font-family:var(--serif);font-size:1.1rem;color:#fff}
 .map-viewer-close{background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:0.4rem 0.9rem;border-radius:4px;cursor:pointer;font-size:13px}
 .map-viewer-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:1.5rem}
-.map-viewer-img-wrap{max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;overflow:auto}
+.map-viewer-img-wrap{max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;overflow:auto;position:relative;cursor:grab}
+.map-viewer-img-wrap:active{cursor:grabbing}
+.map-viewer-zoom-hint{position:absolute;bottom:0.5rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);pointer-events:none;transition:opacity 0.5s}
+.map-viewer-zoom-controls{position:absolute;bottom:0.5rem;right:0.5rem;display:flex;gap:4px;z-index:2}
+.map-viewer-zoom-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,0.3);background:rgba(0,0,0,0.5);color:#fff;font-size:18px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.map-viewer-zoom-btn:hover{background:rgba(0,0,0,0.8)}
 .map-viewer-placeholder{text-align:center;color:rgba(255,255,255,0.5);font-size:15px}
 .map-viewer-caption{color:rgba(255,255,255,0.5);font-size:12px;font-style:italic;margin-top:1rem;text-align:center;max-width:600px}
 
@@ -1312,7 +1317,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
     <div class="maps-header">
       <h2 class="maps-title">Maps of Southeast Centre</h2>
       <p class="maps-sub">Historical and contemporary maps documenting the neighborhood before and after the watershed transformation.</p>
-      <p class="maps-sub" style="margin-top:0.5rem;font-size:0.9rem;color:var(--ink-muted)">Brewster Hill Road takes its name from Samuel Brewster, who came to Southeast soon after 1800 and purchased the hilltop farm from Judge Watts. His 1863 filed survey &mdash; drawn by J.G. Cole of Southeast Centre &mdash; labels the land &ldquo;Brewster Hill&rdquo; along the &ldquo;highway leading to Dykeman&rsquo;s Station.&rdquo; Samuel&rsquo;s sons James and Walter F. Brewster &mdash; descendants of Elder William Brewster of the Mayflower &mdash; purchased the 134-acre tract that became the nucleus of Brewster village in 1848.</p>
+      <p class="maps-sub" style="margin-top:0.5rem;font-size:0.9rem;color:var(--ink-muted)">Brewster Hill Road takes its name from the hill to the north of Southeast Centre, where Samuel Brewster &mdash; who came to Southeast soon after 1800 &mdash; purchased a farm from Judge Watts. His 1863 filed survey, drawn by J.G. Cole, labels the land &ldquo;Brewster Hill&rdquo; along the &ldquo;highway leading to Dykeman&rsquo;s Station.&rdquo; The road runs from the Southeast Centre intersection northward toward the Brewster farm. Samuel&rsquo;s sons James and Walter F. Brewster &mdash; descendants of Elder William Brewster of the Mayflower &mdash; purchased the 134-acre tract that became the nucleus of Brewster village in 1848.</p>
     </div>
     <div class="maps-grid" id="maps-grid">
 
@@ -1352,12 +1357,12 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
         </div>
       </div>
 
-      <div class="map-card map-card-coming" style="opacity:0.5;cursor:default">
-        <div class="map-card-thumb" style="background:#f5f5f5;border:1px solid #ccc;display:flex;align-items:center;justify-content:center;font-size:2rem">🔜</div>
+      <div class="map-card" onclick="openMapViewer('east_branch_general')">
+        <div class="map-card-thumb" style="background:#f0e8e0;border:1px solid #d0b8a8;display:flex;align-items:center;justify-content:center;font-size:2rem">⚖</div>
         <div class="map-card-info">
-          <div class="map-card-title">1887 Watershed Appraisal Map</div>
-          <div class="map-card-desc">Maps filed May 17, 1887 under Chapter 490, Laws of 1883 — the first formal watershed appraisal proceeding affecting Southeast Centre.</div>
-          <div class="map-card-date">Coming soon</div>
+          <div class="map-card-title">General Map of Lands — East Branch Reservoir (1895)</div>
+          <div class="map-card-desc">The Aqueduct Commissioners' general map of all lands taken for the East Branch Reservoir, Sheet 5. Shows every condemned parcel by number, the claimants table, Lake Kishawana (Mud Pond), Sodom, Milltown, Sears Corners, and the full reservoir boundary. Chief Engineer Alphonse Fteley; F.S. Cook, Assistant Engineer in Charge.</div>
+          <div class="map-card-date">1895</div>
         </div>
       </div>
 
@@ -1365,8 +1370,53 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
         <div class="map-card-thumb" style="background:#f5ede0;border:1px solid #d0c0a8;display:flex;align-items:center;justify-content:center;font-size:2rem">📐</div>
         <div class="map-card-info">
           <div class="map-card-title">Samuel Brewster Survey (1863)</div>
-          <div class="map-card-desc">Filed survey of land owned by Samuel Brewster on Brewster Hill, surveyed by J.G. Cole, July 28, 1863. Old File Plan Case No. 25. The founding land document for the Brewster Hill farm from which Brewster Hill Road takes its name.</div>
+          <div class="map-card-desc">Filed survey of land owned by Samuel Brewster, north of Southeast Centre on the hilltop that gave Brewster Hill Road its name. Surveyed by J.G. Cole, July 28, 1863. Old File Plan Case No. 25.</div>
           <div class="map-card-date">Filed July 16, 1863</div>
+        </div>
+      </div>
+
+      <div class="map-card" onclick="openMapViewer('croton_watershed')">
+        <div class="map-card-thumb" style="background:#e0eef5;border:1px solid #a8c0d0;display:flex;align-items:center;justify-content:center;font-size:2rem">🌊</div>
+        <div class="map-card-info">
+          <div class="map-card-title">Croton Water Shed — Topographical Map (1889)</div>
+          <div class="map-card-desc">Aqueduct Commissioners topographical map of the entire Croton watershed across Putnam and Westchester counties. Shows existing reservoirs and lakes owned by the City, reservoirs ordered and under construction as of 1889, and the full drainage system. By W.E. Worthen, C.E. Printed by Douglas Taylor &amp; Co.</div>
+          <div class="map-card-date">1889 (published 1895)</div>
+        </div>
+      </div>
+
+      <div class="map-card" onclick="openMapViewer('oconnor_1854')">
+        <div class="map-card-thumb" style="background:#f0ede0;border:1px solid #c8c0a8;display:flex;align-items:center;justify-content:center;font-size:2rem">🏛</div>
+        <div class="map-card-info">
+          <div class="map-card-title">R.F. O'Connor Map of Putnam County (1854)</div>
+          <div class="map-card-desc">The earliest detailed map showing Southeast Centre with individual property owners identified. Labels include J.O. Howes, G. Cole, E. Kelley, S. Everett, and &ldquo;Kishenana Lake&rdquo; &mdash; thirteen years before the Beers atlas. Surveyed and published by R.F. O'Connor, 398 Eighth Avenue, New York. Lithographed by M.H. Traubel &amp; Co.</div>
+          <div class="map-card-date">1854</div>
+        </div>
+      </div>
+
+      <div class="map-card" onclick="openMapViewer('beers_township')">
+        <div class="map-card-thumb" style="background:#f5ede8;border:1px solid #d0c0b0;display:flex;align-items:center;justify-content:center;font-size:2rem">🗺</div>
+        <div class="map-card-info">
+          <div class="map-card-title">1867 Beers — Full Township of South East</div>
+          <div class="map-card-desc">The complete Town of South East page from the F.W. Beers atlas, scale 2 inches to the mile. Shows Southeast Centre in relation to Brewster&rsquo;s Station, Dykman&rsquo;s P.O., Gayville, Doanesburg, Milltown, Crane&rsquo;s Corners, and the surrounding hamlets. &ldquo;Kishawanna Lake&rdquo; is labeled at center-right. Every road, school, church, mill, and property owner across the entire township.</div>
+          <div class="map-card-date">1867</div>
+        </div>
+      </div>
+
+      <div class="map-card" onclick="openMapViewer('reed_1876')">
+        <div class="map-card-thumb" style="background:#f0e8e0;border:1px solid #c8b8a8;display:flex;align-items:center;justify-content:center;font-size:2rem">📜</div>
+        <div class="map-card-info">
+          <div class="map-card-title">Thomas H. Reed Map of Putnam County (1876)</div>
+          <div class="map-card-desc">Compiled, surveyed, and published by Thos. H. Reed of Brewsters, NY, for the centennial year 1876. Shows &ldquo;the location of every highway and every occupied house.&rdquo; Southeast Centre is labeled with the Presbyterian church, cemetery, school, and familiar property owners including B.F. Foster and Mrs. Paddock. The map also includes a close-up detail illustration of the Southeast Centre neighborhood.</div>
+          <div class="map-card-date">1876</div>
+        </div>
+      </div>
+
+      <div class="map-card" onclick="openMapViewer('reed_1876_inset')">
+        <div class="map-card-thumb" style="background:#f5ede0;border:1px solid #d0c0a0;display:flex;align-items:center;justify-content:center;font-size:2rem">🔍</div>
+        <div class="map-card-info">
+          <div class="map-card-title">Reed 1876 — Southeast Centre Detail (750 ft/in)</div>
+          <div class="map-card-desc">The close-up inset from the Reed map at 750 feet per inch &mdash; larger scale than the Beers atlas and nine years later. Every building is shown as a black square. Labels include G. Cole, J.O. Howes, S.B. Howes, Mrs. Crosby, E. Foster Est., D. Reed, T.R. Knox, M. Eckels, the Carriage Factory, Presbyterian Church, and the Parsonage. The East Branch of the Croton River winds through the center.</div>
+          <div class="map-card-date">1876</div>
         </div>
       </div>
 
@@ -1389,11 +1439,17 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
       <button class="map-viewer-close" onclick="closeMapViewer()">✕ Close</button>
     </div>
     <div class="map-viewer-body">
-      <div class="map-viewer-img-wrap">
-        <img id="map-viewer-img" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain">
+      <div class="map-viewer-img-wrap" id="map-viewer-img-wrap">
+        <img id="map-viewer-img" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain;transform-origin:center center;transition:transform 0.1s ease-out">
         <div class="map-viewer-placeholder" id="map-viewer-placeholder" style="display:none">
           <p>Full map image coming soon.</p>
           <p style="font-size:13px;color:#888;margin-top:0.5rem">This map is being digitized and will be added in a future update.</p>
+        </div>
+        <div class="map-viewer-zoom-hint" id="map-zoom-hint">Scroll or pinch to zoom · Drag to pan</div>
+        <div class="map-viewer-zoom-controls">
+          <button class="map-viewer-zoom-btn" onclick="mapViewerZoom(1)">+</button>
+          <button class="map-viewer-zoom-btn" onclick="mapViewerZoom(-1)">−</button>
+          <button class="map-viewer-zoom-btn" onclick="mapViewerReset()" style="font-size:12px">⟲</button>
         </div>
       </div>
       <div class="map-viewer-caption" id="map-viewer-caption"></div>
@@ -2705,6 +2761,36 @@ var mapData = {
     title: 'Samuel Brewster Survey — Filed July 16, 1863',
     caption: 'Old File Plan Case No. 25. Survey of land owned by Samuel Brewster, Town of South East. Surveyed by J.G. Cole, July 28, 1863; August Hazen, Surveyor. Commencing "in the middle of highway leading to Dykeman\'s Station and opposite a dead poplar tree." Containing twenty acres and thirty-six rods. The filed survey that gave Brewster Hill its name.',
     src: 'images/maps/brewster_survey_1863.jpg'
+  },
+  croton_watershed: {
+    title: 'Aqueduct Commissioners Topographical Map of Croton Water Shed (1889)',
+    caption: 'Topographical map of the entire Croton watershed spanning Putnam and Westchester counties. Existing reservoirs and City-owned lakes shown in blue; reservoirs ordered and under construction as of 1889 shown in pink. Contours twenty feet apart. By W.E. Worthen, C.E.; printed by Douglas Taylor & Co., N.Y. Published in the Report to the Aqueduct Commissioners, 1895. Sheet 2. The map shows the full scale of the City\'s reach into Putnam County — Southeast Centre sits at the eastern edge of the system.',
+    src: 'images/maps/croton_watershed_1889.jpg'
+  },
+  east_branch_general: {
+    title: 'General Map of Lands of East Branch Reservoir — Sheet 5 (1895)',
+    caption: 'The Aqueduct Commissioners General Map of Lands of East Branch Reservoir, Town of South East, Putnam County, N.Y. Every condemned parcel is numbered and bounded: the claimants table at lower left keys each number to an owner name. "Sodom" is labeled at upper left; "Lake Kishawana (Mud Pond)" — Parcel 79, 23.549 acres — sits at center. The blue shading marks the water; the red boundary lines mark the extent of the taking. Chief Engineer Alphonse Fteley; F.S. Cook, Assistant Engineer in Charge. Robert A. Welcke Photo-Lith., 178 William St., N.Y. Printed by Douglas Taylor & Co. Published in the Report to the Aqueduct Commissioners, 1895.',
+    src: 'images/maps/east_branch_general_1895.jpg'
+  },
+  oconnor_1854: {
+    title: 'R.F. O\'Connor Map of Putnam County — 1854',
+    caption: 'Map of Putnam County New-York. Surveyed and Published by R.F. O\'Connor, 398 Eighth Avenue, New York, 1854. Lithographed by M.H. Traubel & Co. The earliest detailed map showing Southeast Centre with individual property owners identified — thirteen years before the Beers atlas. Labels include J.O. Howes, G. Cole, E. Kelley, S. Everett, H.W. Townsend, the school, the wagon shop, and "Kishenana Lake" (the earliest known spelling variant of Kishawana). Subscribers had their names engraved opposite their houses on the map. On loan to Patterson Town Hall.',
+    src: 'images/maps/oconnor_1854.jpg'
+  },
+  beers_township: {
+    title: '1867 F.W. Beers — Town of South East, Putnam Co., N.Y.',
+    caption: 'The complete Town of South East page from the F.W. Beers atlas (1867), scale 2 inches to the mile. Page 69. Shows Southeast Centre in its full township context — Brewster\'s Station to the west, Dykman\'s P.O. to the northwest, Gayville and Doanesburg to the north, Milltown to the east, Crane\'s Corners at the northeast corner, and the school districts numbered throughout. "Kishawanna Lake" is labeled at center-right, between Budd\'s Corners and the Southeast Centre cluster. F.W. Beers, A.D. Ellis & C.G. Soule, assistants F.S. Fulmer & others.',
+    src: 'images/maps/beers_township_1867.jpg'
+  },
+  reed_1876: {
+    title: 'Thomas H. Reed Map of Putnam County — 1876',
+    caption: 'Compiled, surveyed, and published by Thomas Hazen Reed of Brewsters, NY, 1876. Lithographed by J.L. Smith. Sold for $5 during the centennial year. Shows "the location of every highway and every occupied house" along with mountains, streams, lakes, school districts, cemeteries, and businesses. Southeast Centre is labeled with the Presbyterian church (Pbn. Ch. E.B.), the cemetery, the school, and property owners including B.F. Foster, L. Sherwood, Mrs. Paddock, E.W. Budd, and A. Townsend. "Brewster Hill" is clearly labeled to the north. The map also includes close-up detail illustrations of several neighborhoods including Southeast Centre. Faint handwritten annotations on the original may include names of homes later seized for reservoir development.',
+    src: 'images/maps/reed_1876.jpg'
+  },
+  reed_1876_inset: {
+    title: 'Reed 1876 — Southeast Centre Detail Inset (750 ft per inch)',
+    caption: 'Close-up inset from the Thomas H. Reed map of Putnam County, 1876. Scale 750 feet per inch — larger than the Beers atlas and nine years later. Every building is marked as a black square. Names match the confirmed deed chains: G. Cole (two structures north of the intersection), J.O. Howes, S.B. Howes, J. Silk, Mrs. Crosby, E. Foster Est., J.A. Reed, D. Reed, Mrs. Thompson, Crane, B. Stinard, G.W. Hall, T.R. Knox, S. Crosby, J. Tilford, M. Eckels, H.G.L. Knox, J. Hanford, W.S. Warren, E.C.Y. (Enos C. Yale), F.C. Yale, E. Wright, W. Roscoe, A. Birch. The Carriage Factory is labeled at the intersection; the Presbyterian Church and Parsonage are shown on Church Street. The East Branch of the Croton River winds through the center of the village.',
+    src: 'images/maps/reed_1876_inset.jpg'
   }
 };
 
@@ -2738,6 +2824,7 @@ function openMapViewer(mapId) {
 
   overlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  mapViewerReset();
   history.pushState({mapViewer: mapId}, '', '');
 }
 
@@ -2745,8 +2832,82 @@ function closeMapViewer(fromPopState) {
   var overlay = document.getElementById('map-viewer-overlay');
   overlay.style.display = 'none';
   document.body.style.overflow = '';
+  mapViewerReset();
   if (!fromPopState && history.state && history.state.mapViewer) history.back();
 }
+
+// ── MAP VIEWER ZOOM ──────────────────────────────────────────────────────────
+var mvZoomLevel = 1;
+var mvMinZoom = 1;
+var mvMaxZoom = 6;
+
+function mapViewerZoom(dir) {
+  var step = dir > 0 ? 1.3 : (1 / 1.3);
+  mvZoomLevel = Math.min(mvMaxZoom, Math.max(mvMinZoom, mvZoomLevel * step));
+  applyMapZoom();
+}
+
+function mapViewerReset() {
+  mvZoomLevel = 1;
+  var img = document.getElementById('map-viewer-img');
+  if (img) {
+    img.style.transform = 'scale(1)';
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '100%';
+  }
+  var wrap = document.getElementById('map-viewer-img-wrap');
+  if (wrap) { wrap.scrollTop = 0; wrap.scrollLeft = 0; }
+  var hint = document.getElementById('map-zoom-hint');
+  if (hint) hint.style.opacity = '1';
+}
+
+function applyMapZoom() {
+  var img = document.getElementById('map-viewer-img');
+  if (!img) return;
+  if (mvZoomLevel > 1) {
+    img.style.maxWidth = 'none';
+    img.style.maxHeight = 'none';
+    img.style.transform = 'scale(' + mvZoomLevel + ')';
+  } else {
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '100%';
+    img.style.transform = 'scale(1)';
+  }
+  var hint = document.getElementById('map-zoom-hint');
+  if (hint && mvZoomLevel > 1) hint.style.opacity = '0';
+}
+
+// Wheel zoom
+(function() {
+  var wrap = document.getElementById('map-viewer-img-wrap');
+  if (!wrap) return;
+  wrap.addEventListener('wheel', function(e) {
+    if (document.getElementById('map-viewer-overlay').style.display === 'none') return;
+    e.preventDefault();
+    mapViewerZoom(e.deltaY < 0 ? 1 : -1);
+  }, {passive: false});
+
+  // Touch pinch zoom
+  var lastDist = 0;
+  wrap.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 2) {
+      lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    }
+  });
+  wrap.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      if (lastDist > 0) {
+        var ratio = dist / lastDist;
+        mvZoomLevel = Math.min(mvMaxZoom, Math.max(mvMinZoom, mvZoomLevel * ratio));
+        applyMapZoom();
+      }
+      lastDist = dist;
+    }
+  }, {passive: false});
+  wrap.addEventListener('touchend', function() { lastDist = 0; });
+})();
 
 // ── PHOTOS PANEL ────────────────────────────────────────────────────────────
 var slideshowPhotos = [];
