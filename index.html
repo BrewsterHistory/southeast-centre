@@ -2484,13 +2484,13 @@ document.addEventListener('DOMContentLoaded', initNeighborhoodGallery);
   }
 
   function nativeMaxScale() {
-    // Max zoom = native image resolution (1 screen pixel per image pixel).
-    // The inner's displayed width at scale=1 is `wrap.clientWidth`.
-    // The image's natural width tells us how far we can zoom before each image pixel = 1 screen pixel.
+    // Guarantee at least 6x past fit for usable zoom.
+    // If the source image is high-resolution enough to support even more, allow going up to 1:1 native pixel mapping.
     const wrap = getWrap();
     const img = wrap ? wrap.querySelector('img') : null;
-    if (!wrap || !img || !img.naturalWidth || !wrap.clientWidth) return 4; // sensible fallback
-    return Math.max(baseScale, img.naturalWidth / wrap.clientWidth);
+    if (!wrap || !img || !img.naturalWidth || !wrap.clientWidth) return baseScale * 6;
+    const nativePixelMatch = img.naturalWidth / wrap.clientWidth;
+    return Math.max(baseScale * 6, nativePixelMatch);
   }
 
   function clampPan() {
@@ -2918,8 +2918,17 @@ function mapViewerZoom(dir) {
 }
 
 function mvZoomAt(cx, cy, factor) {
-  var minScale = mvBaseScale;  // can't zoom out past fit-to-container
-  var maxScale = Math.max(mvBaseScale, 1);  // can't zoom past native 1:1 pixels
+  var img = document.getElementById('map-viewer-img');
+  var iw = img ? img.naturalWidth : 0;
+  var wrap = document.getElementById('map-viewer-img-wrap');
+  var wW = wrap ? wrap.clientWidth : 0;
+  // Minimum zoom: can't go below fit-to-container.
+  var minScale = mvBaseScale;
+  // Maximum zoom: guarantee at least 6x past fit for usable magnification on all maps.
+  // For high-resolution source images, allow going up to native 1:1 pixel mapping,
+  // since that's where additional zoom actually reveals detail rather than just upscaling.
+  var nativeScale = (iw && wW) ? (iw / wW) : mvBaseScale;
+  var maxScale = Math.max(mvBaseScale * 6, nativeScale);
   var newScale = Math.min(maxScale, Math.max(minScale, mvScale * factor));
   if (newScale === mvScale) return;
   // Keep the image point under (cx, cy) fixed
