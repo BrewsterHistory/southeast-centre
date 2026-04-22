@@ -762,7 +762,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
       <section class="story-section story-section-full">
         <h2 class="story-h3">The Reckoning — Awards Published July 1890</h2>
         <div class="story-text">
-          <p>The July 1890 Brewster Standard published the commissioners' awards in full under the headline "The Awards." The article documented what was lost, family by family. Stephen C. Barnum received $61,179 for a three-generation farm of 250 acres with twenty or more buildings, a mill, and water power — he had claimed $182,000. Lydia M. Yale received $17,077.50 for the 130-acre farm her husband had paid $13,000 for in 1857 and improved over three decades; all 108 acres and every building were taken. George Cole of Southeast Centre lost 37 of his 44 acres along with his residence, barn, wagon shop, and water power — "driven out of his home and away from his business." Violette Birch, holding three acres at the spillway with a small brick building and half the Armstrong water power, received $4,260. The Armstrong property at Southeast Centre — the mill and water power that had anchored commercial life at the intersection for generations — was, the Standard reported, "taken away entirely."</p>
+          <p>The July 1890 Brewster Standard published the commissioners' awards in full under the headline "The Awards." The article documented what was lost, family by family. Stephen C. Barnum received $61,179 for a three-generation farm of 250 acres with twenty or more buildings, a mill, and water power — he had claimed $182,000. Lydia M. Yale received $17,077.50 for the 130-acre farm her husband had paid $13,000 for in 1858 and improved over three decades; all 108 acres and every building were taken. George Cole of Southeast Centre lost 37 of his 44 acres along with his residence, barn, wagon shop, and water power — "driven out of his home and away from his business." Violette Birch, holding three acres at the spillway with a small brick building and half the Armstrong water power, received $4,260. The Armstrong property at Southeast Centre — the mill and water power that had anchored commercial life at the intersection for generations — was, the Standard reported, "taken away entirely."</p>
           <p>Melissa Howes Birch — Jacob O. Howes's daughter, who had grown up on the 140-acre family farm — had refused an offer of $25,000 the year before the taking. The commissioners awarded her $15,700. Her residence and farm structures were left standing on the remaining few acres; it was during this liminal period, after the taking but before the reservoir rose, that the farmhouse was photographed. The surviving image — captioned "before 1895" — is the only known photograph of the Howes family farm at Southeast Centre.<sup>D</sup></p>
         </div>
       </section>
@@ -1735,6 +1735,16 @@ const lotData = {
     current: 'Current Owners since 1976',
     open: 'Pre-church ownership: practical research limit; Donohue→Caggiano deed not yet found',
   },
+  'lot11': {
+    lot: 'Tax Map Lot 11',
+    title: 'Yale Tract Remnant',
+    addr: '116 Sodom Road',
+    chain: '1833–present (Dutchess County roots 1782)',
+    earliest: 'Isaac Paddock → William Platt, March 19, 1833 (Liber H/538–539, $2,800)',
+    families: 'Paddock / Platt / Waring / Crane / Howes / Yale / Warren / Wells / Duggan / Jensen / Killarney / Hunt',
+    current: 'Current Owner since 2008',
+    open: 'E.C.Y. second structure on 1876 Reed map unidentified; kinship of John R. Yale to Enos C. Yale not established in primary record; F.C. Yale (1876 Reed map) identity not yet traced',
+  },
   'yale_tract': {
     lot: 'Lost Parcel — Watershed Taking 1891–1901',
     title: 'Yale Tract',
@@ -1784,7 +1794,7 @@ const lotData = {
     earliest: 'Seymour Allen → Seth S. Crosby 1830 (Liber G/97)',
     families: 'Crosby',
     current: 'City of New York watershed land',
-    open: 'Chain confirmed through four transactions; S.O. Crosby on Beers map = Seth S. Crosby (engraver misread S.S. as S.O.)',
+    open: 'Chain confirmed through four transactions; Seth S. Crosby identified from deed record. The 1854 Sidney & Neff and 1867 Beers maps both label this parcel "S.O. Crosby" — why the initial discrepancy (S.S. in deeds vs. S.O. on maps) persists across two independent surveys is not yet explained; possible shared source or a middle initial not reflected in the deed books.',
   },
   'crane_mill': {
     lot: 'Lost Feature — Flooded',
@@ -1835,6 +1845,16 @@ const lotData = {
     families: 'Reed',
     current: 'City of New York watershed land',
     open: 'S. Reed — Manufacturer of Boots & Shoes (confirmed from Beers Business Directory); possibly related to the Reed family at 96–98 Sodom Road',
+  },
+  'wh_crosby': {
+    lot: 'Lost Parcel — Watershed Taking',
+    title: 'W.H. Crosby — Howes Street at Foster Avenue',
+    addr: 'East side, Howes Street (gone)',
+    chain: 'Pre-1851–1890s (map record only)',
+    earliest: 'Labeled "W H Crosby" on 1851 Sidney map and 1854 Sidney & Neff map; "Mrs. Crosby" on 1867 Beers',
+    families: 'Crosby',
+    current: 'City of New York watershed land',
+    open: 'No deed chain traced. Three-map record (1851, 1854, 1867) documents presence; W.H. Crosby → Mrs. Crosby transition 1854–1867 suggests death-in-possession requiring Surrogate\'s Court research. Martha M. Crosby (Map 799 Parcel 62½) plausible widow/devisee but not confirmed.',
   },
 
 };
@@ -2299,9 +2319,9 @@ function filterReckoning(mode) {
 
       <p>The 1867 F.W. Beers Atlas of Putnam County — enlarged by Peter A. Keery — is the essential visual anchor for this research. It is one of the most detailed surviving maps to show Southeast Centre in its intact pre-watershed form, with every property identified by the name of its owner or resident. Every label on the Beers map now has a confirmed deed-chain identity, traced forward through the watershed proceedings, the grantor index, and in most cases to the present owners.</p>
 
-      <p>Reading the map from north to south along Howes Street (Brewster Hill Road): J. Silk at the top, then A. Townsend, J.O.H., J.E. Reed, and W. Crosby — five labels that would become two modern lots. East of the road, set back and circled, sits J.O. Howes with two structure symbols: Jacob's upland farm, the ground the City would flood to build the East Branch Reservoir. At the intersection, the Carriage and Chair Factory of Wright & Company. South along Church Street (Sodom Road): D. Reed, then B.S.SH (the blacksmith shop), Mrs. Paddock, and a sequence of households running east toward the Presbyterian Church and the schoolhouse. West along Main Street: T. Knox, the Crosby parcels, George Cole's wagon shop, and at the river's edge, the mill pond loop that marks Crane's Mills — the grist mill Jacob sold in 1836 and bought back in 1865.</p>
+      <p>Reading the 1867 Beers map from north to south along Howes Street (Brewster Hill Road): G. Cole and the Carriage Factory at the top, then J.O. Howes set back on the east side with two structure symbols — Jacob's upland farm, the ground the City would flood to build the East Branch Reservoir. South of that, along the street itself: J. Silk, S.B. Howes, J.O.H., T. Reed, and Mrs. Crosby — five labels that would become two modern lots. The 1851 and 1854 maps of Southeast Centre confirm the Howes Street cluster had taken its pre-watershed form more than a decade earlier, with W.H. Crosby already resident where the 1867 map shows his widow. At the intersection, the Carriage and Chair Factory of Wright & Company. South along Church Street (Sodom Road): D. Reed, the Parsonage and the Presbyterian Church, Mrs. Bragg, W.S. Warren, and E.C. Yale's residence running east to the Yale Tract. West along Main Street: M. Eckels, T.R. Knox, S.O. Crosby and S. Reed (the boot and shoe manufacturer), George Cole's wagon shop at the bridge, and at the river's edge, the mill pond loop that marks Crane's Mills — the grist mill Jacob O. Howes sold in 1836 and bought back in 1865.</p>
 
-      <p>The Beers Business Directory confirms the economic character of the neighborhood at its peak: Burch & Beers — Manufacturers of Fur Hats; Geo. Cole — Carriage & Wagon Maker; S. Reed — Manufacturer of Boots & Shoes; Rogers & Hoyt — Tanners & Dealers in Leather. H.H. Roberts, in his 1876 address, called it "Hatesville" for the hat manufacturing concentration at the intersection. The Roberts address was written at the moment of the neighborhood's greatest prosperity — and also at the moment the watershed began to advance.</p>
+      <p>Two independent business directories — the 1854 Sidney & Neff map of Southeast Centre and the 1867 Beers Business Directory, thirteen years apart — confirm the economic character of the neighborhood at its peak: Burch & Beers — Manufacturers of Fur Hats; Geo. Cole — Carriage & Wagon Maker; S. Reed — Manufacturer of Boots & Shoes; Rogers & Hoyt — Tanners & Dealers in Leather. H.H. Roberts, in his 1876 centennial address, called it "Hatesville" for the hat manufacturing concentration at the intersection. The Roberts address was written at the moment of the neighborhood's greatest prosperity — and also at the moment the watershed began to advance.</p>
 
       <h2>The Watershed</h2>
 
@@ -2309,7 +2329,7 @@ function filterReckoning(mode) {
 
       <p>The proceedings moved through Southeast Centre in waves. The 1887 map proceeding (Chapter 490, Laws of 1883) took the upland farms east of Brewster Hill Road and the river tracts to the west. The Double Reservoir I proceeding (maps filed May 14, 1896) took the residual improved cores — including the farmhouse visible in the surviving photograph of the Howes family farm. The Brewster Sanitary proceeding (Chapter 189, Laws of 1893) took the west-of-highway Croton River parcels. By 1900 the City of New York had acquired everything that made Southeast Centre function as a working agricultural community.</p>
 
-      <p>The July 11, 1890 Brewster Standard published the commissioners' awards in full. They are a record of what was lost. Stephen C. Barnum received $61,179 for a three-generation farm of 250 acres with twenty or more buildings, a mill, and water power — he had claimed $182,000. Lydia Yale received $17,077.50 for the 130-acre farm her husband had paid $13,000 for in 1857 and improved over three decades. George Cole, whose wagon shop appears in the Beers Business Directory, "was driven out of his home and away from his business." Melissa Howes Birch — Jacob O. Howes's daughter, who had grown up on the 140-acre family farm — had refused an offer of $25,000 the year before the taking. She received $15,700 and built a new house in Brewster village with the proceeds.</p>
+      <p>The July 11, 1890 Brewster Standard published the commissioners' awards in full. They are a record of what was lost. Stephen C. Barnum received $61,179 for a three-generation farm of 250 acres with twenty or more buildings, a mill, and water power — he had claimed $182,000. Lydia Yale received $17,077.50 for the 130-acre farm her husband had paid $13,000 for in 1858 and improved over three decades. George Cole, whose wagon shop appears in the Beers Business Directory, "was driven out of his home and away from his business." Melissa Howes Birch — Jacob O. Howes's daughter, who had grown up on the 140-acre family farm — had refused an offer of $25,000 the year before the taking. She received $15,700 and built a new house in Brewster village with the proceeds.</p>
 
       <p>The gap between what people believed their land was worth and what the commissioners awarded runs through every entry. Water power — the mill dams and races and privileges that had driven the neighborhood's economy since the 1740s — was the most contested element throughout. "This had proved to be a very knotty question throughout the whole proceeding," the newspaper observed.</p>
 
@@ -2325,7 +2345,7 @@ function filterReckoning(mode) {
 
       <div class="story-properties-section">
         <h2>The Properties</h2>
-        <p class="story-properties-intro">Click a property on the map to explore its full deed history, key families, and chain of title. Eleven properties — two on Brewster Hill Road, nine on Sodom Road — documented from their earliest confirmed deed records to the present.</p>
+        <p class="story-properties-intro">Click a property on the map to explore its full deed history, key families, and chain of title. Ten surviving properties — two on Brewster Hill Road, eight on Sodom Road — documented from their earliest confirmed deed records to the present.</p>
         <div class="story-prop-grid" id="story-prop-grid">
           <!-- populated by JS from lotData -->
         </div>
@@ -2683,7 +2703,7 @@ function buildBrowseList() {
   if (typeof lotData === 'undefined') return;
 
   // Standard Tax Map lots (in display order)
-  var taxMapLots = ['lot1','lot2','lot3','lot4','lot6','lot7','lot8','lot9','lot10'];
+  var taxMapLots = ['lot1','lot2','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11'];
   // Historical / lost lots — pull anything in lotData not in the standard list
   var historicalLots = Object.keys(lotData).filter(function(k){ return taxMapLots.indexOf(k) === -1; });
 
@@ -2740,7 +2760,7 @@ window.addEventListener('popstate', function(e) {
 function buildStoryGrid() {
   var grid = document.getElementById('story-prop-grid');
   if (!grid) return;
-  var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10'];
+  var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11'];
   var html = '';
   lots.forEach(function(lid) {
     var d = lotData[lid];
@@ -3124,7 +3144,7 @@ function buildPhotosList() {
            + '<div class="photos-list-arrow">›</div>'
            + '</div>';
 
-  var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10'];
+  var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11'];
   lots.forEach(function(lid) {
     var d = lotData[lid];
     if (!d) return;
