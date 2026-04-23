@@ -1535,6 +1535,11 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
   <polygon class="lot-shape lot-lost" id="ls-a_burch" points="100,1356 226,1456 121,1500 33,1432" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('a_burch')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-s_reed_ms" points="315,952 383,894 467,999 402,1040 348,970" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('s_reed_ms')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-wh_crosby" points="726,763 810,740 822,760 782,779 726,836 704,824" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('wh_crosby')" style="cursor:pointer"/>
+  <!-- POI — narrative-ready additions -->
+  <polygon class="lot-shape lot-lost" id="ls-carriage_factory" points="802,184 807,262 976,242 961,170" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('carriage_factory')" style="cursor:pointer"/>
+  <polygon class="lot-shape lot-lost" id="ls-jh_smith" points="564,800 665,803 672,772 562,765" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('jh_smith')" style="cursor:pointer"/>
+  <polygon class="lot-shape lot-lost" id="ls-so_crosby_lower" points="240,1166 130,1062 79,1101 173,1222" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('so_crosby_lower')" style="cursor:pointer"/>
+  <polygon class="lot-shape lot-lost" id="ls-district_school" points="684,37 754,110 830,107 828,32" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('district_school')" style="cursor:pointer"/>
   <!-- Surviving Main Street parcel -->
   <polygon class="lot-shape" id="ls-tknox" points="298,1113 254,1054 301,1004 357,1074" fill="rgba(255,255,255,0)" stroke="#D4820A" stroke-width="3" stroke-linejoin="round" onclick="selectLot('tknox')" style="cursor:pointer"/>
   <!-- Point markers (small polygons) for demolished features -->
@@ -1856,6 +1861,46 @@ const lotData = {
     families: 'Crosby',
     current: 'City of New York watershed land',
     open: 'No deed chain traced. Three-map record (1851, 1854, 1867) documents presence; W.H. Crosby → Mrs. Crosby transition 1854–1867 suggests death-in-possession requiring Surrogate\'s Court research. Martha M. Crosby (Map 799 Parcel 62½) plausible widow/devisee but not confirmed.',
+  },
+  'carriage_factory': {
+    lot: 'Lost Feature — Demolished 1889',
+    title: 'Carriage & Wagon Factory — Geo. Cole',
+    addr: 'North end, Howes Street (gone)',
+    chain: 'Pre-1854–1889',
+    earliest: 'Labeled "Carriage Factory" on 1854 Sidney & Neff and 1867 Beers; Geo. Cole as "Carriage & Wagon Maker" in both business directories',
+    families: 'Cole',
+    current: 'Gone; site under or near City of New York watershed land',
+    open: 'Brewster Standard reported demolition of factory at intersection December 6, 1889; relationship to Wright & Co. Chair Factory site not yet sorted in the record',
+  },
+  'jh_smith': {
+    lot: 'Lost Parcel — Watershed Taking',
+    title: 'Dr. J.H. Smith — Physician & Surgeon',
+    addr: 'West side, Howes Street (gone)',
+    chain: 'Pre-1854–post-1876',
+    earliest: 'Labeled "Dr. J.H. Smith" on 1854 Sidney & Neff; first entry in 1854 Business Advertising Directory as "Physician & Surgeon"; same position labeled "Mrs. Thompson" on 1867 Beers',
+    families: 'Smith',
+    current: 'City of New York watershed land',
+    open: 'Named in Jacob O. Howes 1876 obituary: Howes died "almost before Dr. Smith could be summoned from the Centre Church, where he happened to be at the time." No deed chain traced; 1854→1867 label change (Smith → Mrs. Thompson) not yet reconciled — Smith may have relocated, died, or sold to Thompson.',
+  },
+  'so_crosby_lower': {
+    lot: 'Lost Parcel — Watershed Taking',
+    title: 'S.O. Crosby (lower) → M. Eckels',
+    addr: 'Southwest end, Main Street (gone)',
+    chain: 'Pre-1854–post-1867 (map record)',
+    earliest: 'Labeled "S.O. Crosby" on 1854 Sidney & Neff at the SW Main Street position; same parcel labeled "M. Eckels" on 1867 Beers',
+    families: 'Crosby / Eckels (Hawkins)',
+    current: 'City of New York watershed land',
+    open: 'The 1854 map carries two separate "S.O. Crosby" labels — this lower one and an upper one on Main Street. By 1867 the lower parcel had passed to Matthias Eckels (confirmed = Matt Hawkins in the deed record); Eckels held the Lot 2 parcel from 1867 until death without recording a conveyance. The persistence of "S.O." as an initial across both the 1854 and 1867 maps weakens the earlier "engraver misread S.S. as S.O." theory for the upper Crosby parcel.',
+  },
+  'district_school': {
+    lot: 'Lost Feature — Watershed Era',
+    title: 'District School',
+    addr: 'North end, Howes Street (gone)',
+    chain: 'Pre-1851–1890s',
+    earliest: 'Labeled "D. School" on the 1851 map and "School" on both 1854 Sidney & Neff and 1867 Beers, all at the north end of Howes Street above the Carriage Factory',
+    families: 'School District No. 6 (successor congregation at Lot 10 after 1891)',
+    current: 'Gone; site absorbed into City of New York watershed',
+    open: 'After the 1891 church sale, the former Presbyterian Church at 112 Sodom Road was converted to schoolhouse use for School District No. 6 — a pattern consistent with the original district school here being lost or made inaccessible by the watershed taking. The connection between this pre-watershed district school and the post-1891 re-use of the church building is a documentary pattern but not yet a confirmed continuity.',
   },
 
 };
