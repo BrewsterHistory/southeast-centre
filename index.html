@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://api.anthropic.com; img-src 'self' data:;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.workers.dev; img-src 'self' data:;">
 <title>Southeast Centre — A Neighborhood History</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -266,17 +266,6 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .chat-intro-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.5rem}
 details[open] .about-arrow{transform:rotate(90deg)}
 .chat-intro-text{font-family:var(--body);font-size:0.95rem;color:var(--ink-light);line-height:1.75}
-
-/* API key setup */
-.api-setup{background:var(--parchment);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem}
-.api-setup-title{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.5rem}
-.api-setup-text{font-size:0.875rem;color:var(--ink-light);line-height:1.65;margin-bottom:1rem}
-.api-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.api-input{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-family:var(--mono);font-size:12px;background:var(--warm-white);color:var(--ink);outline:none}
-.api-input:focus{border-color:var(--gold)}
-.api-btn{padding:8px 16px;background:var(--ink);color:var(--cream);border:none;border-radius:4px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;cursor:pointer;white-space:nowrap}
-.api-btn:hover{background:var(--gold)}
-.api-status{font-family:var(--mono);font-size:11px;margin-top:8px;padding:6px 10px;border-radius:3px}
 
 /* Sample questions */
 .chat-hints{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -1601,15 +1590,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
       </details>
     </div>
 
-    <div class="api-setup" id="api-setup">
-      <div class="api-setup-title">Anthropic API Key Required</div>
-      <div class="api-setup-text">This assistant uses the Anthropic API. Enter your API key once — it's saved only in your browser and sent directly to Anthropic, never anywhere else. Get a key at <strong>console.anthropic.com</strong>.</div>
-      <div class="api-row">
-        <input type="password" class="api-input" id="api-key-input" placeholder="sk-ant-..." />
-        <button class="api-btn" onclick="saveKey()">Save key</button>
-      </div>
-      <div id="api-status" class="api-status" style="display:none"></div>
-    </div>
+    <!-- API key setup removed — chat now goes through a server-side proxy -->
 
     <div>
       <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px">Sample questions</div>
@@ -1646,7 +1627,6 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 
 <footer></footer>
 
-<script src="knowledge-base.js"></script>
 <script>
 
 // ── LOT DATA ────────────────────────────────────────────────────────────────
@@ -1984,37 +1964,11 @@ function tlFilter(cat, btn) {
   });
 }
 
-// ── API KEY ─────────────────────────────────────────────────────────────────
-let apiKey = localStorage.getItem('sc_api_key') || '';
-
-function saveKey() {
-  const val = document.getElementById('api-key-input').value.trim();
-  if (!val.startsWith('sk-ant-') && !val.startsWith('sk-')) {
-    showStatus('That doesn\'t look like a valid API key (should start with sk-ant-)', true);
-    return;
-  }
-  apiKey = val;
-  localStorage.setItem('sc_api_key', val);
-  document.getElementById('api-setup').style.display = 'none';
-  document.getElementById('send-btn').disabled = false;
-  showStatus('Key saved', false);
-}
-
-function showStatus(msg, isError) {
-  const el = document.getElementById('api-status');
-  el.textContent = msg;
-  el.className = 'api-status' + (isError ? ' error' : '');
-  el.style.display = 'block';
-}
-
-// On load — if key exists, hide setup
-if (apiKey) {
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('api-setup').style.display = 'none';
-    document.getElementById('send-btn').disabled = false;
-    document.getElementById('api-key-input').value = apiKey;
-  });
-}
+// ── WORKER PROXY ────────────────────────────────────────────────────────────
+// The chat goes through a server-side Cloudflare Worker that holds the API
+// key and the research corpus privately. Update this URL after deploying
+// your Worker. See UPDATING.md for setup instructions.
+const WORKER_URL = 'https://southeast-chat.southeastcentre-ny.workers.dev';
 
 // ── CHAT ────────────────────────────────────────────────────────────────────
 const messages = [];
@@ -2103,7 +2057,6 @@ async function sendMessage() {
   const rawText = input.value;
   const text = sanitizeInput(rawText);
   if (!text) return;
-  if (!apiKey) { alert('Please enter your Anthropic API key first.'); return; }
 
   // Rate limiting
   var now = Date.now();
@@ -2133,28 +2086,21 @@ async function sendMessage() {
   const thinkingDiv = addMsg('assistant', 'Looking through the research…', true);
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(WORKER_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1024,
-        system: SYSTEM,
         messages: messages.slice(-MAX_CONVERSATION_TURNS)
       })
     });
 
+    const data = await response.json().catch(() => ({}));
+
     if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err.error?.message || 'API error ' + response.status);
+      const msg = data.error || ('Request failed (' + response.status + ')');
+      throw new Error(msg);
     }
 
-    const data = await response.json();
     const reply = data.content?.[0]?.text || 'No response received.';
     messages.push({ role: 'assistant', content: reply });
     thinkingDiv.classList.remove('thinking');
@@ -2162,7 +2108,7 @@ async function sendMessage() {
 
   } catch(e) {
     thinkingDiv.classList.remove('thinking');
-    updateBubble(thinkingDiv, 'Something went wrong: ' + e.message + '. Check your API key and try again.');
+    updateBubble(thinkingDiv, 'Something went wrong: ' + e.message);
   }
 
   document.getElementById('send-btn').disabled = false;
@@ -2185,10 +2131,9 @@ function handleKey(e) {
 
 // Init on load
 document.addEventListener('DOMContentLoaded', () => {
-  if (apiKey) {
-    document.getElementById('api-setup').style.display = 'none';
-    document.getElementById('send-btn').disabled = false;
-  }
+  // No API key required — chat is enabled immediately.
+  var sendBtn = document.getElementById('send-btn');
+  if (sendBtn) sendBtn.disabled = false;
 });
 
 // ── MAP OVERLAY PANEL ────────────────────────────────────────────────────────
