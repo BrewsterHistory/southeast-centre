@@ -554,31 +554,14 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 .reckoning-source{border-top:1px solid var(--border);padding-top:1rem}
 .reckoning-source p{font-family:var(--mono);font-size:11px;color:var(--ink-muted);line-height:1.6}
 
-/* Article transcript — collapsible primary source */
-.article-transcript{margin:1.5rem 0 2rem;border:1px solid var(--border);border-radius:6px;background:var(--parchment);overflow:hidden}
-.article-transcript-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);background:var(--cream)}
-.article-transcript-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin:0 0 0.3rem}
-.article-transcript-title{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin:0;font-weight:400;font-style:italic}
-.article-transcript-body{padding:1.25rem 1.5rem 0.5rem;font-family:var(--serif);font-size:15px;line-height:1.75;color:var(--ink)}
-.article-transcript-body p{margin:0 0 0.9rem;text-indent:1.5em}
-.article-transcript-body p:first-child{text-indent:0}
-.article-transcript-body p:first-child::first-letter{font-family:var(--serif);font-size:2.6em;float:left;line-height:0.95;padding:0.05em 0.08em 0 0;color:var(--ink)}
-.article-transcript details{border-top:1px dashed var(--border)}
-.article-transcript details > summary{list-style:none;cursor:pointer;padding:0.85rem 1.5rem;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-muted);background:var(--cream);transition:background 0.15s;display:flex;align-items:center;justify-content:space-between}
-.article-transcript details > summary:hover{background:#ece4d4;color:var(--ink)}
-.article-transcript details > summary::-webkit-details-marker{display:none}
-.article-transcript details > summary::after{content:"▼ Continue reading";font-size:11px}
-.article-transcript details[open] > summary::after{content:"▲ Collapse"}
-.article-transcript details[open] > summary{border-bottom:1px solid var(--border)}
-.article-transcript-rest{padding:1.25rem 1.5rem 1.5rem;font-family:var(--serif);font-size:15px;line-height:1.75;color:var(--ink)}
-.article-transcript-rest p{margin:0 0 0.9rem;text-indent:1.5em}
-.article-transcript-rest h4{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin:1.25rem 0 0.6rem;font-weight:400}
-.article-transcript-rest h4:first-child{margin-top:0}
-.article-transcript-footer{padding:0.85rem 1.5rem;background:var(--cream);border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;letter-spacing:0.04em;color:var(--ink-muted)}
-@media (max-width:640px){
-  .article-transcript-body,.article-transcript-rest{padding-left:1rem;padding-right:1rem;font-size:14px}
-  .article-transcript-header{padding:0.85rem 1rem}
-}
+/* Clickable article image — opens full original in lightbox */
+.article-image-link{display:block;position:relative;cursor:zoom-in;text-decoration:none;transition:opacity 0.15s}
+.article-image-link img{display:block;width:100%;transition:filter 0.15s}
+.article-image-link:hover img{filter:brightness(1.04)}
+.article-image-hint{position:absolute;bottom:10px;right:10px;background:rgba(20,18,15,0.85);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 10px;border-radius:3px;opacity:0;transition:opacity 0.2s;pointer-events:none}
+.article-image-link:hover .article-image-hint{opacity:1}
+@media (max-width:640px){.article-image-hint{opacity:0.9;font-size:9px;padding:4px 8px;bottom:6px;right:6px}}
+
 
 </style>
 </head>
@@ -921,7 +904,10 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 
       <section class="story-gallery">
         <figure class="gallery-fig">
-          <img src="images/Reckoning/reck_03.png" alt="The Standard, July 11, 1890 — 'The Awards' column masthead" loading="lazy">
+          <a href="#" onclick="openFullArticle(event)" class="article-image-link" title="Click to view the full original article">
+            <img src="images/Reckoning/reck_03.png" alt="The Standard, July 11, 1890 — 'The Awards' column masthead" loading="lazy">
+            <span class="article-image-hint">Click image to view the full article →</span>
+          </a>
           <figcaption>The Standard, Brewster, New York. Friday, July 11, 1890. "The Awards" — the article opens: "Hereabouts the week has been given up to the discussion of the awards to property owners for property taken and damages sustained by reason of the building of Sodom Dam. In view of the widespread interest in this proceeding some of the details may prove of interest." What followed was the complete commissioners' accounting for the first major watershed proceeding in the Town of Southeast.</figcaption>
         </figure>
       </section>
@@ -933,75 +919,6 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
           <p>The gap between what people believed their land was worth and what the commissioners awarded runs through every entry. Stephen C. Barnum claimed $182,000 for his three-generation farm; he received $61,179. James Boyce claimed $24,000 for his Milltown mill; the City had valued the buildings alone at $2,439, and the award came in at $9,620. John Martin claimed nearly $11,000 for his Milltown farm; the City's man said $6,472; the award was $6,000. The pattern was consistent — claims of twice, three times, sometimes four times what the commissioners would allow.</p>
           <p>Water power was the knotty question. The mill dams and races and privileges that had driven the neighborhood's economy since the 1740s were the most contested element throughout. "Water power has proved to be a very knotty question throughout the whole proceeding," the paper observed dryly. Isaac Armstrong's grist mill and sash-and-blinds manufactory at Southeast Centre — together with half the water power shared with Violette Birch — was taken entirely for $6,378.23. George Cole, "driven out of his home and away from his business," lost his residence, barn, wagon shop, and all his water power for $8,306.83. The Armstrong operation and the Cole wagon shop had anchored commercial life at the Southeast Centre intersection for two generations. Both were gone by the end of the proceeding.</p>
         </div>
-      </section>
-
-      <section class="story-section story-section-full">
-        <h2 class="story-h3">The Full Article — <em>The Awards</em>, Brewster Standard, July 11, 1890</h2>
-        <div class="story-text">
-          <p>The complete transcript of the article is reproduced below. The opening passage is shown by default; click the bar at the bottom of the visible text to expand the parcel-by-parcel accounting that follows. Spelling, punctuation, and dollar formatting follow the original; obvious typesetting errors are preserved without correction.</p>
-        </div>
-
-        <article class="article-transcript">
-          <header class="article-transcript-header">
-            <p class="article-transcript-eyebrow">The Standard · Brewster, N.Y. · Friday, July 11, 1890</p>
-            <h3 class="article-transcript-title">The Awards.</h3>
-          </header>
-
-          <div class="article-transcript-body">
-            <p>Hereabouts the week has been given up to the discussion of the awards to property owners for property taken and damages sustained by reason of the building of Sodom Dam. In view of the widespread interest in this proceeding some of the details may prove of interest.</p>
-            <p>The amount of the largest award is $61,179 to Stephen C. Barnum, who was obliged to give up his residence together with three or four tenant houses for farm hands, several barns, a mill provided with good water power, tool house, milk house, wash house, etc., etc., in all over twenty buildings erected during the lifetime of claimant's grandfather the late Dr. Stephen C. Barnum and his father, the late Joshua Barnum, and all of them kept in good repair, added to and rebuilt as occasion demanded, and eight parcels of land containing 236 acres — nearly all good meadow. The portion of the farm left contains about 225 acres of rough land, without buildings, not easily accessible, and of very little value.</p>
-            <p>Since the awards were published the remark has been made very often that the value of the buildings taken exceeded the entire award. A glance at the figures made by William P. Buckley, of Brewster, and Edwin Dobbs, of New York, witnesses for claimant, as to the value of all the carpenter work on the place, shows that $26,500 was a fair price — that is for all buildings above the foundations. The city's witnesses on carpenter work gave it as their opinion that the figures of Buckley and Dobbs were too high by $1,500, or so — which is really a very slight difference considering the large amount involved. The witnesses as to the cost of excavations and masonry were widely separated. Weeks and Thorp for claimant made the value about $12,750, while the city expert's figures were about one-half that sum. Thus it will be seen that $40,000, at the outside, may be taken as the value of the buildings.</p>
-            <p>The water power, Matthew K. Couznes for the claimant said was worth $15,000 and one of the city witnesses said $5,000. Water power has proved to be a very knotty question throughout the whole proceeding. As to some powers the city witnesses alleged there was no commercial value, while witnesses for claimants estimated powers as high as $24,000.</p>
-            <p>Mr. Barnum's claim was $182,000. The lowest city estimate was $45,825. The award as stated, 61,179. The allowance for disbursements was $588.25 and to S. S. Marshall, counsel, $1,700.</p>
-          </div>
-
-          <details>
-            <summary><span>Continue reading the full article</span></summary>
-            <div class="article-transcript-rest">
-
-              <h4>The Yale, Birch, and Cole farms</h4>
-              <p>The claim of Mrs. Lydia M. Yale was similar to that of Mr. Barnum in that all the buildings and 108 acres of land were taken, leaving 22 acres. The buildings were, according to claimant's estimate, worth $17,600. The city said $10,700 ought to be enough. The land was about one-third pasture and two-thirds meadow, but not as good land as Barnum's. Mr. Yale paid $13,000 for the farm in 1857, and undoubtedly expended nearly twice that sum in improvements. The award was $17,977.50. Allowance for disbursements $406. S. S. Marshall, counsel fees, $500.</p>
-              <p>The element of damages entered very largely into the claim of Melissa Birch. The total acreage of the farm was 140. The city acquired 128 acres. The residence and buildings necessary to the farm were left together with a few acres of land. The highest estimate by a city witness of the value of the part taken was $15,025.00. The claimant's witnesses agreed that the value of the farm was $35,000 and the damage $32,000. The land was shown to be largely self-sustaining, and unusually productive. One year prior to the taking of the land by the city an offer of $25,000 for the farm was refused. The award is $15,700. A. J. Miller and F. S. Barnum, attorneys, allowed $475. Maria Howes, 79 years of age, is entitled to a life estate in the premises. Jane Cole, a legatee, will receive out of the award $4,500 and interest from April, 1886, less $210 paid on account of such interest. George Cole, as a mortgagee, will receive $3,500, and interest at six per cent from Oct. 1, 1886. Abram J. Miller, executor, as mortgagee, will receive $1,000 and interest from the 9th day of October, 1882. The water power was owned jointly by the claimant and Mrs. Violette Birch. The city put down the claimant's interest in power, land and damages, at 3,000. Miller and O'Rourke said the buildings were worth 2,977.43. The claimant's witnesses said the whole property was worth $32,000, or thereabouts. The award was $9,378.23. Allowances for disbursements $132 65. A. J. Miller counsel fee, $300.</p>
-              <p>George Cole was driven out of his home and away from his business. His was a small farm of 44 acres located at Southeast Centre. Nearly 37 acres were taken by the city, together with his residence, barn, wagon shop, and all the buildings and water power. The claimant's witnesses put in the land and buildings at about 11,500, and the water privilege experts said the power was worth $8,000. The city fixed the whole thing at $6,500. The award was 8,306.83. Allowance for disbursements 245.50. A. J. Miller, counsel fees, $250.</p>
-
-              <h4>The Hoyt, Paddock, Foster, and Connor claims</h4>
-              <p>The Hoyt claim, with the Putnam County Savings Bank and Henry B. Smith, mortgagees, was for the so-called David Ketchum property, containing about 30 acres. The city took something over one-half of the land together with all buildings. Two witnesses on behalf of the claimant, Hine and Mygatt, valued the part taken at $10,800, while one witness for the city, Lewis, said $9,710. The award was $9,600. Allowance for disbursements, $174.36. F. S. Barnum and A. J. Miller, counsel fees, $300.</p>
-              <p>Hiram Paddock's farm of 156 acres was badly torn up by taking away 58 acres together with some of his buildings. A portion of the farm is deprived of water and the changed line of the New York and New England Railroad runs directly through it. About 19 acres will be left high and dry on Joe's Hills and separated from the balance of the land by an arm of the reservoir which will extend easterly along the Danbury road to lands of the estates of W. F. Fowler and Alonzo Brush. There was a wide difference of opinion as to the value of this claim. The lowest estimate by a witness for the claimant was $14,500. Lewis proved the highest witness for the city and his figures were $9,897.50. The award was $9,199. Allowance for disbursements, $109.50. A. J. Miller and F. S. Barnum, attorneys, $300. D. Storm, as mortgagee, will receive out of this award $2,700 and interest from Aug. 17, 1887.</p>
-              <p>George Foster's place was taken entire — dwelling, grist mill, saw mill, barn and outbuildings on 2 acres of land — worth, he thought, $12,000. The city said $2,918. Award $3,375.00. John Shenton, $250, and Sarah A. Foster, $2,000, are the mortgagees making claims. Allowance for disbursements $123.50. A. J. Miller, counsel fee, $100. Dwellings in this vicinity belonging to Elizabeth Dayton and Delicy Alford, met with awards of $1,500 and $765, respectively. Disbursements, $95.50 and $41.25. A. J. Miller, counsel fee, $38 and $75. The Fowler-Brush claim, for 16 acres of land of W. F. Fowler and water right of Alonzo Brush met with an award of $1,396.50, and for disbursements $89.75. A. J. Miller, counsel fee $65.</p>
-              <p>The parcel of land known as No. 1, lying along the spillway below the dam was owned by Violette Birch — 3 acres, a small brick building and one-half of the Armstrong water-power. Submitted without testimony. Award $4,250. A. J. Miller, counsel fee, $175.</p>
-              <p>A parcel of land at the dam site, 23 acres in all, belonged to Sarah E., wife of Warren S. Paddock. The city acquired 19 acres which their witnesses valued at $1808. The claimant asked for about $3,700. The award was $2,425, and for disbursements, $41.75. A. J. Miller and F. S. Barnum, counsel fees, $75.00.</p>
-              <p>The award to David B. Richards for his home and 8 acres of land was about what the claimant asked for, $5,050, and for disbursements $99.50. S. S. Marshall, counsel fee $150. John Martin and Mary O'Connor owned farms of about 75 acres each on the east side of the Croton near Milltown. The farms were stripped of buildings. Martin's claim was for about 16 acres of land and buildings, nearly $11,000. Lewis, the city man, said $5,472. The award was $6,000, and for disbursements $145 25. F. S. Barnum, counsel fee, $200. The O'Connor claim was for 15 acres, $8,500, while the city men placed it at $4,500. Award $5,850, and for disbursements $90, A. J. Miller, counsel fee $180. The residence and 12 acres of land of John Connor, near by was taken at a price highly satisfactory to the claimant, $4,291. Allowance for disbursements, $125. F. S. Barnum, counsel fee, $125.</p>
-
-              <h4>The Sears, Budd, Crosby, and Crane farms</h4>
-              <p>Daniel R. Sears owned a parcel of land adjoining Connor's, and two other parcels further up the river. The whole farm was 85 acres. The part taken, 28 acres, cut off the water supply and was valued by the claimant at $13,000. Lewis for the city said $6,707.50, and the award was $6,625, and for disbursements $46.75. F. S. Barnum, counsel fee, $200.</p>
-              <p>Elijah W. Budd and his sister, Elizabeth A. Budd, owned a farm of 145 acres, of which the city took 3 parcels, in all about 32 acres. There is the usual cutting off of springs and water supply generally, and the claimant's witnesses said the loss and damage amounted to $18,000. The city conceded $4,000. The award was $6,010, and for disbursements $57. A. J. Miller, counsel fee, $180.</p>
-              <p>Martha M. Crosby's farm of 80 acres is seriously damaged by the taking of 12 acres and the loss of a barn. About $12,000 the claimant asked as compensation. The city admitted the damages to be $3,700. The award was $4,804, and for disbursements, 112.50. A. J. Miller, counsel fee, $150.</p>
-              <p>Catharine M. Crane, also sustained irreparable damage by the loss of 24 acres, taken from a farm of 215 acres. Her land is on both sides of the river at DeForest Corners and is cut in two and deprived of water. The claimant's witnesses estimated the loss and damage at $10,000. The city placed it at $2,500. Award $3,544.20, and for disbursements $87.55. F. S. Barnum and A. J. Miller, counsel fees $125.</p>
-
-              <h4>The Bog Brook valley</h4>
-              <p>Turning to the Bog Brook valley we have on the extreme north-western boundary of the reservoir property a farm of 130 acres owned by W. C. and J. J. Haviland, which is rendered practically worthless for farming purposes and as a place of abode by the condemnation of about 42 acres. All the meadow and tillable land on the farm, about 70 acres, lies on the south side of the road running westerly from Sears' Corners to Brewster and Dykemans. The part taken was described by the witnesses on both sides as the "heart of farm." Moreover the reservoir survey extends across the road into the door yard and the water will come up within ten feet of the Haviland residence. The lowest price fixed by a witness for the claimant was $15,560. Lewis was again the high man for the city with an estimate of $10,762.50. The award was $9,000. Allowance for disbursements $67.50. Frederic S. Barnum, counsel, $300.</p>
-              <p>While we are in Bog Brook territory we can take up the claim of Jonathan Minor. A farm of 74 acres is deprived of all springs and a brook by taking about 8 acres. It was a question of damages. Jonathan VanScoy, for the claimant said $2,500, and Lewis the city witness said $2,162.50. The award was $2,300. Allowance for disbursements $50.50, S. S. Marshall, counsel fee, $70.</p>
-              <p>Benjamin D. Everett owned 78 acres of land in this vicinity. Bog Brook was the eastern boundry. About 35 acres was low pasture and the balance good meadow. The claim was submitted without testimony. Mary A. Field has $5,000 interest in this property. The award was $8,012. A. J. Miller, counsel fee, $400.</p>
-              <p>The farms forming the eastern slope of the Bog Brook valley are five in number. The largest slice was taken from Elbert H. Kelley, (Minerva Howes, life estate) 71 acres out of 76, which the claimant's witnesses valued at $9,500. Lewis put it at $6,245. The award was $5,338. Allowance for disbursements, $70.50. A. J. Miller, counsel fee, $175. Next comes 34 acres out of a farm of 47 acres. Claim by Sarah E. Sherwood and Lyman Sherwood, life estate, value by claimant, $7,800; by city, $2,776. Award $3,400. Allowance for disbursements, $37.50. F. S. Barnum, counsel fee, $75. Benjamin F. Foster is next with a loss of 18 acres out of 60. Damage, the claimant's witnesses said, $8,500. The city said $2,250. The award was $3,800. Disbursements $45. A. J. Miller, counsel fee, $120. Another Sherwood farm is next and the claimants are Sarah E. and Delia. Farm of 94 acres. Part taken 20 acres. Claimant's value about $10,000. City value $2,116. Award, $3,500. F. S. Barnum, counsel fee, $75. The last parcel is that taken from Fannie B. Sears, five acres, worth according to claimant's witnesses $3,000. The city thought $415 enough for it. Award $600. Disbursements $47.50. Ambrose Ryder, counsel fee, $30. There are no buildings on the land mentioned in this paragraph, but in every instance, except as to Sears, the farms are deprived of water.</p>
-
-              <h4>Paddock, Boyce, and Armstrong — the mills along the Croton</h4>
-              <p>The next highest award is to Warren S. Paddock. It is for 75 acres of meadow and pasture land lying along the Croton river above Milltown bridge, cutting off entirely the supply of water from a farm worth $30,000 to $40,000. The claimants witnesses placed the damages at about $27,000. Mr. Lewis was the highest-priced witness for the city and he said the damage was $12,272.50. The award was $12,260. Allowance for disbursements, $87. F. S. Barnum and A. J. Miller, counsel fees, $375.</p>
-              <p>Two excellent water powers on the east branch of the Croton were owned by James W. Boyce and Isaac Armstrong. Boyce's mill was at Milltown, where he also owned a farm of 47 acres. The city acquired seven acres, including mills, machinery and dam, destroying orchard and garden, and taking away door-yard and barn-yard. Upon the mills, machinery, etc., the claimant estimated a loss of $24,000, and for the land taken and damages sustained $7,200, a total of $31,200. The city witness, Worthen, said the power, dam, etc., were worth $5,000. The carpenter, Miller, put in the buildings at $2,139.96. O'Rourke, said the masonry amounted to $912.30. Sunderland, who was a witness for the claimant and not contradicted, placed the value of machinery and fixtures at $1,920. Abram Hyatt, of Sing Sing, said the damage sustained to the residue was $1,714, a total of $11,686.26. The award was $9,620. Allowance for disbursements, $195.25. F. S. Barnum, counsel fees, $300. Mr. Armstrong's property at Southeast Center was taken away entirely. His buildings: a grist mill, and manufactory for sash, blinds, etc., and an ice house, occupied less than one-half acre of land. However it was a busy corner and the proprietor was realizing large profits.</p>
-
-              <h4>Stevens, Foster, Barnum, Morlock, and the smaller parcels</h4>
-              <p>Hiram and Daniel Stevens own jointly a farm on the road to Danbury, consisting 102 acres. The part taken, 50 acres, the claimant estimates at $9,000. City estimate, $4,382. Award, $6,300, and for disbursements, $67.00. A. J. Miller, counsel fee, $180. The Fosters, Theodore B. and George W., owned places at Little Sodom. On Theodore's land there were many buildings and the total damage was estimated at $8,000. The city estimate was $2,455. Award $4,883.61, and for disbursements 149. A. J. Miller, counsel fee, $150. Zenas [Foster's] farm is similarly affected; claimant's witnesses estimated about $11,000 of damage by the taking of 15 acres. The city placed the damage at $750. Award $1,900, and for disbursements $93.50. A. J. Miller, counsel fee, $95.</p>
-              <p>George Morlock owns a farm of 35 acres. Part taken 4 acres. Award $1,001, and for disbursements $22.50. F. S. Barnum, counsel fee $50.</p>
-              <p>The Herman C. Barnum residence and one acre of land, award $1,400, is set down to his son, Edward C. Barnum. Allowance for disbursements $105. S. S. Marshall, counsel fee, $70.</p>
-              <p>Fourteen other parcels valued at less than $1,000 each are as follows: John Kelley, $950; L. H. and C. P. Hanford, $950; David Hall, $900; Albert Townsend, $637; Sarah J. Nelson, $500; Margaret Silk, $400; Phebe M. Corlett, $300; John R. Yale, $350; George Elwell Estate, $300; Emily E. Lefferts, $250; George E. Sears, $171; Jane A Hopkins, $150; Augusta B. Keeler, $150; Virgil E. Barnum, $80. Of these clients F. S. Barnum represented eight, and was allowed disbursements aggregating $268, and counsel fees, $169. Abram J. Miller, representing six clients, was allowed disbursements, $67.75, counsel fees, $113.50.</p>
-              <p>The awards to be made are to William A. Storm, 70 acres; George W. Hall, 5 acres; the Seth Kinner Estate, 9 acres; and Benj. D. Everett, for 10 acres in addition to the 78 acres already noticed. The award to the New York &amp; New England Railroad Co., about $80,000, was made last year.</p>
-              <p style="text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-muted);margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem">— end of article —</p>
-            </div>
-          </details>
-
-          <div class="article-transcript-footer">
-            Source: <em>The Brewster Standard</em>, Friday, July 11, 1890, p. 1, "The Awards." Transcribed from photographic reproduction. The unrelated final paragraph regarding Harlem railroad conductors' wages, drawn by the Standard from the <em>Chatham Courier</em>, has been omitted as not part of the awards article. One brief passage transitioning between the Theodore B. Foster and Zenas Foster entries is partially obscured in the original column break and is rendered to the best fidelity possible.
-          </div>
-        </article>
       </section>
 
       <section class="story-section story-section-full">
@@ -2577,6 +2494,17 @@ function lbKeyHandler(e) {
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') lbNav(-1);
   if (e.key === 'ArrowRight') lbNav(1);
+}
+
+// Open the full July 11, 1890 "The Awards" article in the lightbox
+// Three full-resolution scans of the original newspaper page
+function openFullArticle(e) {
+  if (e) e.preventDefault();
+  openLightbox([
+    {src: 'images/Reckoning/reck_full_01.png', cap: 'The Standard, Brewster, N.Y. — Friday, July 11, 1890 — "The Awards" — page 1 of 3'},
+    {src: 'images/Reckoning/reck_full_02.png', cap: 'The Standard, Brewster, N.Y. — Friday, July 11, 1890 — "The Awards" — page 2 of 3'},
+    {src: 'images/Reckoning/reck_full_03.png', cap: 'The Standard, Brewster, N.Y. — Friday, July 11, 1890 — "The Awards" — page 3 of 3'}
+  ], 0);
 }
 
 // Build photo gallery HTML for a lot
