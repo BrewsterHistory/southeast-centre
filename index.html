@@ -1519,7 +1519,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
   <!-- Lost parcels / historical features — watershed taken or demolished -->
   <polygon class="lot-shape lot-lost" id="ls-joh_farm" points="805,359 819,441 976,436 976,343" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('joh_farm')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-gcole" points="772,362 565,348 597,37 679,66 726,119" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('gcole')" style="cursor:pointer"/>
-  <polygon class="lot-shape lot-lost" id="ls-so_crosby_ms" points="402,1043 357,1074 254,956 271,931 346,973" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('so_crosby_ms')" style="cursor:pointer"/>
+  <polygon class="lot-shape" id="ls-so_crosby_ms" points="402,1043 357,1074 254,956 271,931 346,973" fill="rgba(255,255,255,0)" stroke="#D4820A" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('so_crosby_ms')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-w_warren" points="1297,934 1169,917 1158,982 1279,994" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('yale_tract')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-a_burch" points="100,1356 226,1456 121,1500 33,1432" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('a_burch')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-s_reed_ms" points="315,952 383,894 467,999 402,1040 348,970" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('s_reed_ms')" style="cursor:pointer"/>
@@ -1527,10 +1527,11 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
   <!-- POI — narrative-ready additions -->
   <polygon class="lot-shape lot-lost" id="ls-carriage_factory" points="802,184 807,262 976,242 961,170" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('carriage_factory')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-jh_smith" points="564,800 665,803 672,772 562,765" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('jh_smith')" style="cursor:pointer"/>
-  <polygon class="lot-shape lot-lost" id="ls-so_crosby_lower" points="240,1166 130,1062 79,1101 173,1222" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('so_crosby_lower')" style="cursor:pointer"/>
+  <polygon class="lot-shape" id="ls-so_crosby_lower" points="240,1166 130,1062 79,1101 173,1222" fill="rgba(255,255,255,0)" stroke="#D4820A" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('so_crosby_lower')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-district_school" points="684,37 754,110 830,107 828,32" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('district_school')" style="cursor:pointer"/>
   <!-- Surviving Main Street parcel -->
   <polygon class="lot-shape" id="ls-tknox" points="298,1113 254,1054 301,1004 357,1074" fill="rgba(255,255,255,0)" stroke="#D4820A" stroke-width="3" stroke-linejoin="round" onclick="selectLot('tknox')" style="cursor:pointer"/>
+  <polygon class="lot-shape" id="ls-j_tilford" points="254,1054 213,998 258,966 301,1004" fill="rgba(255,255,255,0)" stroke="#D4820A" stroke-width="3" stroke-linejoin="round" onclick="selectLot('j_tilford')" style="cursor:pointer"/>
   <!-- Point markers (small polygons) for demolished features -->
   <polygon class="lot-shape lot-lost" id="ls-crane_mill" points="758,929 709,880 640,926 688,978 709,945 732,957" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('crane_mill')" style="cursor:pointer"/>
   <polygon class="lot-shape lot-lost" id="ls-wright_factory" points="530,999 565,975 637,1120 600,1146" fill="rgba(180,60,60,0)" stroke="#C04040" stroke-width="2.5" stroke-linejoin="round" onclick="selectLot('wright_factory')" style="cursor:pointer"/>
@@ -1773,14 +1774,14 @@ const lotData = {
     open: 'Full deed chain confirmed 1846–2000; visible in c.1900–1915 Main Street postcard',
   },
   'so_crosby_ms': {
-    lot: 'Lost Parcel — Watershed Taking',
-    title: 'Seth S. Crosby — Main Street',
-    addr: 'North side, Main Street (gone)',
-    chain: '1830–1890s',
+    lot: 'Surviving Parcel — Chain Open Pre-1926',
+    title: 'Seth S. Crosby — Main Street (upper)',
+    addr: 'Northwest side, Main Street — 68 Sodom Road area',
+    chain: '1830–present (pre-1926 gap open)',
     earliest: 'Seymour Allen → Seth S. Crosby 1830 (Liber G/97)',
     families: 'Crosby',
-    current: 'City of New York watershed land',
-    open: 'Chain confirmed through four transactions; Seth S. Crosby identified from deed record. The 1854 R.F. O\'Connor map of Putnam County labels this parcel "S.S. Crosby" — matching the deed record. The competing 1854 Sidney & Neff survey labels it "S.O." and the 1867 F.W. Beers atlas inherits that same "S.O." reading — indicating the initial discrepancy is an engraver\'s transcription error introduced in the Sidney & Neff lineage and perpetuated into Beers, not a separate person.',
+    current: 'Road-facing village lot survived watershed acquisition. Structure at 68 Sodom Road confirmed in c.1910 postcard and occupies this parcel position. Modern owners: Bradford & Rebecca Smith / Bonnie L. Smith life estate (Liber 1905/273, 2012).',
+    open: 'The road-facing S.O. Crosby strip was not taken by the City of New York — the watershed acquisition stopped at Sodom Road. The large Crosby riverfront holding (Liber 53/424, Crosby→Howes 1874) was separately conveyed to the City by Martha M. Crosby in six transactions 1891–1900. No deed in the modern 68 Sodom Road chain names Crosby — the pre-1926 gap requires Surrogate\'s Court research to confirm the Crosby connection. The "S.O." initial is an engraver\'s misread of "S.S." introduced in the Sidney & Neff lineage and inherited by Beers; the 1854 R.F. O\'Connor map correctly labels this position "S.S. Crosby."',
   },
   'crane_mill': {
     lot: 'Lost Feature — Flooded',
@@ -1825,9 +1826,9 @@ const lotData = {
   's_reed_ms': {
     lot: 'Lost Parcel — Watershed Taking',
     title: 'S. Reed — Boot & Shoe Manufacturer',
-    addr: 'North side, Main Street (gone)',
+    addr: 'Northwest side, Main Street (road-facing portion status uncertain)',
     chain: 'Pre-1867–1890s',
-    earliest: 'Visible on 1867 Beers map',
+    earliest: 'Visible on 1867 Beers map; deed chain Y/238 and 30/326 place Reed parcel NW side between upper Crosby and Beallis; confirmed by Liber 53/424 boundary description',
     families: 'Reed',
     current: 'City of New York watershed land',
     open: 'S. Reed — Manufacturer of Boots & Shoes (confirmed from Beers Business Directory); possibly related to the Reed family at 96–98 Sodom Road',
@@ -1863,14 +1864,24 @@ const lotData = {
     open: 'Named in Jacob O. Howes 1876 obituary: Howes died "almost before Dr. Smith could be summoned from the Centre Church, where he happened to be at the time." No deed chain traced; 1854→1867 label change (Smith → Mrs. Thompson) not yet reconciled — Smith may have relocated, died, or sold to Thompson.',
   },
   'so_crosby_lower': {
-    lot: 'Lost Parcel — Watershed Taking',
-    title: 'S.O. Crosby (lower) → M. Eckels',
-    addr: 'Southwest end, Main Street (gone)',
-    chain: 'Pre-1854–post-1867 (map record)',
-    earliest: 'Labeled "S.O. Crosby" on 1854 Sidney & Neff at the SW Main Street position; same parcel labeled "M. Eckels" on 1867 Beers',
-    families: 'Crosby / Eckels (Hawkins)',
-    current: 'City of New York watershed land',
-    open: 'The 1854 map carries two separate "S.O. Crosby" labels — this lower one and an upper one on Main Street. By 1867 the lower parcel had passed to Matthias Eckels (confirmed = Matt Hawkins in the deed record); Eckels held the Lot 2 parcel from 1867 until death without recording a conveyance. The persistence of "S.O." as an initial across both the 1854 and 1867 maps weakens the earlier "engraver misread S.S. as S.O." theory for the upper Crosby parcel.',
+    lot: 'Surviving Parcel — Chain Open 1867–1948',
+    title: 'S.O. Crosby (lower) → M. Eckels — Main Street Southwest',
+    addr: 'Northwest side, Main Street — 44–46 Sodom Road (SNARR Animal Rescue)',
+    chain: '1830–present (1867–1948 gap open)',
+    earliest: 'Seymour Allen → Seth S. Crosby 1830 (Liber G/97); Eckels acquisition c.1867 unrecorded',
+    families: 'Crosby / Eckels (Hawkins) / Ackles / Bergensten',
+    current: 'Structure survives at 44–46 Sodom Road (SNARR Animal Rescue). Lot confirmed continuous from 1830. Fieldstone retaining wall along road frontage consistent with 19th-century construction.',
+    open: 'S.O. Crosby (lower) on 1867 Beers map = Lot 2 (44–46 Sodom Road), confirmed from deed chain. Matthias Eckels (= Matt Hawkins) held from 1867 until death without recording a conveyance — 81-year gap to 1948 Ackles heirs → Bergensten deed. Surrogate\'s Court research needed for Eckels/Hawkins estate. The S.O. Crosby → Eckels conveyance (1854–1867 window) also unrecorded. The 1867 Beers map shows two structure symbols on this lot, consistent with the deed language "house and outhouses."',
+  },
+    'j_tilford': {
+    lot: 'Surviving Parcel — Forward Chain Open',
+    title: 'J. Tilford — Main Street',
+    addr: 'Northwest side, Main Street — 58 Sodom Road',
+    chain: '1863–present (forward chain from Tilford open)',
+    earliest: 'Smith Tilford deed assembly confirmed: Fowler→Tilford 1863, Conklin→Tilford 1865',
+    families: 'Tilford / Atford',
+    current: 'Structure survives at 58 Sodom Road. Two-story vernacular with close road setback consistent with pre-Civil War village construction. Appears on 1867 Beers map as "J. Tilford."',
+    open: 'The Tilford deed assembly (1863–1865) is confirmed from primary sources. Forward chain from Tilford to the modern owner has not been fully traced — earliest confirmed modern link is Liber 536/191 (Atford/Gilstad chain). The gap between Smith Tilford and the modern chain requires grantor index research under Tilford for the 1865–1920 window.',
   },
   'district_school': {
     lot: 'Lost Feature — Watershed Era',
