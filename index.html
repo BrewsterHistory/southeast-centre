@@ -543,6 +543,14 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 .reckoning-source{border-top:1px solid var(--border);padding-top:1rem}
 .reckoning-source p{font-family:var(--mono);font-size:11px;color:var(--ink-muted);line-height:1.6}
 
+/* Clickable article image — opens full original in lightbox */
+.article-image-link{display:block;position:relative;cursor:zoom-in;text-decoration:none;transition:opacity 0.15s}
+.article-image-link img{display:block;width:100%;transition:filter 0.15s}
+.article-image-link:hover img{filter:brightness(1.04)}
+.article-image-hint{position:absolute;bottom:10px;right:10px;background:rgba(20,18,15,0.85);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 10px;border-radius:3px;opacity:0;transition:opacity 0.2s;pointer-events:none}
+.article-image-link:hover .article-image-hint{opacity:1}
+@media (max-width:640px){.article-image-hint{opacity:0.9;font-size:9px;padding:4px 8px;bottom:6px;right:6px}}
+
 
 </style>
 </head>
@@ -885,7 +893,10 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
 
       <section class="story-gallery">
         <figure class="gallery-fig">
-          <img src="images/Reckoning/reck_03.png" alt="The Standard, July 11, 1890 — 'The Awards' column masthead" loading="lazy">
+          <a href="#" class="article-image-link" onclick="openFullArticle(event)">
+            <img src="images/Reckoning/reck_03.png" alt="The Standard, July 11, 1890 — 'The Awards' column masthead" loading="lazy">
+            <span class="article-image-hint">Click to read full article</span>
+          </a>
           <figcaption>The Standard, Brewster, New York. Friday, July 11, 1890. "The Awards" — the article opens: "Hereabouts the week has been given up to the discussion of the awards to property owners for property taken and damages sustained by reason of the building of Sodom Dam. In view of the widespread interest in this proceeding some of the details may prove of interest." What followed was the complete commissioners' accounting for the first major watershed proceeding in the Town of Southeast.</figcaption>
         </figure>
       </section>
@@ -2439,6 +2450,17 @@ function lbKeyHandler(e) {
   if (e.key === 'Escape') closeLightbox();
   if (e.key === 'ArrowLeft') lbNav(-1);
   if (e.key === 'ArrowRight') lbNav(1);
+}
+
+// Open the full July 11, 1890 "The Awards" article in the lightbox
+// Three full-resolution scans of the original newspaper page
+function openFullArticle(e) {
+  if (e) e.preventDefault();
+  openLightbox([
+    {src: 'images/Reckoning/reck_full_01.png', cap: 'The Standard, Brewster, N.Y. — Friday, July 11, 1890 — "The Awards" — page 1 of 3'},
+    {src: 'images/Reckoning/reck_full_02.png', cap: 'The Standard, Brewster, N.Y. — Friday, July 11, 1890 — "The Awards" — page 2 of 3'},
+    {src: 'images/Reckoning/reck_full_03.png', cap: 'The Standard, Brewster, N.Y. — Friday, July 11, 1890 — "The Awards" — page 3 of 3'}
+  ], 0);
 }
 
 // Build photo gallery HTML for a lot
