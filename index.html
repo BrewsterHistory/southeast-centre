@@ -2463,6 +2463,25 @@ function openFullArticle(e) {
   ], 0);
 }
 
+// Open the full March 17, 1933 "Fire Destroys Old Sodom Landmark" article in the lightbox
+// Three full-resolution column scans of the original newspaper page
+// Required image files in /images/lot3/:
+//   lot3_fire_full_01.png — masthead + left column (Foster history,
+//                            Hine sale, Carroll era, Smith managers)
+//   lot3_fire_full_02.png — middle column (fire account: Elsie Foster
+//                            discovery, Brewster pumper at Sodom bridge,
+//                            Katonah arrival, Hatfield injury)
+//   lot3_fire_full_03.png — closing column (Quinn/Ganung dispatch chain,
+//                            "every spark out at 2 a.m.")
+function openLot3FireArticle(e) {
+  if (e) e.preventDefault();
+  openLightbox([
+    {src: 'images/lot3/lot3_fire_full_01.png', cap: 'Brewster Standard, March 17, 1933 — "Fire Destroys Old Sodom Landmark — Katonah Fireman Seriously Injured" — column 1 of 3'},
+    {src: 'images/lot3/lot3_fire_full_02.png', cap: 'Brewster Standard, March 17, 1933 — fire account, column 2 of 3'},
+    {src: 'images/lot3/lot3_fire_full_03.png', cap: 'Brewster Standard, March 17, 1933 — fire account, column 3 of 3'}
+  ], 0);
+}
+
 // Build photo gallery HTML for a lot
 function buildGallery(photos) {
   // photos = [{src, cap}]
