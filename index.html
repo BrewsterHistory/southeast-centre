@@ -100,7 +100,7 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .print-btn{margin-left:auto;padding:0.5rem 0.9rem !important;border:1px solid #b91c1c !important;border-radius:4px !important;background:transparent !important;color:#b91c1c !important;cursor:pointer;font-size:10px !important;font-weight:600 !important;letter-spacing:0.1em;transition:all 0.15s;align-self:center}
 .print-btn:hover{background:#b91c1c !important;color:#fff !important}
 @media print {
-  nav, header, footer, .nav-btn, .slideshow-overlay, .slideshow-lot-title,
+  nav, header, footer, .nav-btn, .slideshow-overlay, .slideshow-lot-title, .page-copyright,
   #panel-story, #panel-maps, #panel-photos, #panel-reckoning, #panel-reservoir, #panel-chat,
   .map-ov-tabs, #ov-facts, .print-btn, .story-map-btn,
   .photos-view-toggle, .photos-map-hint,
@@ -1651,9 +1651,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink-light); margin-bottom: 
   </div>
 </div>
 
-<footer style="max-width:1080px;margin:3rem auto 2rem;padding:1.5rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--ink-muted);line-height:1.8;letter-spacing:0.04em;text-align:center">
-  <p style="margin:0">&copy; 2026 Rob G. All rights reserved.</p>
-</footer>
+<footer></footer>
 
 <script>
 
@@ -3438,6 +3436,11 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="lightbox-counter" id="lb-counter"></div>
 </div>
 
+
+
+<div class="page-copyright" style="max-width:1080px;margin:3rem auto 2rem;padding:1.5rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--ink-muted);line-height:1.8;letter-spacing:0.04em;text-align:center">
+  <p style="margin:0">&copy; 2026 Rob G. All rights reserved.</p>
+</div>
 
 </body>
 </html>
