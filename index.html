@@ -154,6 +154,8 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 /* History */
 .history-body p{font-family:var(--body);font-size:16px;color:var(--ink-light);line-height:1.9;margin-bottom:1.25rem}
 .history-body p:last-child{margin-bottom:0}
+.history-body p em, .history-body em{color:var(--ink);font-style:italic}
+.history-body p strong{color:var(--ink);font-weight:600}
 .history-body{width:100%;box-sizing:border-box}
 .history-body h2{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--ink);margin:2rem 0 0.75rem;padding-top:1.5rem;border-top:1px solid var(--border)}
 .history-body h2:first-child{margin-top:0;padding-top:0;border-top:none}
@@ -164,7 +166,7 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .history-body .deed-ref{font-family:var(--mono);font-size:12px;color:var(--ink-muted);background:var(--parchment);padding:1px 5px;border-radius:2px;white-space:nowrap}
 .lot-photo{margin:1rem 0}
 .lot-photo img{width:100%;border-radius:4px;display:block;border:0.5px solid var(--border)}
-.lot-photo figcaption{font-family:var(--mono);font-size:9px;color:var(--ink-muted);margin-top:5px;letter-spacing:0.04em;line-height:1.5}
+.lot-photo figcaption{font-family:var(--mono);font-size:9px;color:var(--ink-light);margin-top:5px;letter-spacing:0.04em;line-height:1.5}
 /* Map hint */
 .map-hint-bar{background:var(--ink);color:var(--cream);text-align:center;padding:0.6rem;font-family:var(--mono);font-size:10px;letter-spacing:0.08em}
 
@@ -182,13 +184,15 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .story-text p{font-family:var(--body);font-size:0.95rem;font-weight:400;color:var(--ink-light);line-height:1.8;margin-bottom:1rem}
 .story-text p:last-child{margin-bottom:0}
 .story-text em{font-style:italic;color:var(--ink)}
+.story-body p em, .story-body em{color:var(--ink);font-style:italic}
+.story-body p strong{color:var(--ink);font-weight:600}
 .story-figure{margin:1.25rem 0 0}
 .story-figure img{width:100%;border-radius:4px;border:0.5px solid var(--border);display:block}
-.story-figure figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:6px;line-height:1.6;letter-spacing:0.03em}
+.story-figure figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:6px;line-height:1.6;letter-spacing:0.03em}
 .story-gallery{padding:1.75rem 0;border-bottom:1px solid var(--border)}
 .gallery-fig{margin:0}
 .gallery-fig img{width:100%;border-radius:4px;border:0.5px solid var(--border);display:block}
-.gallery-fig figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-muted);margin-top:8px;line-height:1.6;letter-spacing:0.03em}
+.gallery-fig figcaption{font-family:var(--mono);font-size:10px;color:var(--ink-light);margin-top:8px;line-height:1.6;letter-spacing:0.03em}
 .story-footer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)}
 .story-footer p{font-family:var(--mono);font-size:10px;color:var(--ink-muted);line-height:1.8;letter-spacing:0.04em}
 @media(min-width:700px){
@@ -359,15 +363,15 @@ details[open] .about-arrow{transform:rotate(90deg)}
 /* lot-narrative styles (for pandoc-converted files) */
 .lot-narrative p { margin: 0 0 1em 0; font-family: Georgia, serif; font-size: 15px; line-height: 1.85; color: #1c1a14; }
 .lot-narrative p > strong:only-child { font-size: 1.05rem; display: block; padding-bottom: 0.3rem; border-bottom: 1px solid #d8d0c4; margin-top: 2rem; }
-.lot-narrative em { font-style: italic; color: #555; }
-.lot-narrative p:has(> em:only-child) { font-size: 13px; color: #666; line-height: 1.5; }
+.lot-narrative em { font-style: italic; color: var(--ink); }
+.lot-narrative p:has(> em:only-child) { font-size: 13px; color: var(--ink-light); line-height: 1.5; }
 .lot-narrative img { width: 100%; height: auto; display: block; margin: 1.5rem 0 0.4rem; border-radius: 3px; border: 1px solid rgba(0,0,0,0.1); }
 
 
 
 figure.lot-photo{margin:1.5rem 0;width:100%}
 figure.lot-photo img{width:100%;height:auto;display:block;border-radius:4px;border:1px solid rgba(0,0,0,0.1)}
-figure.lot-photo figcaption{font-size:12px;color:#888;line-height:1.5;margin-top:0.4rem;font-style:italic}
+figure.lot-photo figcaption{font-size:12px;color:var(--ink-light);line-height:1.5;margin-top:0.4rem;font-style:italic}
 
 @media(min-width:700px){.map-ov-body{padding:2rem 3rem 4rem}}
 @media(min-width:1100px){.map-ov-body{padding:2rem 5rem 4rem}}
@@ -380,6 +384,7 @@ figure.lot-photo figcaption{font-size:12px;color:#888;line-height:1.5;margin-top
 .story-hero-sub{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin:0}
 .story-body{max-width:820px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
 .story-lead{font-family:var(--body);font-size:17px;line-height:1.85;color:var(--ink);margin-bottom:1.75rem;font-style:italic}
+.story-lead em{font-style:normal;color:var(--ink)}
 .story-body h2{font-family:var(--serif);font-size:clamp(1.2rem,2.5vw,1.5rem);font-weight:400;color:var(--ink);margin:2.5rem 0 0.75rem;padding-top:2rem;border-top:1px solid var(--border)}
 .story-body h2:first-of-type{margin-top:1.5rem;padding-top:0;border-top:none}
 .story-body p{font-family:var(--body);font-size:17px;color:var(--ink-light);line-height:1.9;margin-bottom:1.25rem}
