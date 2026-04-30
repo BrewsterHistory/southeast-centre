@@ -447,21 +447,24 @@ figure.lot-photo figcaption{font-size:12px;color:var(--ink-light);line-height:1.
 .photos-toggle-btn{background:var(--parchment);border:1px solid var(--border);color:var(--ink-muted);padding:0.4rem 0.8rem;border-radius:4px;cursor:pointer;font-size:12px;transition:all 0.15s}
 .photos-toggle-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 .photos-list-view{display:flex;flex-direction:column;gap:0.5rem}
-.photos-list-item{display:flex;align-items:center;gap:1rem;padding:0.85rem 1rem;background:var(--parchment);border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all 0.15s}
-.photos-list-item:hover{border-color:var(--gold);background:var(--cream)}
-.photos-list-thumb{width:56px;height:42px;border-radius:3px;object-fit:cover;background:var(--cream);border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--ink-muted)}
-.photos-list-info{flex:1;min-width:0}
-.photos-list-addr{font-family:var(--mono);font-size:11px;color:var(--ink-muted);letter-spacing:0.06em}
-.photos-list-name{font-family:var(--serif);font-size:1rem;color:var(--ink);font-weight:600}
-.photos-list-count{font-size:12px;color:var(--ink-muted)}
-.photos-list-arrow{color:var(--ink-muted);font-size:1.1rem}
+.photos-list-item{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.2rem;background:var(--warm-white);border:1px solid var(--border-strong);border-radius:6px;cursor:pointer;transition:all 0.18s ease;position:relative}
+.photos-list-item:hover{border-color:var(--gold);background:var(--cream);transform:translateY(-1px);box-shadow:0 2px 8px rgba(28,26,20,0.06)}
 .photos-list-item-featured{background:var(--ink);border-color:var(--ink);color:var(--cream);margin-bottom:1rem;padding:1.1rem 1.2rem}
-.photos-list-item-featured:hover{background:#2a2420;border-color:var(--gold)}
-.photos-list-item-featured .photos-list-thumb{width:72px;height:56px;border-color:rgba(255,255,255,0.15)}
+.photos-list-item-featured:hover{background:#2a2420;border-color:var(--gold);transform:translateY(-1px);box-shadow:0 2px 12px rgba(28,26,20,0.18)}
+.photos-list-thumb{width:72px;height:56px;border-radius:3px;object-fit:cover;background:var(--cream);border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--ink-muted)}
+.photos-list-item-featured .photos-list-thumb{border-color:rgba(255,255,255,0.15)}
+.photos-list-info{flex:1;min-width:0}
+.photos-list-addr{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.10em;font-weight:500;text-transform:uppercase}
+.photos-list-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:600;margin-top:2px;line-height:1.3}
+.photos-list-count{font-size:12px;color:var(--ink-muted);margin-top:3px;font-family:var(--mono);letter-spacing:0.02em}
+.photos-list-arrow{color:var(--ink-muted);font-size:1.3rem;flex-shrink:0}
+.photos-list-item:hover .photos-list-arrow{color:var(--gold)}
 .photos-list-item-featured .photos-list-addr{color:var(--gold-light);letter-spacing:0.12em;font-weight:500}
-.photos-list-item-featured .photos-list-name{color:var(--warm-white);font-size:1.1rem}
+.photos-list-item-featured .photos-list-name{color:var(--warm-white);font-size:1.15rem}
 .photos-list-item-featured .photos-list-count{color:rgba(245,240,232,0.55)}
 .photos-list-item-featured .photos-list-arrow{color:rgba(245,240,232,0.5)}
+.photos-list-section-label{font-family:var(--mono);font-size:11px;color:var(--ink-muted);letter-spacing:0.14em;text-transform:uppercase;font-weight:500;margin:1.5rem 0 0.35rem 0;padding-bottom:0.4rem;border-bottom:1px solid var(--border)}
+.photos-list-section-label:first-child{margin-top:0}
 /* Slideshow */
 .photo-slideshow-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#000;z-index:900;display:flex;flex-direction:column}
 .slideshow-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.1);flex-shrink:0}
@@ -3209,10 +3212,10 @@ function buildPhotosList() {
            + '<div class="photos-list-arrow">›</div>'
            + '</div>';
 
-  var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11'];
-  lots.forEach(function(lid) {
+  // Helper to build a single property item (lot or POI)
+  function buildItem(lid) {
     var d = lotData[lid];
-    if (!d) return;
+    if (!d) return '';
 
     // Get photo count from the lot content block
     var contentBlock = document.getElementById('lot-content-' + lid);
@@ -3229,23 +3232,33 @@ function buildPhotosList() {
       }
     }
 
-    // Lots without fetched content - show placeholder
     var thumbHtml = thumbSrc
       ? '<img src="' + thumbSrc + '" alt="' + thumbAlt + '" class="photos-list-thumb">'
       : '<div class="photos-list-thumb">📷</div>';
 
     var countLabel = photoCount > 0 ? photoCount + ' photo' + (photoCount !== 1 ? 's' : '') : 'No photos yet';
 
-    html += '<div class="photos-list-item" onclick="openLotSlideshow(\'' + lid + '\')">'
-          + thumbHtml
-          + '<div class="photos-list-info">'
-          + '<div class="photos-list-addr">' + d.addr + '</div>'
-          + '<div class="photos-list-name">' + d.title + '</div>'
-          + '<div class="photos-list-count">' + countLabel + '</div>'
-          + '</div>'
-          + '<div class="photos-list-arrow">›</div>'
-          + '</div>';
-  });
+    return '<div class="photos-list-item" onclick="openLotSlideshow(\'' + lid + '\')">'
+         + thumbHtml
+         + '<div class="photos-list-info">'
+         + '<div class="photos-list-addr">' + d.addr + '</div>'
+         + '<div class="photos-list-name">' + d.title + '</div>'
+         + '<div class="photos-list-count">' + countLabel + '</div>'
+         + '</div>'
+         + '<div class="photos-list-arrow">›</div>'
+         + '</div>';
+  }
+
+  // Surviving Properties — the eleven tax-map lots plus the Knox parcel
+  html += '<div class="photos-list-section-label">Surviving Properties</div>';
+  var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11','tknox'];
+  lots.forEach(function(lid) { html += buildItem(lid); });
+
+  // Lost Features — properties absorbed by the watershed taking
+  html += '<div class="photos-list-section-label">Lost to the Watershed</div>';
+  var pois = ['district_school','joh_farm','gcole','carriage_factory','yale_tract'];
+  pois.forEach(function(lid) { html += buildItem(lid); });
+
   list.innerHTML = html;
 }
 
