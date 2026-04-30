@@ -93,11 +93,13 @@ nav{background:var(--warm-white);border-bottom:2px solid var(--border);position:
 .map-ov-addr{font-family:var(--body);font-size:12px;color:var(--ink-muted);margin-top:2px}
 .map-ov-close{font-family:var(--mono);font-size:10px;color:var(--ink-muted);background:none;border:1px solid var(--border);cursor:pointer;padding:4px 10px;border-radius:3px;white-space:nowrap;flex-shrink:0;letter-spacing:0.06em}
 .map-ov-close:hover{color:var(--ink);border-color:var(--border-strong)}
-.map-ov-tabs{display:flex;border-bottom:1px solid var(--border);padding:0 1.5rem;flex-shrink:0;max-width:1080px;width:100%;margin:0 auto;box-sizing:border-box}
-.map-ov-tab{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem 1rem 0.5rem 0;border:none;background:none;color:var(--ink-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s}
-.map-ov-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.map-ov-tabs{display:flex;gap:8px;border-bottom:1px solid var(--border);padding:0.75rem 1.5rem 0;flex-shrink:0;max-width:1080px;width:100%;margin:0 auto;box-sizing:border-box}
+.map-ov-tab{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;padding:0.6rem 1.2rem;border:1px solid var(--border-strong);background:var(--warm-white);color:var(--ink-light);cursor:pointer;border-radius:5px 5px 0 0;border-bottom:none;transition:all 0.15s;position:relative;top:1px}
+.map-ov-tab:hover{background:var(--cream);color:var(--ink)}
+.map-ov-tab.active{background:var(--ink);border-color:var(--ink);color:var(--warm-white)}
+.map-ov-tab.active:hover{background:var(--ink);color:var(--warm-white)}
 .map-ov-tabs{position:relative}
-.print-btn{margin-left:auto;padding:0.5rem 0.9rem !important;border:1px solid #b91c1c !important;border-radius:4px !important;background:transparent !important;color:#b91c1c !important;cursor:pointer;font-size:10px !important;font-weight:600 !important;letter-spacing:0.1em;transition:all 0.15s;align-self:center}
+.print-btn{margin-left:auto;padding:0.5rem 0.9rem !important;border:1px solid #b91c1c !important;border-radius:4px !important;background:transparent !important;color:#b91c1c !important;cursor:pointer;font-size:10px !important;font-weight:600 !important;letter-spacing:0.1em;transition:all 0.15s;align-self:center;top:0 !important;position:static !important}
 .print-btn:hover{background:#b91c1c !important;color:#fff !important}
 @media print {
   nav, header, footer, .nav-btn, .slideshow-overlay, .slideshow-lot-title, .page-copyright,
