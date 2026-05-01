@@ -3202,6 +3202,40 @@ function openReservoirSlideshow() {
   showSlideshow(reservoirPhotos, 'The Reservoir — Construction & Completion', 0);
 }
 
+var postcards = [
+  // Spillway series — vintage postcards of the East Branch (Sodom) Reservoir spillway in active overflow
+  {src:'images/Reservoir/reservoir_26.jpg', cap:'&ldquo;Spillway, Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; vintage hand-tinted postcard, number 6265, ca. 1910s&ndash;1920s. The spillway in active overflow. Captures the East Branch Reservoir under its earlier vernacular name &ldquo;Sodom Reservoir,&rdquo; which derives from the 1883 statute that originally authorized the project as a &ldquo;Sodom and Bog Brook&rdquo; impoundment.'},
+  {src:'images/Reservoir/reservoir_35.jpg', cap:'&ldquo;Spill way Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; close-up of the spillway in active overflow with utility pole at upper left. Sunset-tinted hand-coloring, early 1900s.'},
+  {src:'images/Reservoir/reservoir_37.jpg', cap:'&ldquo;Spill-Way, Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; vintage hand-tinted postcard looking down across the spillway with active overflow. Pinkish ground tones, very early 1900s pictorial aesthetic.'},
+  {src:'images/Reservoir/reservoir_32.jpg', cap:'East Branch Reservoir spillway in active overflow &mdash; mid-twentieth century color photograph (ca. 1950s&ndash;1960s, judging from the picket fencing and visible roadway). The Town of Southeast Historic Sites Commission marker is visible at the right edge of the frame.'},
+
+  // Fountain series — the ornamental fountain in the basin below the masonry dam
+  {src:'images/Reservoir/reservoir_29.jpg', cap:'&ldquo;Fountain and Dam at Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; the ornamental fountain in the basin below the masonry dam. The same fountain composition documented in Walter McCulloh&rsquo;s &ldquo;Masonry Dam, Fountain, Etc.&rdquo; Plate No. 4 (1895), seen here in the established post-completion landscape.'},
+  {src:'images/Reservoir/reservoir_30.jpg', cap:'&ldquo;Fountain, Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; postcard number 6266 (sequential to the spillway postcard 6265 in the same publisher series). Closer view of the fountain with the masonry dam wall and what appears to be the gatehouse railing visible above.'},
+  {src:'images/Reservoir/reservoir_33.jpg', cap:'&ldquo;Fountain at Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; vertical-orientation postcard, very early 1900s. The fountain isolated in its circular basin with a small ornamental island visible at the base. Hand-tinted.'},
+  {src:'images/Reservoir/reservoir_34.jpg', cap:'&ldquo;THE FOUNTAIN, SODAM RESERVOIR, BREWSTER, N.Y.&rdquo; &mdash; autumn scene with red and orange foliage. Note the misspelling of &ldquo;SODAM&rdquo; (rather than SODOM) printed on the postcard itself &mdash; an artifact of the publisher&rsquo;s typography, not Anthropic-era OCR error.'},
+  {src:'images/Reservoir/reservoir_40.jpg', cap:'&ldquo;Fountain and Dam at Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; alternate angle of the fountain with the masonry dam wall and gatehouse tower visible at right. Deeper foreground perspective showing the road and rocky outcrops below the dam.'},
+
+  // Reservoir landscape views — the body of water itself, often pictorially composed
+  {src:'images/Reservoir/reservoir_27.jpg', cap:'&ldquo;Fountain Basin Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; early postcard showing the spillway downstream basin and the road system below the dam, with the masonry-walled fountain pool visible center-right. The dam itself is largely out of frame; this view captures the engineered landscape that received the spillway flow.'},
+  {src:'images/Reservoir/reservoir_28.jpg', cap:'&ldquo;Sodom Reservoir and Joes Hills, Brewster, N.Y.&rdquo; &mdash; reservoir surface with hills rising on the far shore. &ldquo;Joe&rsquo;s Hills&rdquo; is a project-record toponym likely derived from the Joseph Crane patriarch of the Crane family of Southeast Centre &mdash; one of the founding Cape Cod settler households whose ground was absorbed into the reservoir basin.'},
+  {src:'images/Reservoir/reservoir_38.jpg', cap:'&ldquo;Sodom Reservoir, Brewster, N.Y.&rdquo; &mdash; sunset/twilight reservoir landscape with overhanging tree branches at right and a small island composition at center. Hand-tinted, very early 1900s pictorial aesthetic.'},
+  {src:'images/Reservoir/reservoir_36.jpg', cap:'&ldquo;SODOM RESERVOIR, Croton Water Shed, Brewster, N.Y.&rdquo; &mdash; black-and-white postcard, looking across the reservoir water through trees. Notable for explicitly identifying the body of water as part of the New York City Croton water-shed system on the postcard caption itself.'},
+
+  // Mid-century / Modern
+  {src:'images/Reservoir/reservoir_31.jpg', cap:'East Branch Reservoir from a hillside vantage &mdash; mid-twentieth century color postcard (ca. 1940s&ndash;1950s based on the visible automobile and roadway treatment). The gatehouse tower is visible across the water with willow trees framing the right side. By this period the popular name had shifted from &ldquo;Sodom Reservoir&rdquo; to the modern &ldquo;East Branch Reservoir&rdquo; designation.'},
+
+  // Kishawana Golf Links — substantive new project finding
+  {src:'images/Reservoir/reservoir_39.jpg', cap:'&ldquo;Kishawana Golf Links, Brewster, N.Y.&rdquo; &mdash; an early-twentieth-century postcard showing what appears to be the East Branch Reservoir in the middle distance, with a fairway and golfers in the foreground. The name &ldquo;Kishawana&rdquo; derives from the Indigenous toponym &ldquo;Lake Kishawana&rdquo; for what the project record calls Mud Pond (per Oxford 1912 / Zimm 1946). This is a previously undocumented (in the project record) commercial recreational use of the watershed area near Mud Pond, the Indigenous name preserved through a golf-course operation. Open research target: dates of operation, ownership, exact location relative to the modern reservoir and Lake Kishawana shoreline.'},
+
+  // Village scene below the dam
+  {src:'images/Reservoir/reservoir_41.jpg', cap:'&ldquo;The Bend in the River, Brewster, N.Y.&rdquo; &mdash; postcard number A 8677, black-and-white photographic image. A fly-fisherman on the East Branch of the Croton River with the village of Brewster rising in the background. The river here is below the East Branch (Sodom) dam &mdash; the water that the reservoir releases continues down the same channel that powered the village mills, factories, and farms before the watershed taking. A village scene rather than a reservoir scene, but inseparable from the reservoir story.'}
+];
+
+function openPostcardsSlideshow() {
+  showSlideshow(postcards, 'Postcards — Sodom Reservoir &amp; Brewster Vintage', 0);
+}
+
 function buildPhotosList() {
   var list = document.getElementById('photos-list-view');
   if (!list || list.children.length > 0) return; // already built
@@ -3216,6 +3250,17 @@ function buildPhotosList() {
            + '</div>'
            + '<div class="photos-list-arrow">›</div>'
            + '</div>';
+
+  // Postcards card — featured tile, second special collection
+  html += '<div class="photos-list-item photos-list-item-featured" onclick="openPostcardsSlideshow()">'
+        + '<img src="images/Reservoir/reservoir_26.jpg" alt="Vintage Sodom Reservoir postcard" class="photos-list-thumb">'
+        + '<div class="photos-list-info">'
+        + '<div class="photos-list-addr">SPECIAL COLLECTION</div>'
+        + '<div class="photos-list-name">Postcards — Sodom Reservoir &amp; Brewster Vintage</div>'
+        + '<div class="photos-list-count">' + postcards.length + ' postcards · ca. 1900s–1960s</div>'
+        + '</div>'
+        + '<div class="photos-list-arrow">›</div>'
+        + '</div>';
 
   // Helper to build a single property item (lot or POI)
   function buildItem(lid) {
