@@ -3383,7 +3383,7 @@ function renderSlide() {
   var img = document.getElementById('slideshow-img');
   img.src = p.src;
   img.alt = p.cap;
-  document.getElementById('slideshow-caption').textContent = p.cap;
+  document.getElementById('slideshow-caption').innerHTML = p.cap;
   document.getElementById('slideshow-counter').textContent =
     (slideshowIdx + 1) + ' of ' + slideshowPhotos.length;
 
