@@ -409,12 +409,16 @@ figure.lot-photo figcaption{font-size:12px;color:var(--ink-light);line-height:1.
 .story-properties-section{margin-top:3rem;padding-top:2.5rem;border-top:2px solid var(--border-strong)}
 .story-properties-section h2{border-top:none;padding-top:0;margin-top:0}
 .story-properties-intro{color:var(--ink-muted);font-size:14px;margin-bottom:1.5rem}
+.story-inline-link{color:var(--gold);text-decoration:underline;text-underline-offset:2px;cursor:pointer;font-weight:600}
+.story-inline-link:hover{opacity:0.8}
 .story-prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;margin-bottom:1.5rem}
 .story-prop-item{background:var(--parchment);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;cursor:pointer;transition:all 0.15s}
 .story-prop-item:hover{border-color:var(--gold);background:var(--cream)}
 .story-prop-addr{font-family:var(--mono);font-size:11px;color:var(--ink-muted);letter-spacing:0.06em;margin-bottom:0.2rem}
 .story-prop-name{font-family:var(--serif);font-size:0.95rem;color:var(--ink);font-weight:600}
 .story-prop-chain{font-size:11px;color:var(--ink-muted);margin-top:0.2rem}
+.story-prop-subhead{font-family:var(--serif);font-size:1.15rem;color:var(--ink);font-weight:600;margin:2.25rem 0 0.35rem;border:none;padding:0}
+.story-prop-subnote{color:var(--ink-muted);font-size:14px;margin-bottom:1.25rem}
 .story-cta{text-align:center;margin-top:1.5rem}
 .story-map-btn{background:var(--ink);color:#fff;border:none;padding:0.75rem 2rem;font-family:var(--body);font-size:14px;border-radius:4px;cursor:pointer;letter-spacing:0.02em;transition:opacity 0.15s}
 .story-map-btn:hover{opacity:0.8}
@@ -2413,10 +2417,17 @@ function filterReckoning(mode) {
 
       <div class="story-properties-section">
         <h2>The Properties</h2>
-        <p class="story-properties-intro">Click a property on the map to explore its full deed history, key families, and chain of title. The properties documented here cover most of the surviving village cluster on Brewster Hill Road and Sodom Road &mdash; traced from their earliest confirmed deed records to the present.</p>
+        <p class="story-properties-intro">Click any property below to explore its full deed history, key families, and chain of title. To see them mapped in place on the 1867 Beers atlas, <a class="story-inline-link" href="#" onclick="show('map', document.querySelectorAll('.nav-btn')[1]); return false;">click here to open the interactive map</a>. The surviving village cluster on Brewster Hill Road and Sodom Road is listed first, traced from its earliest confirmed deed records to the present. Below it, a second group gathers the parcels and buildings that are no longer here &mdash; taken for the watershed, flooded, or demolished &mdash; which survive only in the deed and map record.</p>
         <div class="story-prop-grid" id="story-prop-grid">
           <!-- populated by JS from lotData -->
         </div>
+
+        <h3 class="story-prop-subhead">No longer here &mdash; lost to the watershed</h3>
+        <p class="story-prop-subnote">These parcels, mills, shops, and civic buildings were taken for the reservoir, flooded, or demolished, mostly between 1889 and 1901. Nothing of them survives above ground today, but each is documented here from the deed, newspaper, and map record. Click any to read its history; on the interactive map they appear in their original positions.</p>
+        <div class="story-prop-grid" id="story-prop-grid-lost">
+          <!-- populated by JS from lotData (buildStoryGridLost) -->
+        </div>
+
         <div class="story-cta">
           <button class="story-map-btn" onclick="show('map', document.querySelectorAll('.nav-btn')[1])">↳ Open the interactive map</button>
         </div>
@@ -2859,6 +2870,25 @@ function buildStoryGrid() {
   var grid = document.getElementById('story-prop-grid');
   if (!grid) return;
   var lots = ['lot2','lot1','lot3','lot4','lot6','lot7','lot8','lot9','lot10','lot11'];
+  var html = '';
+  lots.forEach(function(lid) {
+    var d = lotData[lid];
+    if (!d) return;
+    html += '<div class="story-prop-item" onclick="openStoryLot(\'' + lid + '\')">'
+          + '<div class="story-prop-addr">' + d.addr + '</div>'
+          + '<div class="story-prop-name">' + d.title + '</div>'
+          + '<div class="story-prop-chain">' + d.chain + '</div>'
+          + '</div>';
+  });
+  grid.innerHTML = html;
+  buildStoryGridLost();
+}
+
+function buildStoryGridLost() {
+  var grid = document.getElementById('story-prop-grid-lost');
+  if (!grid) return;
+  // Genuinely lost parcels & features (gone, flooded, or demolished). Order: farms first, then trades, then civic.
+  var lots = ['joh_farm','yale_tract','gcole','carriage_factory','wright_factory','a_burch','s_reed_ms','jh_smith','wh_crosby','crane_mill','temperance','district_school'];
   var html = '';
   lots.forEach(function(lid) {
     var d = lotData[lid];
