@@ -1660,7 +1660,7 @@ p { font-size: 16px; line-height: 1.85; color: var(--ink); margin-bottom: 1.2rem
               <p style="font-family:var(--serif);font-size:0.8rem;color:var(--ink-muted);margin-top:0.5rem;font-style:italic">Hidden by default to reduce automated harvesting.</p>
             </div>
             <div id="contact-info" style="display:none">
-              <p style="font-family:var(--serif);font-size:0.95rem;color:var(--ink);margin:0 0 0.3rem 0"><strong>Rob</strong></p>
+              <p style="font-family:var(--serif);font-size:0.95rem;color:var(--ink);margin:0 0 0.3rem 0"><strong>R. Griffin</strong></p>
               <p style="font-family:var(--mono);font-size:0.95rem;color:var(--gold);margin:0" id="contact-addr"></p>
               <p style="font-family:var(--serif);font-size:0.8rem;color:var(--ink-muted);margin-top:0.6rem;font-style:italic">Please include "Southeast Centre" in the subject line.</p>
             </div>
@@ -2235,7 +2235,7 @@ let overlayOpen = false;
 // ── LOT CONTENT CACHE ─────────────────────────────────────────────────────
 const lotCache = {};
 
-function openOverlay(lotId) {
+function openOverlay(lotId, fromDeepLink) {
   const d = lotData[lotId];
   if (!d) return;
 
@@ -2256,8 +2256,14 @@ function openOverlay(lotId) {
     ovBody.style.padding = pad;
   }
   switchOvTab('history', document.getElementById('ov-tab-history'));
-  // Push history state so back button closes overlay instead of leaving app
-  history.pushState({overlay: lotId}, '', '');
+  // Push history state so back button closes overlay instead of leaving app;
+  // set #lot=<id> in the URL so the narrative is directly linkable/shareable.
+  var lotHash = '#lot=' + lotId;
+  if (fromDeepLink) {
+    history.replaceState({overlay: lotId}, '', lotHash);
+  } else {
+    history.pushState({overlay: lotId}, '', lotHash);
+  }
 
   // Show skeleton loader while content fetches
   document.getElementById('ov-history').innerHTML = '<div class="lot-loading"><div class="lot-loading-bar"></div><div class="lot-loading-bar short"></div><div class="lot-loading-bar"></div><div class="lot-loading-bar short"></div></div>';
@@ -2331,9 +2337,13 @@ function closeOverlay(fromPopState) {
   document.body.style.overflow = '';
   document.querySelectorAll('.lot-shape').forEach(l => l.classList.remove('selected'));
   selectedLotId = null;
-  // If closed by button (not by back button), pop the history state we pushed
-  if (!fromPopState && history.state && history.state.overlay) {
-    history.back();
+  // If closed by button (not by back button), revert the URL we changed
+  if (!fromPopState) {
+    if (history.state && history.state.overlay) {
+      history.back();
+    } else if (location.hash.indexOf('#lot=') === 0) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
   }
 }
 
@@ -2348,6 +2358,24 @@ function switchOvTab(tab, btn) {
 function printLotHistory() {
   switchOvTab('history', document.getElementById('ov-tab-history'));
   setTimeout(function() { window.print(); }, 100);
+}
+
+function copyLotLink(btn) {
+  // Build a canonical shareable URL to the currently open narrative.
+  var id = (history.state && history.state.overlay) ? history.state.overlay
+           : ((location.hash.match(/^#lot=([A-Za-z0-9_]+)$/) || [])[1]);
+  if (!id) return;
+  var url = location.origin + location.pathname + '#lot=' + id;
+  var done = function() {
+    if (!btn) return;
+    var prev = btn.innerHTML; btn.innerHTML = '\u2713 Copied';
+    setTimeout(function(){ btn.innerHTML = prev; }, 1600);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done, function(){ window.prompt('Copy this link:', url); });
+  } else {
+    window.prompt('Copy this link:', url);
+  }
 }
 
 // Escape key
@@ -2452,6 +2480,7 @@ function filterReckoning(mode) {
     <button class="map-ov-tab active" id="ov-tab-history" onclick="switchOvTab('history',this)">History</button>
     <button class="map-ov-tab" id="ov-tab-facts" onclick="switchOvTab('facts',this)">Deed Table</button>
     <button class="map-ov-tab print-btn" id="ov-tab-print" onclick="printLotHistory()" title="Print or save History as PDF">🖨 Print</button>
+    <button class="map-ov-tab print-btn" id="ov-tab-link" onclick="copyLotLink(this)" title="Copy a direct link to this narrative">🔗 Copy link</button>
   </div>
   <div class="map-ov-body" id="map-ov-body">
     <div id="ov-history"></div>
@@ -3518,6 +3547,15 @@ document.addEventListener('DOMContentLoaded', function() {
   try { buildStoryGrid(); } catch(e) { console.error('buildStoryGrid:', e); }
   try { buildPhotosList(); } catch(e) { console.error('buildPhotosList:', e); }
   try { buildBrowseList(); } catch(e) { console.error('buildBrowseList:', e); }
+  // Deep link: open a narrative directly from #lot=<id> in the URL
+  try {
+    var m = location.hash.match(/^#lot=([A-Za-z0-9_]+)$/);
+    if (m && lotData[m[1]]) {
+      var lid = m[1];
+      show('map', document.querySelectorAll('.nav-btn')[1]);
+      setTimeout(function(){ openOverlay(lid, true); }, 200);
+    }
+  } catch(e) { console.error('deep-link open:', e); }
 });
 
 
